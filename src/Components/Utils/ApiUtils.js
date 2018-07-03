@@ -25,7 +25,7 @@ const request = (options) => {
 
 export function login(loginRequest){
     return request({
-        url:API_BASE_URL+"/user/login",
+        url:API_BASE_URL+"user/login",
         method:'POST',
         body: JSON.stringify(loginRequest)
     });
@@ -33,7 +33,7 @@ export function login(loginRequest){
 
 export function register(registerRequest){
     return request({
-        url:API_BASE_URL+"/user/register",
+        url:API_BASE_URL+"user/register",
         method:'POST',
         body:JSON.stringify(registerRequest),
     });
