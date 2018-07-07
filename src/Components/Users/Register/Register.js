@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { register, checkUserNameAvailability } from '../../Utils/ApiUtils'
+import { register, checkUserNameAvailability, checkEmailAvailability } from '../../Utils/ApiUtils'
 import classes from './Register.css';
 import  {
-    NAME_MAX_LENGTH, 
-    NAME_MIN_LENGTH,
-    EMAIL_MAX_LENGTH,
     PASSWORD_MAX_LENGTH,
     PASSWORD_MIN_LENGTH,
     USERNAME_MAX_LENGTH,
@@ -57,11 +54,19 @@ class Register extends Component{
                 }
             });
         }
-        else{
+        else if(inputValue === 'currentOrganization' || inputValue === 'password' || inputValue === 'designation'){
             this.setState({
                 [inputName]:{
                     value:inputValue,
                     ...validation(inputValue)
+                }
+            });
+        }
+        else{
+            this.setState({
+                [inputName]:{
+                    value:inputValue.trim(),
+                    ...validation(inputValue.trim())
                 }
             });
         }
@@ -105,7 +110,7 @@ class Register extends Component{
             <div className={classes.container}>
                 <form onSubmit={this.handleSubmit}>
                 <label>
-                    Username: <strong>{this.state.userName.errorMessage}</strong>
+                    Username: <i>{this.state.userName.errorMessage}</i>
                     <input 
                         name="userName" 
                         type="text" 
@@ -116,7 +121,7 @@ class Register extends Component{
                     </label>
 
                 <label>
-                    First Name: <strong>{this.state.firstName.errorMessage}</strong>
+                    First Name: <i>{this.state.firstName.errorMessage}</i>
                     <input 
                         name="firstName" 
                         type="text" 
@@ -127,7 +132,7 @@ class Register extends Component{
                     </label>
 
                 <label>
-                    Last Name: <strong>{this.state.lastName.errorMessage}</strong>
+                    Last Name: <i>{this.state.lastName.errorMessage}</i>
                     <input 
                         name="lastName" 
                         type="text" 
@@ -138,18 +143,18 @@ class Register extends Component{
                     </label>
 
                 <label>
-                    Email: <strong>{this.state.email.errorMessage}</strong>
+                    Email: <i>{this.state.email.errorMessage}</i>
                     <input 
                         name="email" 
                         type="text" 
                         value={this.state.email.value} 
-                        // onChange={(event) => this.handleChange(event, this.validateUserName)}
-                        onChange={this.handleChange.bind(this)}
+                        onChange={(event) => this.handleChange(event, this.validateEmail)}
+                        onBlur={this.checkEmailAvailable}
                         />
                     </label>
 
                 <label>
-                    Phone No: <strong>{this.state.phoneNumber.errorMessage}</strong>
+                    Phone No: <i>{this.state.phoneNumber.errorMessage}</i>
                     <input 
                         name="phoneNumber" 
                         type="tel" 
@@ -170,7 +175,7 @@ class Register extends Component{
                     </label>
                 
                 <label>
-                    Current Organization: <strong>{this.state.currentOrganization.errorMessage}</strong>
+                    Current Organization: <i>{this.state.currentOrganization.errorMessage}</i>
                     <input 
                         name="currentOrganization" 
                         type="text" 
@@ -181,7 +186,7 @@ class Register extends Component{
                     </label>
                 
                 <label>
-                    Designation: <strong>{this.state.designation.errorMessage}</strong>
+                    Designation: <i>{this.state.designation.errorMessage}</i>
                     <input 
                         name="designation" 
                         type="text" 
@@ -192,7 +197,7 @@ class Register extends Component{
                     </label>
                 
                 <label>
-                    Linkedin Link: <strong>{this.state.linkedinLink.errorMessage}</strong>
+                    Linkedin Link: <i>{this.state.linkedinLink.errorMessage}</i>
                     <input 
                         name="linkedinLink" 
                         type="url" 
@@ -204,7 +209,7 @@ class Register extends Component{
                 
 
                 <label>
-                    Github Link: <strong>{this.state.githubLink.errorMessage}</strong>
+                    Github Link: <i>{this.state.githubLink.errorMessage}</i>
                     <input 
                         name="githubLink" 
                         type="url" 
@@ -227,7 +232,14 @@ class Register extends Component{
     //validations
     validateUserName = (userName) => {
         // const userName = this.event.target.value;
-        if(userName.length < USERNAME_MIN_LENGTH){
+        const userREGEX = RegExp('^[a-zA-Z]+[0-9]{0,1}$');
+        if(!userREGEX.test(userName)){
+            return {
+                validateStatus: 'error',
+                errorMessage: `Username must contain atleast only alphabet and atmost one number at end.`
+            }
+        }
+        else if(userName.length < USERNAME_MIN_LENGTH){
             return {
                 validateStatus: 'error',
                 errorMessage: `Username is too short (Minimum ${USERNAME_MIN_LENGTH} characters needed.)`
@@ -246,6 +258,9 @@ class Register extends Component{
     }
     validateUserNameAvailability=() => {
         const userName = this.state.userName.value;
+        const userValidation = this.validateUserName(userName)
+        if(userValidation.validateStatus === 'error')
+            return;
         checkUserNameAvailability(userName)
         .then(response => {
             if(!response){
@@ -277,6 +292,82 @@ class Register extends Component{
         });
         
     }
+    validateEmail = (email) => {
+        if(!email) {
+            return {
+                validateStatus: 'error',
+                errorMessage: 'Email may not be empty'                
+            }
+        }
+
+        const EMAIL_REGEX = RegExp('[^@ ]+@[^@ ]+\\.[^@ ]+');
+        if(!EMAIL_REGEX.test(email)) {
+            return {
+                validateStatus: 'error',
+                errorMessage: 'Email not valid'
+            }
+        }
+        return {
+            validateStatus: null,
+            errorMsg: null
+        }
+    }
+
+    checkEmailAvailable = () => {
+        const email = this.state.email.value;
+        const emailValidation = this.validateEmail(email);
+        if(emailValidation.validateStatus === 'error'){
+            this.setState({
+                email:{
+                    value:email,
+                    ...emailValidation
+                }
+            });
+            return;
+        }
+        this.setState({
+            email:{
+                value:email,
+                validateStatus:'validating',
+                errorMessage: null
+            }
+        });
+        checkEmailAvailability(email)
+        .then(response =>{
+            if(response){
+                this.setState({
+                    email:{
+                        value:email,
+                        validateStatus:'error',
+                        errorMessage:  'This Email is already registered'
+                    }
+                });
+            }
+            else{
+                this.setState({
+                    email:{
+                        value:email,
+                        validateStatus:'success',
+                        errorMessage:  null
+                    }
+                });
+            }
+        }).catch(error => {
+            // Marking validateStatus as success, Form will be recchecked at server
+            this.setState({
+                email: {
+                    value: email,
+                    validateStatus: 'success',
+                    errorMsg: null
+                }
+            });
+        });
+    }
+
+    validatePassword = (password) => {
+
+    }
+
 }
 
 export default Register;
