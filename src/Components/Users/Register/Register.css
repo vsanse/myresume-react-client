@@ -1,8 +1,4 @@
-.container 
- {
-     
- }
- label{
+label{
     display: flex;
     flex-flow: column;
     flex-wrap: wrap;
@@ -34,6 +30,7 @@
     color: white;
     font-weight: bolder;
     margin: 0 auto;
+    font-family: 'Dancing Script', cursive;
  }
  .signupbtn
  {  
@@ -44,6 +41,7 @@
     color:white;
     font-weight: bolder;
     margin: 0 auto; 
+    font-family: 'Dancing Script', cursive;
  }
 
  @media (max-width:500px){
