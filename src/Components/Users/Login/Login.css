@@ -3,7 +3,7 @@ label{
     flex-flow: column;
     flex-wrap: wrap;
     margin: 0 auto;
-    width: 60%;
+    width: 45%;
 
  }
  input{
@@ -24,7 +24,7 @@ label{
     text-shadow: 0px 1px 2px salmon;
  }
 
- .signupbtn
+ .signinbtn
  {  
     padding :1%;
     border:none;
@@ -37,8 +37,8 @@ label{
     font-size:2rem;
  }
 
- @media (max-width:500px){
-    .signupbtn {
+ @media (max-width:650px){
+    .signinbtn {
         height: 3rem;
     }
     label{

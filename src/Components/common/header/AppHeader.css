@@ -20,8 +20,23 @@ li
 
 }
 
-li a:link {
-    text-decoration: none;
+
+
+li a{
+
     color: #0030ff
 }
-    
+  
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+@media (max-width:350px){
+    .heading{
+        font-size: 3rem;
+    }
+}
