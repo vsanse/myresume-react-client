@@ -71,3 +71,10 @@ export function getEducationDetails(username){
     })
 }
 
+export function getCurrentUser(accessToken){
+    return request({
+        url:API_BASE_URL+"user/me",
+        method:'GET',
+    })
+}
+

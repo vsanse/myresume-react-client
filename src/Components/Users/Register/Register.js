@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { register, checkUserNameAvailability, checkEmailAvailability } from '../../Utils/ApiUtils'
 import classes from './Register.css';
+import { Link, withRouter} from 'react-router-dom';
 import  {
     PASSWORD_MAX_LENGTH,
     PASSWORD_MIN_LENGTH,
@@ -101,13 +102,13 @@ class Register extends Component{
         console.log(registerRequest)
         register(registerRequest)
         .then(response => {
-            console.log(response)
+            this.props.history.push("/login")
         })
     }
 
     render(){
         return (
-            <div className={classes.container}>
+            <div>
                 <form onSubmit={this.handleSubmit}>
                 <label>
                     Username: 
@@ -115,46 +116,52 @@ class Register extends Component{
                         name="userName" 
                         type="text" 
                         value={this.state.userName.value} 
+                        placeholder="john"
                         onBlur={this.validateUserNameAvailability}
                         onChange={(event) => this.handleChange(event, this.validateUserName)}
                         />
+                        <i>{this.state.userName.errorMessage}</i>
                     </label>
 
                 <label>
-                    First Name: <i>{this.state.firstName.errorMessage}</i>
+                    First Name: 
                     <input 
                         name="firstName" 
                         type="text" 
+                        placeholder="John"
                         value={this.state.firstName.value} 
-                        // onChange={(event) => this.handleChange(event, this.validateUserName)}
                         onChange={this.handleChange.bind(this)}
                         />
-                    </label>
+                    <i>{this.state.firstName.errorMessage}</i>
+                </label>
 
                 <label>
-                    Last Name: <i>{this.state.lastName.errorMessage}</i>
+                    Last Name: 
                     <input 
                         name="lastName" 
                         type="text" 
+                        placeholder="Miller"
                         value={this.state.lastName.value} 
-                        // onChange={(event) => this.handleChange(event, this.validateUserName)}
                         onChange={this.handleChange.bind(this)}
-                        />
+                        /> 
+                         <i>{this.state.lastName.errorMessage}</i>
                     </label>
 
                 <label>
-                    Email: <i>{this.state.email.errorMessage}</i>
+                    Email:
                     <input 
                         name="email" 
                         type="text" 
                         value={this.state.email.value} 
+                        placeholder="johnMiller@myresume.com"
                         onChange={(event) => this.handleChange(event, this.validateEmail)}
                         onBlur={this.checkEmailAvailable}
                         />
+                        <i>{this.state.email.errorMessage}</i>
                     </label>
 
                 <label>
-                    Phone No: <i>{this.state.phoneNumber.errorMessage}</i>
+                    Phone No: 
                     <input 
                         name="phoneNumber" 
                         type="tel" 
@@ -166,17 +173,19 @@ class Register extends Component{
                         // onChange={(event) => this.handleChange(event, this.validateUserName)}
                         onChange={this.handleChange.bind(this)}
                         />
+                    <i>{this.state.phoneNumber.errorMessage}</i>
                     </label>
 
                 <label>
-                    Password: <i>{this.state.password.errorMessage}</i>
+                    Password: 
                     <input 
                         name="password" 
                         type="password" 
                         value={this.state.password.value} 
                         onChange={(event) => this.handleChange(event, this.validatePassword)}
                         />
-                        <i>{this.state.userName.errorMessage}</i>
+                        <i>{this.state.password.errorMessage}</i>
+
                     </label>
                 
                 <label>
@@ -185,7 +194,7 @@ class Register extends Component{
                         name="currentOrganization" 
                         type="text" 
                         value={this.state.currentOrganization.value} 
-                        // onChange={(event) => this.handleChange(event, this.validateUserName)}
+                        placeholder="Google Inc."
                         onChange={this.handleChange.bind(this)}
                         />
                          <i>{this.state.currentOrganization.errorMessage}</i>
@@ -197,7 +206,7 @@ class Register extends Component{
                         name="designation" 
                         type="text" 
                         value={this.state.designation.value} 
-                        // onChange={(event) => this.handleChange(event, this.validateUserName)}
+                        placeholder="Full Stack Developer"
                         onChange={this.handleChange.bind(this)}
                         />
                         <i>{this.state.designation.errorMessage}</i>
@@ -209,7 +218,7 @@ class Register extends Component{
                         name="linkedinLink" 
                         type="url" 
                         value={this.state.linkedinLink.value} 
-                        // onChange={(event) => this.handleChange(event, this.validateUserName)}
+                        placeholder="https://linkedin.com/us/john"
                         onChange={this.handleChange.bind(this)}
                         />
                          <i>{this.state.linkedinLink.errorMessage}</i>
@@ -222,17 +231,15 @@ class Register extends Component{
                         name="githubLink" 
                         type="url" 
                         value={this.state.githubLink.value} 
-                        // onChange={(event) => this.handleChange(event, this.validateUserName)}
+                        placeholder="https://github.com/john-miller"
                         onChange={this.handleChange.bind(this)}
                         />
                         <i>{this.state.githubLink.errorMessage}</i>
                     </label>
-                
-
-                    <div className="clearfix">
-                        <button type="button" className={classes.cancelbtn}>Cancel</button>
-                        <button type="submit" className={classes.signupbtn}>Sign Up</button>
-                    </div>
+                    <label>
+                    <button type="submit" className={classes.signupbtn}>Sign Up</button>
+                    Already registed? <Link to="/login">Login now!</Link>
+                    </label>
                 </form>
             </div>
         )
