@@ -158,6 +158,10 @@ class Register extends Component{
                     <input 
                         name="phoneNumber" 
                         type="tel" 
+                        pattern="^\d{10}$" 
+                        required
+                        placeholder="1234567890"
+                        title="Please enter a number phone number with 10 digits"
                         value={this.state.phoneNumber.value} 
                         // onChange={(event) => this.handleChange(event, this.validateUserName)}
                         onChange={this.handleChange.bind(this)}
