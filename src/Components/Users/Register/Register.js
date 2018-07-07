@@ -50,11 +50,11 @@ class Register extends Component{
         if(!validation){
             this.setState({
                 [inputName]:{
-                    value:inputValue,
+                    value:inputValue.trim(),
                 }
             });
         }
-        else if(inputValue === 'currentOrganization' || inputValue === 'password' || inputValue === 'designation'){
+        else if(inputName === 'currentOrganization' || inputName === 'password' || inputName === 'designation'){
             this.setState({
                 [inputName]:{
                     value:inputValue,
@@ -165,12 +165,12 @@ class Register extends Component{
                     </label>
 
                 <label>
-                    Password:
+                    Password: <i>{this.state.password.errorMessage}</i>
                     <input 
                         name="password" 
                         type="password" 
                         value={this.state.password.value} 
-                        onChange={this.handleChange.bind(this)}
+                        onChange={(event) => this.handleChange(event, this.validatePassword)}
                         />
                     </label>
                 
@@ -365,7 +365,24 @@ class Register extends Component{
     }
 
     validatePassword = (password) => {
-
+        if(password.length < PASSWORD_MIN_LENGTH){
+            return {
+                validateStatus:'error',
+                errorMessage: `Password is too short (Minimum ${PASSWORD_MIN_LENGTH} characters needed.)`
+            }
+        }
+        else if(password.length > PASSWORD_MAX_LENGTH){
+            return {
+                validateStatus:'error',
+                errorMessage: `Password is too long (Minimum ${PASSWORD_MAX_LENGTH} characters allowed.)`
+            }
+        }
+        else{
+            return{
+                validateStatus:'success',
+                errorMessage:null
+            }
+        }
     }
 
 }
