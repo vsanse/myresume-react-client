@@ -110,7 +110,7 @@ class Register extends Component{
             <div className={classes.container}>
                 <form onSubmit={this.handleSubmit}>
                 <label>
-                    Username: <i>{this.state.userName.errorMessage}</i>
+                    Username: 
                     <input 
                         name="userName" 
                         type="text" 
@@ -176,10 +176,11 @@ class Register extends Component{
                         value={this.state.password.value} 
                         onChange={(event) => this.handleChange(event, this.validatePassword)}
                         />
+                        <i>{this.state.userName.errorMessage}</i>
                     </label>
                 
                 <label>
-                    Current Organization: <i>{this.state.currentOrganization.errorMessage}</i>
+                    Current Organization:
                     <input 
                         name="currentOrganization" 
                         type="text" 
@@ -187,10 +188,11 @@ class Register extends Component{
                         // onChange={(event) => this.handleChange(event, this.validateUserName)}
                         onChange={this.handleChange.bind(this)}
                         />
+                         <i>{this.state.currentOrganization.errorMessage}</i>
                     </label>
                 
                 <label>
-                    Designation: <i>{this.state.designation.errorMessage}</i>
+                    Designation: 
                     <input 
                         name="designation" 
                         type="text" 
@@ -198,10 +200,11 @@ class Register extends Component{
                         // onChange={(event) => this.handleChange(event, this.validateUserName)}
                         onChange={this.handleChange.bind(this)}
                         />
+                        <i>{this.state.designation.errorMessage}</i>
                     </label>
                 
                 <label>
-                    Linkedin Link: <i>{this.state.linkedinLink.errorMessage}</i>
+                    Linkedin Link:
                     <input 
                         name="linkedinLink" 
                         type="url" 
@@ -209,11 +212,12 @@ class Register extends Component{
                         // onChange={(event) => this.handleChange(event, this.validateUserName)}
                         onChange={this.handleChange.bind(this)}
                         />
+                         <i>{this.state.linkedinLink.errorMessage}</i>
                     </label>
                 
 
                 <label>
-                    Github Link: <i>{this.state.githubLink.errorMessage}</i>
+                    Github Link: 
                     <input 
                         name="githubLink" 
                         type="url" 
@@ -221,6 +225,7 @@ class Register extends Component{
                         // onChange={(event) => this.handleChange(event, this.validateUserName)}
                         onChange={this.handleChange.bind(this)}
                         />
+                        <i>{this.state.githubLink.errorMessage}</i>
                     </label>
                 
 
