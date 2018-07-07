@@ -54,7 +54,7 @@ class Register extends Component{
                 }
             });
         }
-        else if(inputValue === 'currentOrganization' || inputValue === 'password' || inputValue === 'designation'){
+        else if(inputName === 'currentOrganization' || inputName === 'password' || inputName === 'designation'){
             this.setState({
                 [inputName]:{
                     value:inputValue,
