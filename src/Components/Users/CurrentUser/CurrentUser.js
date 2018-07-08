@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
-import classes from './CurrentUser.css'
+import classes from './CurrentUser.css';
+import Layout from '../../../hoc/Layout';
+import EducationComponent from '../../EducationComponent/EducationComponent'
 class CurrentUser extends Component{
     
     state={
@@ -73,15 +75,18 @@ class CurrentUser extends Component{
     
     render(){
         return (
-            <div className={classes.userinfo}>
-                <div><strong>{this.props.firstName}<span> {this.props.lastName}</span></strong></div>
-                <div>{this.props.designation} at <span> {this.props.currentOrganization}</span></div>
-                <div className={classes.icon}>
-                    <a href={this.props.linkedinLink} className={classes.linkedin}><i className="fab fa-linkedin fa-2x"></i></a>
-                    <a href={this.props.linkedinLink} className={classes.github}><i className="fab fa-github fa-2x"></i></a><br/>
-                    <a href={"mailto:"+this.props.email} className={classes.email}><i className="fas fa-envelope fa-1x"></i><span>{this.props.email}</span></a>
+            <Layout>
+                <div className={classes.userinfo}>
+                    <div><strong>{this.props.firstName}<span> {this.props.lastName}</span></strong></div>
+                    <div>{this.props.designation} at <span> {this.props.currentOrganization}</span></div>
+                    <div className={classes.icon}>
+                        <a href={this.props.linkedinLink} className={classes.linkedin}><i className="fab fa-linkedin fa-2x"></i></a>
+                        <a href={this.props.linkedinLink} className={classes.github}><i className="fab fa-github fa-2x"></i></a><br/>
+                        <a href={"mailto:"+this.props.email} className={classes.email}><i className="fas fa-envelope fa-1x"></i><span>{this.props.email}</span></a>
+                    </div>
                 </div>
-            </div>
+                <EducationComponent isLoggedIn={this.props.isLoggedIn} username={this.props.username}/>
+            </Layout>
         ) 
     }
 }
