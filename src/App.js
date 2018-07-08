@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+// import classes from './App.css';
 import Register from './Components/Users/Register/Register';
 import AppHeaderGuest from './Components/common/header/AppHeaderGuest';
 import CurrentUser from './Components/Users/CurrentUser/CurrentUser';
