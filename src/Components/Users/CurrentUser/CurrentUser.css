@@ -15,13 +15,29 @@
     color:dimgray;
     margin: 1%
 }
+.linkedin, .github{
+    font-size: 1.5rem;
+}
 .linkedin:hover{
     color:#0073b1;
 }
 .github:hover{
     color:#24292e;
 }
-
+.name{
+    font-size: 1.5rem;
+}
+.work{
+    font-style: italic;
+    font-size: 0.8rem;
+}
+.email i{
+    margin: 1%
+}
+.email:hover{
+    text-decoration: none;
+    color: #dc4b3e;
+}
 @media(max-width:650px){
     .userinfo{
         width: 90%
