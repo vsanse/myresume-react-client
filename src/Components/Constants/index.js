@@ -12,3 +12,13 @@ export const EMAIL_MAX_LENGTH = 40;
 
 export const PASSWORD_MIN_LENGTH = 6;
 export const PASSWORD_MAX_LENGTH = 20;
+
+export const SECONDARY_EDUCATION = 'Secondary(X)';
+export const SENIOR_SECONDARY_EDUCATION = 'Senior Secondary(XII)';
+
+export const GRADUATION = 'Graduatuion';
+export const POST_GRADUATION = 'Post Graduation';
+
+export const DIPLOMA = 'Diploma';
+export const PHD = 'Phd';
+
