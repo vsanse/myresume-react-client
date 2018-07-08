@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Register from './Components/Users/Register/Register'
 import AppHeader from './Components/common/header/AppHeader';
-import {Route, Switch, withRouter} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Layout from './hoc/Layout';
 import Login from './Components/Users/Login/Login';
 import { ACCESS_TOKEN } from './Components/Constants/index';
@@ -16,7 +16,7 @@ class App extends Component {
 
   componentWillMount(){
     if(localStorage.getItem(ACCESS_TOKEN)){
-     const  user = getCurrentUser()
+        getCurrentUser()
       .then(response => {
         this.setState({
           currentUser:response

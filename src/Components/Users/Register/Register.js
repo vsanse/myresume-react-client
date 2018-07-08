@@ -42,7 +42,11 @@ class Register extends Component{
             value:''
         },
     }
-
+    componentWillReceiveProps(nextProps){
+        if(nextProps.isLoggedIn){
+            this.props.history.push('/me')
+        }
+    }
     handleChange = (event, validation) => {
         // console.log(event.target,validation) 
         const target = event.target;
@@ -403,4 +407,4 @@ class Register extends Component{
 
 }
 
-export default Register;
+export default withRouter(Register);

@@ -14,13 +14,6 @@ class Login extends Component{
         }
 
     }
-    // componentWillMount(){
-    //     console.log(this.props)
-    //     if(this.props.isLoggedIn){
-    //         console.log('ji')
-    //         this.props.history.push('/me')
-    //     }
-    // }
     componentWillReceiveProps(nextProps){
         if(nextProps.isLoggedIn){
             this.props.history.push('/me')
