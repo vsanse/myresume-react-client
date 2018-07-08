@@ -28,9 +28,55 @@ hr{
     width: 100%;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
+
+/* The Modal (background) */
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    
+}
+/* Modal Content */
+.modal_content {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fefefe;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    text-align: center;
+    margin-top: 20vh;
+}
+.modal_content>*{
+    flex: 1 1 33.3333%;
+}
+
+.button{
+    background: white;
+    border: 2px solid black;
+    width:30vh;
+    height: 10vh;
+    margin: 1%
+}
+.button:hover{
+    background: #0030ff;
+    color: white;
+    font-weight: bold;
+}
+
 @media(max-width:650px){
     .education{
         width: 90%
+    }
+    .modal_content{
+        width: 80%;
     }
 }
 
