@@ -81,7 +81,7 @@ class CurrentUser extends Component{
                     <div>{this.props.designation} at <span> {this.props.currentOrganization}</span></div>
                     <div className={classes.icon}>
                         <a href={this.props.linkedinLink} className={classes.linkedin}><i className="fab fa-linkedin fa-2x"></i></a>
-                        <a href={this.props.linkedinLink} className={classes.github}><i className="fab fa-github fa-2x"></i></a><br/>
+                        <a href={this.props.githubLink} className={classes.github}><i className="fab fa-github fa-2x"></i></a><br/>
                         <a href={"mailto:"+this.props.email} className={classes.email}><i className="fas fa-envelope fa-1x"></i><span>{this.props.email}</span></a>
                     </div>
                 </div>
