@@ -53,8 +53,9 @@ hr{
     width: 60%;
     text-align: center;
     margin-top: 20vh;
+
 }
-.modal_content>*{
+.modal_content>button{
     flex: 1 1 33.3333%;
 }
 
@@ -70,7 +71,21 @@ hr{
     color: white;
     font-weight: bold;
 }
+.close {
+    color: #aaa;
+    /* float: right; */
+    font-size: 4vh;
+    font-weight: bold;
+    width: 100%;
+    text-align: right;
+}
 
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
 @media(max-width:650px){
     .education{
         width: 90%

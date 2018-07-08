@@ -73,6 +73,7 @@ class Education extends Component {
                     (
                         <div className = {classes.modal}  >
                             <div className={classes.modal_content}ref={node => { this.node = node; }}>
+                            <div className={classes.close}><span onClick={this.handleCategory}> &times;</span></div>
                                 {
                                     this.state.eduDetails.map(
                                     (category) => <button className={classes.button} onClick={this.setCategory} value={category}>{category}</button>
