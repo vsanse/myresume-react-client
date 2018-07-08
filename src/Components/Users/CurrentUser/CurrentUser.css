@@ -1,0 +1,29 @@
+.userinfo{
+    text-align: center;
+    border: 1px solid transparent;
+    box-shadow: 1px 3px 5px silver;
+    width: 55%;
+    margin:0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: column;
+}
+.icon{
+    display: inline-block;
+}
+.icon a{
+    color:dimgray;
+    margin: 1%
+}
+.linkedin:hover{
+    color:#0073b1;
+}
+.github:hover{
+    color:#24292e;
+}
+
+@media(max-width:650px){
+    .userinfo{
+        width: 90%
+    }
+}

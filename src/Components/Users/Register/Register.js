@@ -76,6 +76,11 @@ class Register extends Component{
             });
         }
     }
+    //caps first letter
+    jsUcfirst = (string) => 
+        {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -94,12 +99,12 @@ class Register extends Component{
         const registerRequest = {
             userName: this.state.userName.value,
             password: this.state.password.value,
-            firstName: this.state.firstName.value,
-            lastName: this.state.lastName.value,
+            firstName: this.jsUcfirst(this.state.firstName.value),
+            lastName: this.jsUcfirst(this.state.lastName.value),
             email: this.state.email.value,
             phoneNumber: this.state.phoneNumber.value,
-            currentOrganization: this.state.currentOrganization.value,
-            designation: this.state.designation.value,
+            currentOrganization: this.jsUcfirst(this.state.currentOrganization.value),
+            designation: this.jsUcfirst(this.state.designation.value),
             githubLink: this.state.githubLink.value,
             linkedinLink: this.state.linkedinLink.value,
         }
@@ -110,11 +115,20 @@ class Register extends Component{
         })
     }
 
+    isFromInvalid = () => {
+        if(this.state.userName.validateStatus === 'success' &&
+           this.state.password.validateStatus === 'success' &&
+           this.state.email.validateStatus === 'success' ){
+               return false;
+           }
+        return true;
+    }
+
     render(){
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                <label>
+                <label className={classes.label}>
                     Username: 
                     <input 
                         name="userName" 
@@ -127,7 +141,7 @@ class Register extends Component{
                         <i>{this.state.userName.errorMessage}</i>
                     </label>
 
-                <label>
+                <label className={classes.label}>
                     First Name: 
                     <input 
                         name="firstName" 
@@ -139,7 +153,7 @@ class Register extends Component{
                     <i>{this.state.firstName.errorMessage}</i>
                 </label>
 
-                <label>
+                <label className={classes.label}>
                     Last Name: 
                     <input 
                         name="lastName" 
@@ -151,7 +165,7 @@ class Register extends Component{
                          <i>{this.state.lastName.errorMessage}</i>
                     </label>
 
-                <label>
+                <label className={classes.label}>
                     Email:
                     <input 
                         name="email" 
@@ -164,7 +178,7 @@ class Register extends Component{
                         <i>{this.state.email.errorMessage}</i>
                     </label>
 
-                <label>
+                <label className={classes.label}>
                     Phone No: 
                     <input 
                         name="phoneNumber" 
@@ -180,7 +194,7 @@ class Register extends Component{
                     <i>{this.state.phoneNumber.errorMessage}</i>
                     </label>
 
-                <label>
+                <label className={classes.label}>
                     Password: 
                     <input 
                         name="password" 
@@ -192,7 +206,7 @@ class Register extends Component{
 
                     </label>
                 
-                <label>
+                <label className={classes.label}>
                     Current Organization:
                     <input 
                         name="currentOrganization" 
@@ -204,7 +218,7 @@ class Register extends Component{
                          <i>{this.state.currentOrganization.errorMessage}</i>
                     </label>
                 
-                <label>
+                <label className={classes.label}>
                     Designation: 
                     <input 
                         name="designation" 
@@ -216,7 +230,7 @@ class Register extends Component{
                         <i>{this.state.designation.errorMessage}</i>
                     </label>
                 
-                <label>
+                <label className={classes.label}>
                     Linkedin Link:
                     <input 
                         name="linkedinLink" 
@@ -229,7 +243,7 @@ class Register extends Component{
                     </label>
                 
 
-                <label>
+                <label className={classes.label}>
                     Github Link: 
                     <input 
                         name="githubLink" 
@@ -240,8 +254,8 @@ class Register extends Component{
                         />
                         <i>{this.state.githubLink.errorMessage}</i>
                     </label>
-                    <label>
-                    <button type="submit" className={classes.signupbtn}>Sign Up</button>
+                    <label className={classes.label}>
+                    <button type="submit" className={classes.signupbtn} disabled={this.isFromInvalid()}>Sign Up</button>
                     Already registed? <Link to="/login">Login now!</Link>
                     </label>
                 </form>

@@ -41,6 +41,7 @@ class Login extends Component{
         .then(response =>{
             
             localStorage.setItem(ACCESS_TOKEN, response.token);
+            this.props.action()
             this.props.history.push('/me')
         });
     }
@@ -49,7 +50,7 @@ class Login extends Component{
         return (
             <div>
                 <form onSubmit={this.handleLogin}>
-                    <label>
+                    <label className={classes.label}>
                         Username:
                         <input 
                         name="userName" 
@@ -59,7 +60,7 @@ class Login extends Component{
                         onChange={this.handleChange}
                         />
                     </label>
-                    <label>
+                    <label className={classes.label}>
                         Password:
                         <input 
                         name="password" 
@@ -68,7 +69,7 @@ class Login extends Component{
                         onChange={this.handleChange}
                         />
                     </label>
-                    <label>
+                    <label className={classes.label}>
                         <button type="submit" className={classes.signinbtn}>Sign In</button>
                         Don't have an account? <Link to="/register">Register now!</Link>
                     </label>
