@@ -7,6 +7,7 @@ import {Route, Switch} from 'react-router-dom';
 import Layout from './hoc/Layout';
 import Login from './Components/Users/Login/Login';
 import { getCurrentUser } from './Components/Utils/ApiUtils'
+import { ACCESS_TOKEN } from './Components/Constants';
 class App extends Component {
 
   state={
@@ -36,11 +37,18 @@ class App extends Component {
   componentWillMount(){
       this.loadCurrentUser()
     }
-  
+  handleLogout = () =>{
+    localStorage.removeItem(ACCESS_TOKEN)
+    this.setState({
+      isLoading:false,
+      isLoggedIn:false,
+      currentUser:null
+    });
+  }
   render() {
     return (
       <Layout>
-        <AppHeaderGuest isLoggedIn={this.state.isLoggedIn}/>
+        <AppHeaderGuest isLoggedIn={this.state.isLoggedIn} logout={this.handleLogout}/>
         <Switch>
           <Route 
             path="/register" 
