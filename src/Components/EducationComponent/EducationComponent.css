@@ -1,0 +1,36 @@
+.education
+{
+border: 1px solid transparent;
+box-shadow: 1px 2px 10px black;
+width: 55%;
+margin:0 auto;
+display: flex;
+flex-wrap: wrap;
+flex-flow: column;
+margin-top: 2%;
+} 
+.eduHeading{
+    padding: 5px;
+    display: flex;
+    
+}
+.heading{
+    width: 50%;
+}
+.icon{
+    width: 50%;
+    text-align: right;
+}
+hr{
+    /* border-top: 1px solid #8c8b8b; */
+    border: 0;
+    height: 2px;
+    width: 100%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+@media(max-width:650px){
+    .education{
+        width: 90%
+    }
+}
+
