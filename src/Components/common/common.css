@@ -1,0 +1,48 @@
+.label{
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 60%;
+
+ }
+ .label>input{
+    height:50px;
+    border: 1px solid dimgray;
+    box-shadow: 0px 3px 4px dimgray;  
+    margin-bottom: 3%;
+    text-indent: 1rem;
+    width: 100%;
+ }
+
+ .label i 
+ {
+    color :red ;
+    text-shadow: 0px 1px 2px salmon;
+ }
+
+ .btn
+ {  
+    padding :1%;
+    border:none;
+    background-color: #0030ff;
+    color:white;
+    font-weight: bolder;
+    margin: 0 auto; 
+    font-family: 'Special Elite', cursive;
+    width: 100%;
+    font-size:2rem;
+ }
+ .btn[disabled] {
+    opacity: 0.65; 
+    cursor: not-allowed;
+  }
+
+ @media (max-width:500px){
+    .btn {
+        height: 3rem;
+    }
+    .label{
+        width: 95%;
+    }
+ }

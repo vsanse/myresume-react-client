@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { register, checkUserNameAvailability, checkEmailAvailability } from '../../Utils/ApiUtils'
-import classes from './Register.css';
+import classes from '../../common/common.css';
 import { Link, withRouter} from 'react-router-dom';
 import  {
     PASSWORD_MAX_LENGTH,
@@ -267,7 +267,7 @@ class Register extends Component{
                     </label>
                     <label className={classes.label}>
                     <i>{this.state.signupStatus.message}</i>
-                    <button type="submit" className={classes.signupbtn} disabled={this.isFromInvalid()}>Sign Up</button>
+                    <button type="submit" className={classes.btn} disabled={this.isFromInvalid()}>Sign Up</button>
                     Already registed? <Link to="/login">Login now!</Link>
                     </label>
                 </form>

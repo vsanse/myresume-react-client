@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {login} from '../../Utils/ApiUtils';
-import classes from './Login.css';
+import classes from '../../common/common.css';
 import { Link, withRouter} from 'react-router-dom';
 import { ACCESS_TOKEN } from '../../Constants/index'
 class Login extends Component{
@@ -86,7 +86,7 @@ class Login extends Component{
                         <i>{this.state.validate.message}</i>
                     </label>
                     <label className={classes.label}>
-                        <button type="submit" className={classes.signinbtn} >Sign In</button>
+                        <button type="submit" className={classes.btn} >Sign In</button>
                         Don't have an account? <Link to="/register">Register now!</Link>
                     </label>
                 </form>
