@@ -20,9 +20,9 @@ class Education extends Component {
     
         if (!this.state.showCategories) {
             // attach/remove event handler
-            document.addEventListener('click', this.handleOutsideClick, false);
+            document.addEventListener('click', this.handleOutsideClickCategory, false);
           } else {
-            document.removeEventListener('click', this.handleOutsideClick, false);
+            document.removeEventListener('click', this.handleOutsideClickCategory, false);
           }
         this.setState(prevState => ({
             showCategories: !prevState.showCategories,
@@ -36,21 +36,41 @@ class Education extends Component {
             ],
          }));
     }
-    handleOutsideClick = (event) => {
+    handleOutsideClickCategory = (event) => {
         // ignore clicks on the component itself
         if (this.node.contains(event.target)) {
           return;
         }
-        
-        this.handleCategory();
+        this.handleCategory()
       }
+
+    handleShowAddForm = () =>{
+        if (!this.state.showEducationAddForm) {
+            // attach/remove event handler
+            document.addEventListener('click', (this.handleOutsideClickForm), false);
+          } else {
+            document.removeEventListener('click', this.handleOutsideClickForm, false);
+          }
+        this.setState(prevState => ({
+            showEducationAddForm: !prevState.showEducationAddForm,
+        }))    
+    }
+
+    handleOutsideClickForm = (event) => {
+        // ignore clicks on the component itself
+        if (this.addRef.contains(event.target)) {
+          return;
+        }
+        this.handleShowAddForm()
+      }
+
     setCategory = (event) =>{
         const selectedCategory = event.target.value
         if (!this.state.showCategories) {
             // attach/remove event handler
-            document.addEventListener('click', this.handleOutsideClick, false);
+            document.addEventListener('click', this.handleOutsideClickCategory, false);
           } else {
-            document.removeEventListener('click', this.handleOutsideClick, false);
+            document.removeEventListener('click', this.handleOutsideClickCategory, false);
           }
         this.setState(prevState => ({
             showCategories: !prevState.showCategories,
@@ -65,8 +85,13 @@ class Education extends Component {
             selectedEduType: selectedCategory,
             showEducationAddForm: true,
          }));
-         console.log(this.state.eduDetails[selectedCategory])
     }
+
+    setFormRef = (addRef) => {
+        this.addRef = addRef;
+    }
+
+
     render(){
         return(
             <div className = {classes.education} >
@@ -95,7 +120,7 @@ class Education extends Component {
                 }
                 {
                     this.state.showEducationAddForm &&
-                    <EducationAdd/>
+                    <EducationAdd action = {this.handleShowAddForm} setFormRef={this.setFormRef}/>
                 }   
 
             </div>
