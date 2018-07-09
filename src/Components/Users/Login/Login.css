@@ -36,6 +36,11 @@
     width: 100%;
     font-size:2rem;
  }
+ .signinbtn[disabled] {
+    opacity: 0.65; 
+    cursor: not-allowed;
+  }
+
 
  @media (max-width:650px){
     .signinbtn {

@@ -20,7 +20,7 @@ const request = (options) => {
             }
             return json;
         })
-    );
+    )
 };
 
 export function login(loginRequest){

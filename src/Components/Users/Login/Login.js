@@ -11,6 +11,10 @@ class Login extends Component{
         },
         password:{
             value:'',
+        },
+        validate:{
+            status:'',
+            message:''
         }
 
     }
@@ -39,11 +43,20 @@ class Login extends Component{
         }
         login(loginRequest)
         .then(response =>{
-            
+            // console.log(response)
             localStorage.setItem(ACCESS_TOKEN, response.token);
             this.props.action()
             this.props.history.push('/me')
-        });
+        }).catch(error => {
+            if(error.status === 401){
+                this.setState({
+                    validate:{
+                    status:'error',
+                    message:'Invalid Username or Password!',
+                    }
+                })
+            }
+       })
     }
 
     render(){
@@ -56,6 +69,7 @@ class Login extends Component{
                         name="userName" 
                         type="text" 
                         placeholder="john"
+                        required
                         value={this.state.userName.value} 
                         onChange={this.handleChange}
                         />
@@ -65,12 +79,14 @@ class Login extends Component{
                         <input 
                         name="password" 
                         type="password" 
+                        required
                         value={this.state.password.value} 
                         onChange={this.handleChange}
                         />
+                        <i>{this.state.validate.message}</i>
                     </label>
                     <label className={classes.label}>
-                        <button type="submit" className={classes.signinbtn}>Sign In</button>
+                        <button type="submit" className={classes.signinbtn} >Sign In</button>
                         Don't have an account? <Link to="/register">Register now!</Link>
                     </label>
                 </form>
