@@ -11,16 +11,7 @@ import {
 import classes  from './EducationComponent.css';
 class Education extends Component {
     state = {
-        eduDetails:[
-            SECONDARY_EDUCATION, 
-            SENIOR_SECONDARY_EDUCATION,
-            GRADUATION,
-            POST_GRADUATION,
-            PHD,
-            DIPLOMA
-        ],
-        selectedEduType:null,
-        showCategories:false,
+        // showCategories:false,
         showEducationAddForm:false,
 
     }
@@ -33,6 +24,14 @@ class Education extends Component {
           }
         this.setState(prevState => ({
             showCategories: !prevState.showCategories,
+            eduDetails:[
+                SECONDARY_EDUCATION, 
+                SENIOR_SECONDARY_EDUCATION,
+                GRADUATION,
+                POST_GRADUATION,
+                PHD,
+                DIPLOMA
+            ],
          }));
     }
     handleOutsideClick = (event) => {
@@ -53,9 +52,18 @@ class Education extends Component {
           }
         this.setState(prevState => ({
             showCategories: !prevState.showCategories,
+            eduDetails:[
+                SECONDARY_EDUCATION, 
+                SENIOR_SECONDARY_EDUCATION,
+                GRADUATION,
+                POST_GRADUATION,
+                PHD,
+                DIPLOMA
+            ],
             selectedEduType: selectedCategory,
             showEducationAddForm: true,
          }));
+         console.log(this.state.eduDetails[selectedCategory])
     }
     render(){
         return(
@@ -76,13 +84,14 @@ class Education extends Component {
                             <div className={classes.close}><span onClick={this.handleCategory}> &times;</span></div>
                                 {
                                     this.state.eduDetails.map(
-                                    (category) => <button className={classes.button} onClick={this.setCategory} value={category}>{category}</button>
+                                    (category,i) => <button className={classes.button} onClick={this.setCategory} value={i} key={i} >{category}</button>
                                     )
                                 }
                             </div>
                         </div>
                     )
                 }   
+
             </div>
         )
     }

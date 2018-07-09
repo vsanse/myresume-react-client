@@ -6,11 +6,8 @@
     width: 60%;
 
  }
- .label input{
+ .label>input{
     height:50px;
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
     border: 1px solid dimgray;
     box-shadow: 0px 3px 4px dimgray;  
     margin-bottom: 3%;

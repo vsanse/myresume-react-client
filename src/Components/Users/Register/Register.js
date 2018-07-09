@@ -41,6 +41,10 @@ class Register extends Component{
         email:{
             value:''
         },
+        signupStatus:{
+            status:'',
+            message:''
+        }
     }
     componentWillReceiveProps(nextProps){
         if(nextProps.isLoggedIn){
@@ -112,6 +116,13 @@ class Register extends Component{
         register(registerRequest)
         .then(response => {
             this.props.history.push("/login")
+        }).catch(error =>{
+            this.setState({
+                signupStatus:{
+                    status:'error',
+                    message:' Something went wrong. Please try again!'
+                }
+            })
         })
     }
 
@@ -129,7 +140,7 @@ class Register extends Component{
             <div>
                 <form onSubmit={this.handleSubmit}>
                 <label className={classes.label}>
-                    Username: 
+                   <div> Username: </div>
                     <input 
                         name="userName" 
                         type="text" 
@@ -255,6 +266,7 @@ class Register extends Component{
                         <i>{this.state.githubLink.errorMessage}</i>
                     </label>
                     <label className={classes.label}>
+                    <i>{this.state.signupStatus.message}</i>
                     <button type="submit" className={classes.signupbtn} disabled={this.isFromInvalid()}>Sign Up</button>
                     Already registed? <Link to="/login">Login now!</Link>
                     </label>
