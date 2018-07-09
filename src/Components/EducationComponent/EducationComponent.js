@@ -1,5 +1,5 @@
 import React from 'react';
-import { Component} from 'react'
+import { Component} from 'react';
 import {
     SECONDARY_EDUCATION, 
     SENIOR_SECONDARY_EDUCATION,
@@ -9,13 +9,15 @@ import {
     DIPLOMA
          } from '../Constants/index';
 import classes  from './EducationComponent.css';
+import EducationAdd from './EducationAdd';
 class Education extends Component {
     state = {
         // showCategories:false,
-        showEducationAddForm:false,
+        // showEducationAddForm:false,
 
     }
     handleCategory = () =>{
+    
         if (!this.state.showCategories) {
             // attach/remove event handler
             document.addEventListener('click', this.handleOutsideClick, false);
@@ -84,12 +86,16 @@ class Education extends Component {
                             <div className={classes.close}><span onClick={this.handleCategory}> &times;</span></div>
                                 {
                                     this.state.eduDetails.map(
-                                    (category,i) => <button className={classes.button} onClick={this.setCategory} value={i} key={i} >{category}</button>
+                                    (category,i) => <button className={classes.button} onClick={this.setCategory} id="test" value={i} key={i} >{category}</button>
                                     )
                                 }
                             </div>
                         </div>
                     )
+                }
+                {
+                    this.state.showEducationAddForm &&
+                    <EducationAdd/>
                 }   
 
             </div>
