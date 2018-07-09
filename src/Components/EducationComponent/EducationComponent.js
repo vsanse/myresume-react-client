@@ -85,6 +85,7 @@ class Education extends Component {
             selectedEduType: selectedCategory,
             showEducationAddForm: true,
          }));
+        
     }
 
     setFormRef = (addRef) => {
