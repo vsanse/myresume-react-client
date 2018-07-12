@@ -3,7 +3,7 @@
     flex-flow: column;
     flex-wrap: wrap;
     margin: 0 auto;
-    width: 60%;
+    width: 45%;
 
  }
  .label>input, .TotalContent, select  {
@@ -15,20 +15,17 @@
     width: 100%;
  }
  .label>input[disabled]{
-     background: dimgray;
+    background: dimgray;
      
  }
- select{
-    text-indent: 0;
-    margin-bottom: 0;
-    -webkit-appearance: none; 
-    -moz-appearance: none;
-    appearance: none;  /* remove default arrow */ 
-    background-position: right;
-    background-size: 1.5rem;
-    background-repeat: no-repeat;  
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIUTiqXfjQTsQKJQkA_ykrUJZeFhox8cjTIuI2zSiUzbUerdre'); 
+ .modal_label{
+    width:60%;
  }
+ select{
+  
+    background-color: white;
+ }
+ 
 
  .label i 
  {

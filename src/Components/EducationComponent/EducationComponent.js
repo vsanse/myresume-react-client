@@ -11,6 +11,7 @@ import {
          } from '../Constants/index';
 import classes  from './EducationComponent.css';
 import EducationAdd from './EducationAdd';
+import {getEducationDetails} from '../Utils/ApiUtils'
 class Education extends Component {
     state = {
         //showScale:false,
@@ -108,6 +109,16 @@ class Education extends Component {
                         </div>
                 </div>
                 <hr/>
+                {/* <div>
+                    {
+                        getEducationDetails()
+                        .then(response =>{
+                            response.map(
+
+                            )
+                        })
+                    }
+                </div> */}
                 { this.state.showCategories &&
                     (
                         <div className = {classes.modal}  >

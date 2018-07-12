@@ -71,7 +71,7 @@ export function getEducationDetails(username){
     })
 }
 
-export function getCurrentUser(accessToken){
+export function getCurrentUser(){
     if(!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
     }
@@ -79,5 +79,15 @@ export function getCurrentUser(accessToken){
         url:API_BASE_URL+"user/me",
         method:'GET',
     })
+}
+
+export function addEducationDetails(educationDetails){
+    return request({
+        url:API_BASE_URL+"education/add",
+        method:"POST",
+        body: JSON.stringify(educationDetails)
+
+    })
+
 }
 

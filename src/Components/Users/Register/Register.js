@@ -126,7 +126,7 @@ class Register extends Component{
         })
     }
 
-    isFromInvalid = () => {
+    isFormInvalid = () => {
         if(this.state.userName.validateStatus === 'success' &&
            this.state.password.validateStatus === 'success' &&
            this.state.email.validateStatus === 'success' ){
@@ -267,7 +267,7 @@ class Register extends Component{
                     </label>
                     <label className={classes.label}>
                     <i>{this.state.signupStatus.message}</i>
-                    <button type="submit" className={classes.btn} disabled={this.isFromInvalid()}>Sign Up</button>
+                    <button type="submit" className={classes.btn} disabled={this.isFormInvalid()}>Sign Up</button>
                     Already registed? <Link to="/login">Login now!</Link>
                     </label>
                 </form>
