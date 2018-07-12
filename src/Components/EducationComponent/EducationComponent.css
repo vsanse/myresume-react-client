@@ -56,6 +56,16 @@ hr{
     margin-top: 20vh;
 
 }
+
+.modal_label{
+    width: 60%
+}
+.modal_heading{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin: 0 auto;
+    color: #0030ff;
+}
 .modal_content>button{
     flex: 1 1 33.3333%;
 }
@@ -117,7 +127,10 @@ hr{
         width: 90%
     }
     .modal_content{
-        width: 80%;
+        width: 90%;
+    }
+    .modal_label{
+        width: 95%;
     }
 }
 
