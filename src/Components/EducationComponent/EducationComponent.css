@@ -12,6 +12,7 @@ margin-top: 2%;
 .eduHeading{
     padding: 5px;
     display: flex;
+  
     
 }
 .heading{
@@ -59,17 +60,32 @@ hr{
     flex: 1 1 33.3333%;
 }
 
-.button{
+.button, .cancelbtn{
     background: white;
     border: 2px solid black;
     width:30vh;
     height: 10vh;
-    margin: 1%
+    margin: 1% ;
+}
+
+.cancelbtn{
+    width:48%;
+}
+
+.buttonSave{
+    background: blue;
+    border: 2px solid blue;
+    width:48%;
+    height: 10vh;
+    margin: 1% ;
+    color: white;
+    font-weight: bold;
 }
 .button:hover{
     background: #0030ff;
     color: white;
     font-weight: bold;
+    border: 2px solid blue;
 }
 .close {
     color: #aaa;
@@ -86,6 +102,16 @@ hr{
     text-decoration: none;
     cursor: pointer;
 }
+.formBox
+{   text-align: left;
+    height: 80%;
+    margin : 0 auto;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    /* flex: 1 1 auto; */
+} 
+
 @media(max-width:650px){
     .education{
         width: 90%

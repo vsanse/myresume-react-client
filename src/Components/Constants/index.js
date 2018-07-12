@@ -22,3 +22,8 @@ export const POST_GRADUATION = 'Post Graduation';
 export const DIPLOMA = 'Diploma';
 export const PHD = 'Phd';
 
+export const CGPA5 = 'CGPA5'
+export const CGPA10 = 'CGPA10'
+export const PERCENT = 'PERCENTAGE'
+
+

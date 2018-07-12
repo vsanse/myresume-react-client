@@ -6,14 +6,16 @@ import {
     GRADUATION,
     POST_GRADUATION,
     PHD,
-    DIPLOMA
+    DIPLOMA,
+   
          } from '../Constants/index';
 import classes  from './EducationComponent.css';
 import EducationAdd from './EducationAdd';
 class Education extends Component {
     state = {
-        // showCategories:false,
+        //showScale:false,
         // showEducationAddForm:false,
+      
 
     }
     handleCategory = () =>{
@@ -34,6 +36,7 @@ class Education extends Component {
                 PHD,
                 DIPLOMA
             ],
+          
          }));
     }
     handleOutsideClickCategory = (event) => {
@@ -108,7 +111,7 @@ class Education extends Component {
                 { this.state.showCategories &&
                     (
                         <div className = {classes.modal}  >
-                            <div className={classes.modal_content}ref={node => { this.node = node; }}>
+                            <div className={classes.modal_content} ref={node => { this.node = node; }}>
                             <div className={classes.close}><span onClick={this.handleCategory}> &times;</span></div>
                                 {
                                     this.state.eduDetails.map(
@@ -119,9 +122,10 @@ class Education extends Component {
                         </div>
                     )
                 }
+                {this.state.performScale}
                 {
                     this.state.showEducationAddForm &&
-                    <EducationAdd action = {this.handleShowAddForm} setFormRef={this.setFormRef}/>
+                    <EducationAdd action = {this.handleShowAddForm} setFormRef={this.setFormRef} selectedCategory = {this.state.eduDetails[this.state.selectedEduType]}/>
                 }   
 
             </div>
