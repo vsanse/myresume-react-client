@@ -6,18 +6,33 @@
     width: 60%;
 
  }
- .label>input{
-    height:50px;
+ .label>input, .TotalContent, select  {
+    min-height:50px;
     border: 1px solid dimgray;
     box-shadow: 0px 3px 4px dimgray;  
     margin-bottom: 3%;
     text-indent: 1rem;
     width: 100%;
  }
+ .label>input[disabled]{
+     background: dimgray;
+     
+ }
+ select{
+    text-indent: 0;
+    margin-bottom: 0;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;  /* remove default arrow */ 
+    background-position: right;
+    background-size: 1.5rem;
+    background-repeat: no-repeat;  
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIUTiqXfjQTsQKJQkA_ykrUJZeFhox8cjTIuI2zSiUzbUerdre'); 
+ }
 
  .label i 
  {
-    color :red ;
+    color : red;
     text-shadow: 0px 1px 2px salmon;
  }
 
@@ -45,4 +60,7 @@
     .label{
         width: 95%;
     }
+ }
+ .ScaleHeading{
+      display: inline ;
  }

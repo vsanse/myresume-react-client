@@ -8,12 +8,15 @@ import Layout from './hoc/Layout';
 import Login from './Components/Users/Login/Login';
 import { getCurrentUser } from './Components/Utils/ApiUtils'
 import { ACCESS_TOKEN } from './Components/Constants';
+
 class App extends Component {
 
   state = {
     isLoggedIn: false,
     currentUser: null,
-    isLoading: false
+    isLoading: false,
+    
+
   }
 
   loadCurrentUser = () => {
