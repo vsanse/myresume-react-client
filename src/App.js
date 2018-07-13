@@ -8,6 +8,7 @@ import Layout from './hoc/Layout';
 import Login from './Components/Users/Login/Login';
 import { getCurrentUser } from './Components/Utils/ApiUtils'
 import { ACCESS_TOKEN } from './Components/Constants';
+import Profile from './Components/Profile/Profile'
 
 class App extends Component {
 
@@ -68,6 +69,12 @@ class App extends Component {
             path="(/me|/)"
             render={
               (props) => <CurrentUser isLoggedIn={this.state.isLoggedIn} {...this.state.currentUser} />
+            } />
+          <Route
+            exact
+            path="/profile/:username"
+            render={
+              (props) => <Profile {...props}/>
             } />
         </Switch>
       </Layout>
