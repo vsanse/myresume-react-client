@@ -54,6 +54,7 @@ hr{
     width: 60%;
     text-align: center;
     margin-top: 20vh;
+    margin-bottom: 20vh;
 
 }
 
@@ -121,6 +122,16 @@ hr{
     flex-wrap: wrap;
     /* flex: 1 1 auto; */
 } 
+.details
+{
+    padding:1vh;
+}
+.details>div
+{
+    font-style: italic;
+    font-size:13px;
+    line-height: 3px;
+}
 
 @media(max-width:650px){
     .education{

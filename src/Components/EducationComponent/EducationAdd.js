@@ -5,9 +5,6 @@ import { CGPA10, CGPA5, PERCENT } from '../Constants/index'
 import {
     SECONDARY_EDUCATION,
     SENIOR_SECONDARY_EDUCATION,
-    GRADUATION,
-    POST_GRADUATION,
-    PHD,
     DIPLOMA,
 
 } from '../Constants/index';
@@ -66,9 +63,7 @@ class EducationAdd extends Component {
         if (this.state.board.validationStatus === 'success' &&
             this.state.performance.validationStatus === 'success' &&
             this.state.stream.validationStatus === 'success') {
-            console.log(this.state.board.validationStatus,
-                this.state.performance.validationStatus,
-                this.state.stream.validationStatus)
+
             return false;
         }
 
@@ -101,11 +96,10 @@ class EducationAdd extends Component {
             stream: this.state.stream.value,
             yearOfCompletion: this.state.yearOfCompletion.value
         }
-        console.log(eduDetails)
 
         addEducationDetails(eduDetails)
             .then(response => {
-                console.log(eduDetails)
+
                 this.props.action()
             })
 
@@ -126,15 +120,22 @@ class EducationAdd extends Component {
                 <div className={classes.modal_content} ref={this.props.setFormRef}>
                     <div className={classes.modal_heading}>
                         {this.props.selectedCategory} Education Details
-                        <hr/>
+                        <hr />
                     </div>
                     <form onSubmit={this.handelSubmit} className={classes.formBox}>
-                        <label className={commonClasses.label + " " + classes.modal_label}>
-                            Board:
-                            <input type="text" name='board' placeholder='CBSE, ICSE, NIOS etc..' value={this.state.board.value} required onChange={(event) => this.handleChange(event, this.validateBoard)}
-                            />
-                            <i>{this.state.board.errorMessage}</i>
-                        </label>
+                        {
+                            (
+                                this.props.selectedCategory === SECONDARY_EDUCATION ||
+                                this.props.selectedCategory === SENIOR_SECONDARY_EDUCATION
+                            ) &&
+                            <label className={commonClasses.label + " " + classes.modal_label}>
+                                Board:
+                                <input type="text" name='board' placeholder='CBSE, ICSE, NIOS etc..' value={this.state.board.value} required onChange={(event) => this.handleChange(event, this.validateBoard)}
+                                />
+                                <i>{this.state.board.errorMessage}</i>
+                            </label>
+                        }
+
                         {
                             (
                                 this.props.selectedCategory !== DIPLOMA &&
@@ -172,15 +173,15 @@ class EducationAdd extends Component {
                                 onChange={(event) => this.handleChange(event, this.validatePerformance)} />
                             <i>{this.state.performance.errorMessage}</i>
                         </label>
-
-                        <label className={commonClasses.label + " " + classes.modal_label}>
-                            Stream:
+                        {this.props.selectedCategory !== SECONDARY_EDUCATION &&
+                            <label className={commonClasses.label + " " + classes.modal_label}>
+                                Stream:
                             <input type="text" placeholder="PCM, Commerce, Arts etc.." name='stream' value={this.state.stream.value} onChange={(event) => this.handleChange(event, this.validateStream)} />
-                            <i>{this.state.stream.errorMessage}</i>
-                        </label>
+                                <i>{this.state.stream.errorMessage}</i>
+                            </label>}
                         <label className={commonClasses.label + " " + classes.modal_label}>
                             Year of Completion:
-                            <input type="number" min="1900" max="2099" step="1" name="yearOfCompletion" onChange={(event)=> this.handleChange(event , this.validateYearOfCompletion)}/>
+                            <input type="number" min="1900" max="2099" step="1" name="yearOfCompletion" onChange={(event) => this.handleChange(event, this.validateYearOfCompletion)} />
                             <i>{this.state.yearOfCompletion.errorMessage}</i>
                         </label>
 
@@ -249,7 +250,7 @@ class EducationAdd extends Component {
     validatePerformance = (performance) => {
         const scaleREGEX = RegExp('^[0-9]*(?!-).?[0-9]{1,2}$');
         if (!scaleREGEX.test(performance)) {
-            console.log("Here for regex")
+
             return {
                 validationStatus: 'error',
                 errorMessage: 'Please enter in format: 1, 1.5 , 99.87 etc.!',
@@ -257,7 +258,7 @@ class EducationAdd extends Component {
         }
         performance = parseFloat(performance)
         if (this.state.performanceScale.value === CGPA5 && (performance > 5 || performance < 0)) {
-            console.log("here for >5")
+
             return {
                 validationStatus: 'error',
                 errorMessage: 'Please enter value between 0-5 only!',
@@ -284,7 +285,7 @@ class EducationAdd extends Component {
 
         }
         else {
-            console.log("here no error")
+
             return {
                 validationStatus: 'success',
                 ErrorMessage: '',
@@ -309,9 +310,9 @@ class EducationAdd extends Component {
 
 
     }
-    validateYearOfCompletion = (yearOfCompletion)=>{
+    validateYearOfCompletion = (yearOfCompletion) => {
         const yearOfCompletionREGEX = RegExp('^[0-9]{4}$')
-        if(!yearOfCompletionREGEX.test(yearOfCompletion)){
+        if (!yearOfCompletionREGEX.test(yearOfCompletion)) {
             return {
                 validationStatus: 'error',
                 errorMessage: 'Please enter 4 digits numeric value only!',
@@ -322,7 +323,7 @@ class EducationAdd extends Component {
         return {
             validationStatus: 'success',
         }
-        
+
     }
 
 
