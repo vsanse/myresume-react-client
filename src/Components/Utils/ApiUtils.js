@@ -65,7 +65,7 @@ export function getUserProfile(username){
 
 export function getEducationDetails(username){
     return request({
-        url:API_BASE_URL+"education/getdetails?username?"+username,
+        url:API_BASE_URL+"education/get?username="+username,
         method:'GET'
 
     })

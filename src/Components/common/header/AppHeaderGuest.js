@@ -3,8 +3,7 @@ import classes from './AppHeaderGuest.css';
 import {Link} from 'react-router-dom';
 const AppHeaderGuest = (props) =>
 { 
-    
-    console.log(props)
+
     if(!props.isLoggedIn){
         return(
             <div>

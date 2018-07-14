@@ -41,9 +41,7 @@ class CurrentUser extends Component{
         if(nextProps.isLoggedIn !== this.props.isLoggedIn && nextProps.isLoggedIn===true){
             this.setState({
                 isLoggedIn:nextProps.isLoggedIn,
-                username:{
-                    value: nextProps.userName,
-                },
+                username:nextProps.userName,
                 firstName:{
                     value: nextProps.firstName,
                 },
@@ -87,7 +85,7 @@ class CurrentUser extends Component{
                         <a href={"mailto:"+this.props.email} className={classes.email}><i className="fas fa-envelope fa-1x"></i><span>{this.props.email}</span></a>
                     </div>
                 </div>
-                <EducationComponent isLoggedIn={this.props.isLoggedIn} username={this.props.username}/>
+                <EducationComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username}/>
             </Layout>
         ) 
     }
