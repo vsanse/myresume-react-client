@@ -88,6 +88,15 @@ export function addEducationDetails(educationDetails){
         body: JSON.stringify(educationDetails)
 
     })
-
 }
+
+// Profile
+export function getProfile(username){
+    return request({
+        url:API_BASE_URL+"profile/get/"+username,
+        method:'GET'
+    })
+}
+
+
 
