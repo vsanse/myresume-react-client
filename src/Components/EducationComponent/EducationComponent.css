@@ -103,6 +103,10 @@ p{
     color: white;
     font-weight: bold;
 }
+.buttonSave[disabled] {
+    opacity: 0.65; 
+    cursor: not-allowed;
+  }
 .button:hover{
     background: #0030ff;
     color: white;

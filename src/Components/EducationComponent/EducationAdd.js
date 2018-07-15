@@ -4,7 +4,7 @@ import commonClasses from '../common/common.css';
 import {
     CGPA10,
     CGPA5,
-    PERCENT, 
+    PERCENT,
     SECONDARY_EDUCATION,
     SENIOR_SECONDARY_EDUCATION,
     DIPLOMA,
@@ -58,30 +58,33 @@ class EducationAdd extends Component {
         }
     }
     isFormInvalid = () => {
-        if (this.state.board.validationStatus === 'success' &&
+        const eduType = this.props.selectedCategory;
+        if (eduType !== SECONDARY_EDUCATION &&
+            this.state.institute.validationStatus === 'success' &&
             this.state.performance.validationStatus === 'success' &&
-            this.state.stream.validationStatus === 'success') {
-
-            return false;
-        }
-
-        else if (!(this.props.selectedCategory === DIPLOMA ||
-            this.props.selectedCategory === SECONDARY_EDUCATION ||
-            this.props.selectedCategory === SENIOR_SECONDARY_EDUCATION)) {
-            if (this.state.board.validationStatus === 'success' &&
-                this.state.degree.validationStatus === 'success' &&
-                this.state.performance.validationStatus === 'success' &&
-                this.state.stream.validationStatus === 'success') {
+            this.state.yearOfCompletion.validationStatus === 'success' &&
+            this.state.stream.validationStatus === 'success'
+        ) {
+            if (eduType === SENIOR_SECONDARY_EDUCATION && this.state.board.validationStatus === 'success') {
+                return false;
+            }
+            else if(this.state.degree.validationStatus === 'success'){
                 return false;
             }
 
-
         }
+        else if (eduType === SECONDARY_EDUCATION &&
+            this.state.institute.validationStatus === 'success' &&
+            this.state.performance.validationStatus === 'success' &&
+            this.state.yearOfCompletion.validationStatus === 'success' &&
+            this.state.board.validationStatus === 'success'    
+            ){
+                return false;
+            }
 
-        return true;
-
-
+            return true;
     }
+    
     handelSubmit = (event) => {
         event.preventDefault();
         const eduDetails = {
@@ -185,7 +188,7 @@ class EducationAdd extends Component {
 
 
                         <button className={classes.cancelbtn} onClick={this.props.action}> Cancel</button>
-                        <button type="submit" className={classes.buttonSave}>Save</button>
+                        <button type="submit" className={classes.buttonSave} disabled={this.isFormInvalid()}>Save</button>
                     </form>
 
                 </div>
