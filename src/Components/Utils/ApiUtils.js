@@ -23,6 +23,8 @@ const request = (options) => {
     )
 };
 
+//User
+
 export function login(loginRequest){
     return request({
         url:API_BASE_URL+"user/login",
@@ -63,14 +65,6 @@ export function getUserProfile(username){
     })
 }
 
-export function getEducationDetails(username){
-    return request({
-        url:API_BASE_URL+"education/get?username="+username,
-        method:'GET'
-
-    })
-}
-
 export function getCurrentUser(){
     if(!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
@@ -81,7 +75,31 @@ export function getCurrentUser(){
     })
 }
 
+export function searchUser(searchString){
+    return request({
+        url: API_BASE_URL+"user/search?search="+searchString,
+        method:'GET'
+    })
+}
+
+//Education
+
+export function getEducationDetails(username){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"education/get?username="+username,
+        method:'GET'
+
+    })
+}
+
+
 export function addEducationDetails(educationDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
     return request({
         url:API_BASE_URL+"education/add",
         method:"POST",
@@ -91,6 +109,9 @@ export function addEducationDetails(educationDetails){
 }
 
 export function updateEducationDetails(educationDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
     return request({
         url:API_BASE_URL+"education/update",
         method:"POST",
@@ -99,6 +120,9 @@ export function updateEducationDetails(educationDetails){
     })
 }
 export function deleteEducationDetails(educationId){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
     return request({
         url:API_BASE_URL+"education/delete/"+educationId,
         method:"GET",

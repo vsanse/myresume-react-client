@@ -38,34 +38,53 @@ class Profile extends Component {
     render() {
 
         return (
-            <div>
+            <div className={ classes.overflow_handle}>
                 {
                     this.state.userInfo &&
                     <div className={userinfoClasses.userinfo}>
                         <div className={userinfoClasses.name}><strong>{this.state.userInfo.firstName}<span> {this.state.userInfo.lastName}</span></strong></div>
                         <div className={userinfoClasses.work}>{this.state.userInfo.designation} at <span> {this.state.userInfo.currentOrganization}</span></div>
                         <div className={userinfoClasses.icon}>
-
-                            <a href={this.state.userInfo.linkedinLink} className={classes.linkedin}><i className="fab fa-linkedin fa-1x"></i><span>{this.state.userInfo.linkedinLink}</span></a><br />
-                            <a href={this.state.userInfo.githubLink} className={classes.github}><i className="fab fa-github fa-1x"></i><span>{this.state.userInfo.githubLink}</span></a><br />
-
                             <a href={"mailto:" + this.state.userInfo.email} className={userinfoClasses.email}><i className="fas fa-envelope fa-1x"></i><span>{this.state.userInfo.email}</span></a>
                         </div>
                     </div>
                 }
                 {
                     this.state.educationDetails &&
+                    this.state.educationDetails.length > 0 &&
                     <div className={educationClasses.education} >
-                        <div className={educationClasses.eduHeading}>
                             <div className={educationClasses.heading}>
                                 <strong>EDUCATION:</strong>
                             </div>
-                        </div>
                         <hr className={educationClasses.hr2px}/>
                         <ShowProfileEducationDetails eduDetail={this.state.educationDetails}/>
                     </div>
                 }
+                {
+                    this.state.userInfo &&
+                    <div className={educationClasses.education} >
+                        <div className={educationClasses.heading}>
+                                <strong>Other Links:</strong>
+                        </div>
+                        <hr/>
+                        <div className={userinfoClasses.icon}>
+                            <a href={this.state.userInfo.linkedinLink} 
+                                className={classes.linkedin}>
+                                <i className="fab fa-linkedin fa-1x"></i>
+                                <span>{this.state.userInfo.linkedinLink}</span>
+                            </a><br />
+                            <a href={this.state.userInfo.githubLink} 
+                                className={classes.github}>
+                                <i className="fab fa-github fa-1x"></i>
+                                <span>{this.state.userInfo.githubLink}</span>
+                            </a><br />
+                        </div>
+                    </div>
 
+
+                }
+                
+                
             </div>
         )
     }

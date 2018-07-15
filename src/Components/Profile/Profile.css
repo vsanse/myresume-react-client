@@ -13,7 +13,13 @@
 
 .linkedin:hover{
     color:#0073b1;
+    text-decoration: none;
 }
 .github:hover{
     color:#24292e;
+    text-decoration: none;
+}
+.overflow_handle{
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
