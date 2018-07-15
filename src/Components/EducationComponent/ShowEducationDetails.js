@@ -121,7 +121,6 @@ class ShowEduDetails extends Component {
 
     deleteEducationDetails = (event, eduDetails) => {
         const id = eduDetails.id
-        console.log(id)
         deleteEducationDetails(id)
             .then(response => {
                 this.handleDeleteDetails(event, eduDetails)
@@ -240,7 +239,7 @@ class ShowEduDetails extends Component {
                                 </div>
                                 <div className={classes.editEduDetailsIcons} >
                                     <i className={"fas fa-edit " + classes.editIcon} onClick={(event) => this.handleEditDetails(event, details)}></i>
-                                    <i className="far fa-trash-alt" onClick={(event) => this.deleteEducationDetails(event, details)}></i>
+                                    <i className="far fa-trash-alt" onClick={(event) => this.handleDeleteDetails(event, details)}></i>
                                 </div>
                                 {
                                     details.id === this.state.showEditDetailsId &&
@@ -276,7 +275,7 @@ class ShowEduDetails extends Component {
                                                 }
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Institute:
-                                                    <input type="text" name='institute' placeholder='DPS, DU, IPU etc..' value={this.state.institution.value} onChange={(event) => this.handleChange(event, this.validateInstitute)}
+                                                    <input type="text" name='institution' placeholder='DPS, DU, IPU etc..' value={this.state.institution.value} onChange={(event) => this.handleChange(event, this.validateInstitute)}
                                                     />
                                                     <i>{this.state.institution.errorMessage}</i>
                                                 </label>
