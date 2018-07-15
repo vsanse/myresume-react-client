@@ -90,6 +90,16 @@ export function addEducationDetails(educationDetails){
     })
 }
 
+export function updateEducationDetails(educationDetails){
+    return request({
+        url:API_BASE_URL+"education/update",
+        method:"POST",
+        body: JSON.stringify(educationDetails)
+
+    })
+}
+
+
 // Profile
 export function getProfile(username){
     return request({

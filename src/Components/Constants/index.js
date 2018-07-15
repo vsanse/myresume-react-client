@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://Localhost:8091/';
+export const API_BASE_URL = 'http://192.168.43.213:8080/myresume/';
 //export const API_BASE_URL = '/api';
 export const ACCESS_TOKEN = 'accessToken';
 
