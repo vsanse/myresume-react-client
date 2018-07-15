@@ -246,6 +246,10 @@ class ShowEduDetails extends Component {
                                     this.state.showEditDetails &&
                                     <div className={classes.modal} >
                                         <div className={classes.modal_content} ref={edit => { this.edit = edit; }}>
+                                            <div className={classes.modal_heading}>
+                                                {this.state.educationType.value} Education Details
+                                                <hr />
+                                            </div>
                                             <form onSubmit={this.handleSubmit} className={classes.formBox}>
                                                 {
                                                     (
