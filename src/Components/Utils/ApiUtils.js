@@ -98,6 +98,12 @@ export function updateEducationDetails(educationDetails){
 
     })
 }
+export function deleteEducationDetails(educationId){
+    return request({
+        url:API_BASE_URL+"education/delete/"+educationId,
+        method:"GET",
+    })
+}
 
 
 // Profile
