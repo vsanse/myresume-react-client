@@ -39,6 +39,13 @@ class ShowEduDetails extends Component {
 
     }
 
+    handleDeleteDetails = (event, education) => {
+        this.setState(prevState => ({
+            showDeleteDetails: !prevState.showDeleteDetails,
+            showDeleteDetailsId: education.id,
+        }))
+    }
+
     handleEditDetails = (event, education) => {
         document.getElementById("editForm").focus();
         this.setState(prevState => ({
@@ -46,40 +53,40 @@ class ShowEduDetails extends Component {
             showEditDetailsId: education.id,
             board: {
                 value: education.board,
-                validationStatus:'success'
+                validationStatus: 'success'
             },
             educationType: {
                 value: education.educationType,
-                validationStatus:'success'
+                validationStatus: 'success'
             },
             id:
             {
                 value: education.id,
-                validationStatus:'success'
+                validationStatus: 'success'
             },
             degree: {
                 value: education.degree,
-                validationStatus:'success'
+                validationStatus: 'success'
             },
             institution: {
                 value: education.institution,
-                validationStatus:'success'
+                validationStatus: 'success'
             },
             performance: {
                 value: education.performance,
-                validationStatus:'success'
+                validationStatus: 'success'
             },
             performanceScale: {
                 value: education.performanceScale,
-                validationStatus:'success'
+                validationStatus: 'success'
             },
             stream: {
                 value: education.stream,
-                validationStatus:'success'
+                validationStatus: 'success'
             },
             yearOfCompletion: {
                 value: education.yearOfCompletion,
-                validationStatus:'success'
+                validationStatus: 'success'
             }
         }))
     }
@@ -116,8 +123,7 @@ class ShowEduDetails extends Component {
         const id = eduDetails.id
         deleteEducationDetails(id)
             .then(response => {
-
-                this.handleEditDetails(event, eduDetails)
+                this.handleDeleteDetails(event, eduDetails)
                 this.props.action();
             })
 
@@ -135,14 +141,14 @@ class ShowEduDetails extends Component {
                 }
 
             })
-        if(targetName === 'performanceScale'){
-            this.setState(prevState=>({
+        if (targetName === 'performanceScale') {
+            this.setState(prevState => ({
                 [targetName]: {
                     value: targetValue,
                 },
-                performance:{
-                    value:prevState.performance.value,
-                    ...validation(prevState.performance.value,targetValue)
+                performance: {
+                    value: prevState.performance.value,
+                    ...validation(prevState.performance.value, targetValue)
                 }
 
             }))
@@ -184,7 +190,7 @@ class ShowEduDetails extends Component {
             if (eduType === SENIOR_SECONDARY_EDUCATION && this.state.board.validationStatus === 'success') {
                 return false;
             }
-            else if(this.state.degree.validationStatus === 'success'){
+            else if (this.state.degree.validationStatus === 'success') {
                 return false;
             }
 
@@ -193,12 +199,12 @@ class ShowEduDetails extends Component {
             this.state.institution.validationStatus === 'success' &&
             this.state.performance.validationStatus === 'success' &&
             this.state.yearOfCompletion.validationStatus === 'success' &&
-            this.state.board.validationStatus === 'success'    
-            ){
-                return false;
-            }
+            this.state.board.validationStatus === 'success'
+        ) {
+            return false;
+        }
 
-            return true;
+        return true;
     }
 
     render() {
@@ -233,7 +239,7 @@ class ShowEduDetails extends Component {
                                 </div>
                                 <div className={classes.editEduDetailsIcons} >
                                     <i className={"fas fa-edit " + classes.editIcon} onClick={(event) => this.handleEditDetails(event, details)}></i>
-                                    <i className="far fa-trash-alt" onClick={(event) => this.deleteEducationDetails(event, details)}></i>
+                                    <i className="far fa-trash-alt" onClick={(event) => this.handleDeleteDetails(event, details)}></i>
                                 </div>
                                 {
                                     details.id === this.state.showEditDetailsId &&
@@ -269,7 +275,7 @@ class ShowEduDetails extends Component {
                                                 }
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Institute:
-                                                    <input type="text" name='institute' placeholder='DPS, DU, IPU etc..' value={this.state.institution.value} onChange={(event) => this.handleChange(event, this.validateInstitute)}
+                                                    <input type="text" name='institution' placeholder='DPS, DU, IPU etc..' value={this.state.institution.value} onChange={(event) => this.handleChange(event, this.validateInstitute)}
                                                     />
                                                     <i>{this.state.institution.errorMessage}</i>
                                                 </label>
@@ -295,12 +301,12 @@ class ShowEduDetails extends Component {
                                                 {this.state.educationType.value !== SECONDARY_EDUCATION &&
                                                     <label className={commonClasses.label + " " + classes.modal_label}>
                                                         Stream:
-                                                        <input type="text" placeholder="PCM, Commerce, Arts etc.." name='stream' value={this.state.stream.value} onChange={(event) => this.handleChange(event,this.validateStream)} />
+                                                        <input type="text" placeholder="PCM, Commerce, Arts etc.." name='stream' value={this.state.stream.value} onChange={(event) => this.handleChange(event, this.validateStream)} />
                                                         <i>{this.state.stream.errorMessage}</i>
                                                     </label>}
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Year of Completion:
-                                                     <input type="number" value={this.state.yearOfCompletion.value} min="1900" max="2099" step="1" name="yearOfCompletion" onChange={(event) => this.handleChange(event,this.validateYearOfCompletion)} />
+                                                     <input type="number" value={this.state.yearOfCompletion.value} min="1900" max="2099" step="1" name="yearOfCompletion" onChange={(event) => this.handleChange(event, this.validateYearOfCompletion)} />
                                                     <i>{this.state.yearOfCompletion.errorMessage}</i>
                                                 </label>
 
@@ -308,6 +314,19 @@ class ShowEduDetails extends Component {
                                                 <button className={classes.cancelbtn} onClick={(event) => this.handleEditDetails(event, details)}> Cancel</button>
                                                 <button type="submit" className={classes.buttonSave} disabled={this.isFormInvalid()}>Save</button>
                                             </form>
+                                        </div>
+                                    </div>
+                                }
+                                {
+                                    details.id === this.state.showDeleteDetailsId &&
+                                    this.state.showDeleteDetails &&
+                                    <div className={classes.modal} >
+                                        <div className={classes.modal_content} >
+                                            <div className={classes.deleteForm}>
+                                                <p className={classes.deleteMessage}><strong>Do you really want to delete ?</strong></p>
+                                                <button className={classes.cancelbtn} onClick={(event) => this.handleDeleteDetails(event, details)}> Cancel</button>
+                                                <button type="submit" className={classes.buttonDelete} onClick={(event) => this.deleteEducationDetails(event, details)} >Delete</button>
+                                            </div>
                                         </div>
                                     </div>
                                 }
@@ -356,6 +375,7 @@ class ShowEduDetails extends Component {
         }
 
     }
+
     validateInstitute = (institute) => {
         const instituteREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
         if (!instituteREGEX.test(institute)) {
@@ -363,7 +383,6 @@ class ShowEduDetails extends Component {
                 validationStatus: 'error',
                 errorMessage: 'Please enter albhabets only and leading spaces are not allowed',
             }
-
         }
         else {
             return {
@@ -374,12 +393,13 @@ class ShowEduDetails extends Component {
 
     }
 
-    validatePerformance = (performance,nextScale) => {
+
+    validatePerformance = (performance, nextScale) => {
         let performanceScale;
-        if(nextScale){
-            performanceScale= nextScale;
+        if (nextScale) {
+            performanceScale = nextScale;
         }
-        else{
+        else {
             performanceScale = this.state.performanceScale.value;
         }
         const scaleREGEX = RegExp('^[0-9]*(?!-).?[0-9]{1,2}$');
@@ -429,6 +449,7 @@ class ShowEduDetails extends Component {
         }
 
     }
+
     validateStream = (stream) => {
         const streamREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
         if (!streamREGEX.test(stream)) {
@@ -441,6 +462,7 @@ class ShowEduDetails extends Component {
 
         return {
             validationStatus: 'success',
+            errorMessage: ''
         }
 
 
@@ -457,6 +479,7 @@ class ShowEduDetails extends Component {
 
         return {
             validationStatus: 'success',
+            errorMessage: ''
         }
 
     }

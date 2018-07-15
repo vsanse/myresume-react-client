@@ -94,7 +94,7 @@ p{
     width:48%;
 }
 
-.buttonSave{
+.buttonSave , .buttonDelete{
     background: blue;
     border: 2px solid blue;
     width:48%;
@@ -102,6 +102,12 @@ p{
     margin: 1% ;
     color: white;
     font-weight: bold;
+}
+
+.buttonDelete{
+    background: Red;
+    border: 2px solid red;
+  
 }
 .buttonSave[disabled] {
     opacity: 0.65; 
@@ -128,7 +134,7 @@ p{
     text-decoration: none;
     cursor: pointer;
 }
-.formBox
+.formBox , .deleteForm
 {   text-align: left;
     height: 80%;
     margin : 0 auto;
@@ -178,4 +184,6 @@ p{
         width: 95%;
     }
 }
-
+.deleteMassage{
+ text-align: center;
+}
