@@ -53,31 +53,40 @@ class ShowEduDetails extends Component {
             showEditDetailsId: education.id,
             board: {
                 value: education.board,
+                validationStatus: 'success'
             },
             educationType: {
-                value: education.educationType
+                value: education.educationType,
+                validationStatus: 'success'
             },
             id:
             {
-                value: education.id
+                value: education.id,
+                validationStatus: 'success'
             },
             degree: {
                 value: education.degree,
+                validationStatus: 'success'
             },
             institution: {
                 value: education.institution,
+                validationStatus: 'success'
             },
             performance: {
                 value: education.performance,
+                validationStatus: 'success'
             },
             performanceScale: {
                 value: education.performanceScale,
+                validationStatus: 'success'
             },
             stream: {
                 value: education.stream,
+                validationStatus: 'success'
             },
             yearOfCompletion: {
                 value: education.yearOfCompletion,
+                validationStatus: 'success'
             }
         }))
     }
@@ -115,7 +124,6 @@ class ShowEduDetails extends Component {
         console.log(id)
         deleteEducationDetails(id)
             .then(response => {
-
                 this.handleDeleteDetails(event, eduDetails)
                 this.props.action();
             })
@@ -134,6 +142,18 @@ class ShowEduDetails extends Component {
                 }
 
             })
+        if (targetName === 'performanceScale') {
+            this.setState(prevState => ({
+                [targetName]: {
+                    value: targetValue,
+                },
+                performance: {
+                    value: prevState.performance.value,
+                    ...validation(prevState.performance.value, targetValue)
+                }
+
+            }))
+        }
         else {
             this.setState({
                 [targetName]: {
@@ -160,6 +180,34 @@ class ShowEduDetails extends Component {
 
     }
 
+    isFormInvalid = () => {
+        const eduType = this.state.educationType.value;
+        if (eduType !== SECONDARY_EDUCATION &&
+            this.state.institution.validationStatus === 'success' &&
+            this.state.performance.validationStatus === 'success' &&
+            this.state.yearOfCompletion.validationStatus === 'success' &&
+            this.state.stream.validationStatus === 'success'
+        ) {
+            if (eduType === SENIOR_SECONDARY_EDUCATION && this.state.board.validationStatus === 'success') {
+                return false;
+            }
+            else if (this.state.degree.validationStatus === 'success') {
+                return false;
+            }
+
+        }
+        else if (eduType === SECONDARY_EDUCATION &&
+            this.state.institution.validationStatus === 'success' &&
+            this.state.performance.validationStatus === 'success' &&
+            this.state.yearOfCompletion.validationStatus === 'success' &&
+            this.state.board.validationStatus === 'success'
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
     render() {
         return (
             <div>
@@ -182,7 +230,7 @@ class ShowEduDetails extends Component {
                                             <p>CGPA : {details.performance}/10</p>
                                         }
                                         {details.performanceScale === CGPA5 &&
-                                            <p>CGPA : {details.performance}/10</p>
+                                            <p>CGPA : {details.performance}/5</p>
                                         }
                                         {details.performanceScale === PERCENT &&
                                             <p>Percentage : {details.performance}%</p>
@@ -192,9 +240,8 @@ class ShowEduDetails extends Component {
                                 </div>
                                 <div className={classes.editEduDetailsIcons} >
                                     <i className={"fas fa-edit " + classes.editIcon} onClick={(event) => this.handleEditDetails(event, details)}></i>
-                                    <i className="far fa-trash-alt" onClick={(event) => this.handleDeleteDetails(event, details)}></i>
+                                    <i className="far fa-trash-alt" onClick={(event) => this.deleteEducationDetails(event, details)}></i>
                                 </div>
-
                                 {
                                     details.id === this.state.showEditDetailsId &&
                                     this.state.showEditDetails &&
@@ -242,6 +289,7 @@ class ShowEduDetails extends Component {
                                                         <option value={CGPA10}>CGPA out of 10</option>
                                                         <option value={PERCENT}>Percentage%</option>
                                                     </select>
+
                                                 </label>
 
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
@@ -254,18 +302,18 @@ class ShowEduDetails extends Component {
                                                 {this.state.educationType.value !== SECONDARY_EDUCATION &&
                                                     <label className={commonClasses.label + " " + classes.modal_label}>
                                                         Stream:
-                                                        <input type="text" placeholder="PCM, Commerce, Arts etc.." name='stream' value={this.state.stream.value} onChange={(event) => this.handleChange(event)} />
+                                                        <input type="text" placeholder="PCM, Commerce, Arts etc.." name='stream' value={this.state.stream.value} onChange={(event) => this.handleChange(event, this.validateStream)} />
                                                         <i>{this.state.stream.errorMessage}</i>
                                                     </label>}
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Year of Completion:
-                                                     <input type="number" value={this.state.yearOfCompletion.value} min="1900" max="2099" step="1" name="yearOfCompletion" onChange={(event) => this.handleChange(event)} />
+                                                     <input type="number" value={this.state.yearOfCompletion.value} min="1900" max="2099" step="1" name="yearOfCompletion" onChange={(event) => this.handleChange(event, this.validateYearOfCompletion)} />
                                                     <i>{this.state.yearOfCompletion.errorMessage}</i>
                                                 </label>
 
 
                                                 <button className={classes.cancelbtn} onClick={(event) => this.handleEditDetails(event, details)}> Cancel</button>
-                                                <button type="submit" className={classes.buttonSave}>Save</button>
+                                                <button type="submit" className={classes.buttonSave} disabled={this.isFormInvalid()}>Save</button>
                                             </form>
                                         </div>
                                     </div>
@@ -275,10 +323,10 @@ class ShowEduDetails extends Component {
                                     this.state.showDeleteDetails &&
                                     <div className={classes.modal} >
                                         <div className={classes.modal_content} >
-                                            <div className = {classes.deleteForm}>
-                                                <p className = {classes.deleteMessage}><strong>Do you really want to delete ?</strong></p>
+                                            <div className={classes.deleteForm}>
+                                                <p className={classes.deleteMessage}><strong>Do you really want to delete ?</strong></p>
                                                 <button className={classes.cancelbtn} onClick={(event) => this.handleDeleteDetails(event, details)}> Cancel</button>
-                                                <button type="submit" className={classes.buttonDelete} onClick = {(event) => this.deleteEducationDetails(event, details)} >Delete</button>  
+                                                <button type="submit" className={classes.buttonDelete} onClick={(event) => this.deleteEducationDetails(event, details)} >Delete</button>
                                             </div>
                                         </div>
                                     </div>
@@ -328,6 +376,7 @@ class ShowEduDetails extends Component {
         }
 
     }
+
     validateInstitute = (institute) => {
         const instituteREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
         if (!instituteREGEX.test(institute)) {
@@ -335,7 +384,6 @@ class ShowEduDetails extends Component {
                 validationStatus: 'error',
                 errorMessage: 'Please enter albhabets only and leading spaces are not allowed',
             }
-
         }
         else {
             return {
@@ -346,8 +394,17 @@ class ShowEduDetails extends Component {
 
     }
 
-    validatePerformance = (performance) => {
+
+    validatePerformance = (performance, nextScale) => {
+        let performanceScale;
+        if (nextScale) {
+            performanceScale = nextScale;
+        }
+        else {
+            performanceScale = this.state.performanceScale.value;
+        }
         const scaleREGEX = RegExp('^[0-9]*(?!-).?[0-9]{1,2}$');
+        console.log(performanceScale)
         if (!scaleREGEX.test(performance)) {
 
             return {
@@ -356,7 +413,7 @@ class ShowEduDetails extends Component {
             }
         }
         performance = parseFloat(performance)
-        if (this.state.performanceScale.value === CGPA5 && (performance > 5 || performance < 0)) {
+        if (performanceScale === CGPA5 && (performance > 5 || performance < 0)) {
 
             return {
                 validationStatus: 'error',
@@ -366,7 +423,7 @@ class ShowEduDetails extends Component {
 
         }
 
-        else if (this.state.performanceScale.value === CGPA10 && (performance > 10 || performance < 0)) {
+        else if (performanceScale === CGPA10 && (performance > 10 || performance < 0)) {
             return {
                 validationStatus: 'error',
                 errorMessage: 'Please enter value between 0-10 only!',
@@ -375,7 +432,7 @@ class ShowEduDetails extends Component {
 
         }
 
-        else if (this.state.performanceScale.value === PERCENT && (performance > 100 || performance < 0)) {
+        else if (performanceScale === PERCENT && (performance > 100 || performance < 0)) {
             return {
                 validationStatus: 'error',
                 errorMessage: 'Please enter value between 0-100 only!',
@@ -393,6 +450,7 @@ class ShowEduDetails extends Component {
         }
 
     }
+
     validateStream = (stream) => {
         const streamREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
         if (!streamREGEX.test(stream)) {
@@ -405,6 +463,7 @@ class ShowEduDetails extends Component {
 
         return {
             validationStatus: 'success',
+            errorMessage: ''
         }
 
 
@@ -421,6 +480,7 @@ class ShowEduDetails extends Component {
 
         return {
             validationStatus: 'success',
+            errorMessage: ''
         }
 
     }

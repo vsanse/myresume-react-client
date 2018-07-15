@@ -17,6 +17,9 @@ const AppHeaderGuest = (props) =>
                     </ul>
                 <hr/>
                 </nav>
+                <div>
+                    <input name="searchQuery" value="" />
+                </div>
             </div>
         )
     }
