@@ -38,7 +38,7 @@ class Profile extends Component {
     render() {
 
         return (
-            <div className={ classes.overflow_handle}>
+            <div className={classes.overflow_handle}>
                 {
                     this.state.userInfo &&
                     <div className={userinfoClasses.userinfo}>
@@ -53,38 +53,43 @@ class Profile extends Component {
                     this.state.educationDetails &&
                     this.state.educationDetails.length > 0 &&
                     <div className={educationClasses.education} >
-                            <div className={educationClasses.heading}>
-                                <strong>EDUCATION:</strong>
-                            </div>
-                        <hr className={educationClasses.hr2px}/>
-                        <ShowProfileEducationDetails eduDetail={this.state.educationDetails}/>
+                        <div className={educationClasses.heading}>
+                            <strong>EDUCATION:</strong>
+                        </div>
+                        <hr className={educationClasses.hr2px} />
+                        <ShowProfileEducationDetails eduDetail={this.state.educationDetails} />
                     </div>
                 }
                 {
                     this.state.userInfo &&
                     <div className={educationClasses.education} >
                         <div className={educationClasses.heading}>
-                                <strong>Other Links:</strong>
+                            <strong>Other Links:</strong>
                         </div>
-                        <hr/>
+                        <hr />
                         <div className={userinfoClasses.icon}>
-                            <a href={this.state.userInfo.linkedinLink} 
-                                className={classes.linkedin}>
-                                <i className="fab fa-linkedin fa-1x"></i>
-                                <span>{this.state.userInfo.linkedinLink}</span>
-                            </a><br />
-                            <a href={this.state.userInfo.githubLink} 
-                                className={classes.github}>
-                                <i className="fab fa-github fa-1x"></i>
-                                <span>{this.state.userInfo.githubLink}</span>
-                            </a><br />
+                            <strong>LinkedIn : </strong>
+                            <code>
+                                <a href={this.state.userInfo.linkedinLink}
+                                    className={classes.linkedin}>
+
+                                    <span>{this.state.userInfo.linkedinLink}</span>
+                                </a>
+                            </code><br />
+                            <strong>Github : </strong>
+                            <code>
+                                <a href={this.state.userInfo.githubLink}
+                                    className={classes.github}>
+                                    <span>{this.state.userInfo.githubLink}</span>
+                                </a>
+                            </code><br />
                         </div>
                     </div>
 
 
                 }
-                
-                
+
+
             </div>
         )
     }

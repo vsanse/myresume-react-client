@@ -31,7 +31,9 @@ class Search extends Component{
                 <form >
                     
                     <input type="text" name = "searchString" value={this.state.searchString.value} 
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange} className={classes.searchBox} 
+                    placeholder="Username, Name, Email.."
+                    />
                    
                     <div>
                         {
