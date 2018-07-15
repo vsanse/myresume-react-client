@@ -5,8 +5,15 @@
     display: flex;
     flex-flow: column;
     flex-wrap: wrap;
-
+    text-decoration: none;
    
+}
+.appHeading>a{
+    color: #000;
+}
+.appHeading>a:hover{
+    text-decoration: none; 
+    color: dimgray;
 }
 nav ul{
     text-align: center;

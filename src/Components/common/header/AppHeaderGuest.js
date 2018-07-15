@@ -6,8 +6,8 @@ const AppHeaderGuest = (props) =>
 
     if(!props.isLoggedIn){
         return(
-            <div>
-                <h1 className= {classes.heading}>MyResume</h1>
+            <div className={classes.appHeading}>
+                <a href="/"><h1 className= {classes.heading}>MyResume</h1></a>
                 <nav>
                     <hr/>
                     <ul >
