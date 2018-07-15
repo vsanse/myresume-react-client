@@ -1,0 +1,19 @@
+.documentPdf{
+        background-color: '#f5f5f5';
+        width: '210mm';
+        min-height: '297mm';
+        margin-left: 'auto';
+        margin-right: 'auto';
+
+}
+.linkedin i, .github i{
+    margin: 1%
+}
+
+
+.linkedin:hover{
+    color:#0073b1;
+}
+.github:hover{
+    color:#24292e;
+}
