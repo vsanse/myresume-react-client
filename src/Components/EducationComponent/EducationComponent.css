@@ -13,11 +13,11 @@ margin-bottom: 2%
 .eduHeading{
     padding: 5px;
     display: flex;
-  
     
 }
 .heading{
     width: 50%;
+    font-size: 1.5rem;
 }
 .icon{
     width: 50%;
@@ -28,7 +28,14 @@ hr{
     border: 0;
     height: 2px;
     width: 100%;
+    margin: 0;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+.hr1px{
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,1);
+    width: 100%;
+   
 }
 
 /* The Modal (background) */
