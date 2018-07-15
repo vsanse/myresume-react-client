@@ -1,8 +1,10 @@
 import classes from './EducationComponent.css'
 import React, { Component } from 'react';
 import commonClasses from '../common/common.css';
-import { CGPA10, CGPA5, PERCENT } from '../Constants/index'
 import {
+    CGPA10,
+    CGPA5,
+    PERCENT, 
     SECONDARY_EDUCATION,
     SENIOR_SECONDARY_EDUCATION,
     DIPLOMA,
@@ -56,10 +58,6 @@ class EducationAdd extends Component {
         }
     }
     isFormInvalid = () => {
-        console.log(this.state.board.validationStatus,
-            this.state.performance.validationStatus,
-            this.state.stream.validationStatus)
-
         if (this.state.board.validationStatus === 'success' &&
             this.state.performance.validationStatus === 'success' &&
             this.state.stream.validationStatus === 'success') {

@@ -60,25 +60,11 @@ class Education extends Component {
     }
 
     handleShowAddForm = () => {
-        if (!this.state.showEducationAddForm) {
-            // attach/remove event handler
-            document.addEventListener('click', (this.handleOutsideClickForm), false);
-        } else {
-            document.removeEventListener('click', this.handleOutsideClickForm, false);
-        }
         this.setState(prevState => ({
             showEducationAddForm: !prevState.showEducationAddForm,
         }))
         if(this.props.username)
             this.getUsersEducationDetails(this.props.username)
-    }
-
-    handleOutsideClickForm = (event) => {
-        // ignore clicks on the component itself
-        if (this.addRef.contains(event.target)) {
-            return;
-        }
-        this.handleShowAddForm()
     }
 
     setCategory = (event) => {
@@ -121,11 +107,11 @@ class Education extends Component {
                     </div>
                 </div>
                 <hr />
-                <ShowEducationDetails eduDetail={this.state.educationDetails}/>
+                <ShowEducationDetails eduDetail={this.state.educationDetails} action = {() => this.getUsersEducationDetails(this.props.username)}/>
                 {this.state.showCategories &&
                     (
                         <div className={classes.modal}  >
-                            <div className={classes.modal_content} ref={node => { this.node = node; }}>
+                            <div className={classes.modal_content} ref={node => { this.node =node; }}>
                                 <div className={classes.close}><span onClick={this.handleCategory}> &times;</span></div>
                                 {
                                     this.state.eduDetails.map(

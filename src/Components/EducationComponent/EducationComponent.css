@@ -8,6 +8,7 @@ display: flex;
 flex-wrap: wrap;
 flex-flow: column;
 margin-top: 2%;
+margin-bottom: 2%
 } 
 .eduHeading{
     padding: 5px;
@@ -132,14 +133,33 @@ hr{
 .details
 {
     padding:1vh;
-}
-.details>div
-{
     font-style: italic;
     font-size:13px;
-    line-height: 3px;
+
+}
+.details>p
+{
+  margin: 0; 
+}
+.detailHeading{
+    width: 75%;
+    margin-left: 5%
+  
+}
+.eduFlexBody{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+.editEduDetailsIcons
+{
+    width: 13%;
+    text-align: right;
 }
 
+.editIcon{
+    margin-right: 2vw;
+}
 @media(max-width:650px){
     .education{
         width: 90%
