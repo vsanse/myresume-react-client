@@ -7,6 +7,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-flow: column;
+    margin-top: 2%;
 }
 .icon{
     display: inline-block;
@@ -18,6 +19,7 @@
 .linkedin, .github{
     font-size: 1.5rem;
 }
+
 .linkedin:hover{
     color:#0073b1;
 }
