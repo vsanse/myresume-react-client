@@ -63,7 +63,7 @@ class Profile extends Component {
                 {
                     this.state.userInfo &&
                     <div className={educationClasses.education} >
-                        <div className={educationClasses.heading}>
+                        <div className={classes.otherLinkHeading}>
                             <strong>Other Links:</strong>
                         </div>
                         <hr />

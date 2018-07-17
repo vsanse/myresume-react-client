@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { searchUser } from '../../Utils/ApiUtils';
+import { searchUser, getUserProfile} from '../../Utils/ApiUtils';
 import classes from './Search.css';
 class Search extends Component {
     state = {
@@ -19,8 +19,18 @@ class Search extends Component {
         })
         searchUser(targetValue)
             .then(response => {
-                this.setState({
-                    users: response,
+                console.log(response)
+                let details=[] 
+                response.map(user=>{
+                getUserProfile(user)
+                .then(userResponse=>{
+                   details.push(userResponse.userinfo)
+                   console.log(details)
+                 this.setState({
+                       users:[...details]
+                   });console.log(this.state.users) 
+
+                })
                 })
             })
     }
@@ -32,14 +42,18 @@ class Search extends Component {
 
                     <input type="text" name="searchString" value={this.state.searchString.value}
                         onChange={this.handleChange} className={classes.searchBox}
-                        placeholder="Username, Name, Email.."
+                        placeholder="Username ,name....."
                     />
 
                     <div>
-                        {
-                            this.state.users.map(user => {
+                        {   
+                            this.state.users.splice(0,4).map(user => {
                                 return (
-                                    <p key={user}><a href={"/profile/" + user}>{user}</a></p>
+                                    <div > 
+                                        <div className={classes.searchResult}>
+                                            <p className={classes.overflow_handle} key={user}><a href={"/profile/" + user.userName}>{user.firstName} {user.lastName}({user.userName})</a></p>
+                                        </div>
+                                    </div>
                                 )
                             })
                         }

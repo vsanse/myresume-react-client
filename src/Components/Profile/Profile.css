@@ -9,7 +9,10 @@
 .linkedin i, .github i{
     margin: 1%
 }
-
+.otherLinkHeading{
+    font-size: 1.3rem;
+    width:100;
+}
 
 .linkedin:hover{
     color:#0073b1;
