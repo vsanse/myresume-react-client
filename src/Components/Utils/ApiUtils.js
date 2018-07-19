@@ -95,7 +95,6 @@ export function getEducationDetails(username){
     })
 }
 
-
 export function addEducationDetails(educationDetails){
     if(!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
@@ -107,6 +106,8 @@ export function addEducationDetails(educationDetails){
 
     })
 }
+
+
 
 export function updateEducationDetails(educationDetails){
     if(!localStorage.getItem(ACCESS_TOKEN)) {
@@ -126,6 +127,66 @@ export function deleteEducationDetails(educationId){
     return request({
         url:API_BASE_URL+"education/delete/"+educationId,
         method:"GET",
+    })
+}
+
+//skills
+
+export function addSkillsDetails(skillsDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"skills/add",
+        method:"POST",
+        body: JSON.stringify(skillsDetails)
+
+    })
+}
+
+export function getSkillsDetails(username){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"skills/get?username="+username,
+        method:'GET'
+
+    })
+}
+
+export function updateSkillsDetails(skillsDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"skills/update",
+        method:"POST",
+        body: JSON.stringify(skillsDetails)
+
+    })
+}
+
+export function deleteSkillsDetails(skillId){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"skills/delete/"+skillId,
+        method:"GET",
+    })
+}
+
+//internship
+export function addIntershipDetails(internDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"internship/add",
+        method:"POST",
+        body: JSON.stringify(internDetails)
+
     })
 }
 

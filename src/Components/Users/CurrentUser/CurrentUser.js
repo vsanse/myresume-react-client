@@ -3,6 +3,8 @@ import {withRouter} from 'react-router-dom';
 import classes from './CurrentUser.css';
 import Layout from '../../../hoc/Layout';
 import EducationComponent from '../../EducationComponent/EducationComponent'
+import SkillsComponent from '../../SkillsComponent/SkillsComponent';
+import InternshipComponent from '../../InternshipComponent/InternshipComponent'
 class CurrentUser extends Component{
     
     state={
@@ -86,6 +88,9 @@ class CurrentUser extends Component{
                     </div>
                 </div>
                 <EducationComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username}/>
+                <SkillsComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username}/>
+                <InternshipComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username}/>
+
             </Layout>
         ) 
     }

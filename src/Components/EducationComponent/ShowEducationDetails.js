@@ -221,8 +221,8 @@ class ShowEduDetails extends Component {
                                     }
                                     {(details.educationType !== GRADUATION && details.educationType !== POST_GRADUATION) &&
                                         <p><strong>{details.educationType} {details.stream}</strong></p>
-                                    } <div className={classes.details}>
-
+                                    } 
+                                    <div className={classes.details}>
                                         <p>{details.board}<span> ( {details.institution} )</span></p>
                                         <p>Year Of Completion:{details.yearOfCompletion}</p>
                                         {details.performanceScale === CGPA10 &&
@@ -326,7 +326,7 @@ class ShowEduDetails extends Component {
                                     this.state.showDeleteDetails &&
                                     <div className={classes.modal} >
                                         <div className={classes.modal_content} >
-                                            <div className={classes.deleteForm}>
+                                            <div className={classes.deleteBox}>
                                                 <p className={classes.deleteMessage}><strong>Do you really want to delete ?</strong></p>
                                                 <button className={classes.cancelbtn} onClick={(event) => this.handleDeleteDetails(event, details)}> Cancel</button>
                                                 <button type="submit" className={classes.buttonDelete} onClick={(event) => this.deleteEducationDetails(event, details)} >Delete</button>

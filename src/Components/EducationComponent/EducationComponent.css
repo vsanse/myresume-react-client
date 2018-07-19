@@ -77,6 +77,7 @@ p{
     font-weight: bolder;
     margin: 0 auto;
     color: #0030ff;
+    margin-bottom: 1.5rem;
 }
 .modal_content>button{
     flex: 1 1 33.3333%;
@@ -134,15 +135,25 @@ p{
     text-decoration: none;
     cursor: pointer;
 }
-.formBox , .deleteForm
+.formBox 
 {   text-align: left;
     height: 80%;
     margin : 0 auto;
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
-    /* flex: 1 1 auto; */
+    flex: 1 1 auto;
 } 
+.deleteBox{
+    text-align: left;
+    height: 80%;
+    margin : 0 auto;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    width: 100%;
+  
+}
 .details
 {
     padding:1vh;
@@ -166,13 +177,14 @@ p{
 }
 .editEduDetailsIcons
 {
-    width: 13%;
-    text-align: right;
+    width: 18%;
+    text-align: center;
 }
 
 .editIcon{
-    margin-right: 2vw;
+    margin-right: 3vw;
 }
+
 @media(max-width:650px){
     .education{
         width: 90%
