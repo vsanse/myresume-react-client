@@ -22,13 +22,13 @@ const AppHeaderGuest = (props) =>
     }
     else{
         return(
-            <div>
-                <h1 className= {classes.heading}>MyResume</h1>
+            <div className={classes.appHeading}>
+                <a href="/"><h1 className= {classes.heading}>MyResume</h1></a>
                 <nav>
                     <hr/>
                     <ul >
-    
-                            <li><Link to="/" onClick={props.logout}>Logout</Link></li> 
+                        <li><a href="/me">My Profile</a></li>
+                        <li><Link to="/" onClick={props.logout}>Logout</Link></li> 
                     </ul>
                 <hr/>
                 </nav>

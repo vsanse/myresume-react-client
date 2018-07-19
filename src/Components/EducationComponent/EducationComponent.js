@@ -21,7 +21,7 @@ class Education extends Component {
         .then(response =>{
             this.setState({
                 educationDetails:response,
-            })
+            });console.log(this.state.educationDetails)
         })
     }
 

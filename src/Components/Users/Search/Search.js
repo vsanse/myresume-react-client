@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { searchUser, getUserProfile} from '../../Utils/ApiUtils';
+import { searchUser, getUserProfile } from '../../Utils/ApiUtils';
 import classes from './Search.css';
 class Search extends Component {
     state = {
@@ -10,6 +10,7 @@ class Search extends Component {
     }
 
     handleChange = (event) => {
+        event.preventDefault();
         const targetName = event.target.name;
         const targetValue = event.target.value;
         this.setState({
@@ -17,20 +18,19 @@ class Search extends Component {
                 value: targetValue,
             }
         })
+        
         searchUser(targetValue)
             .then(response => {
-                console.log(response)
-                let details=[] 
-                response.map(user=>{
-                getUserProfile(user)
-                .then(userResponse=>{
-                   details.push(userResponse.userinfo)
-                   console.log(details)
-                 this.setState({
-                       users:[...details]
-                   });console.log(this.state.users) 
+                let details = []
+                response.map(user => {
+                    getUserProfile(user)
+                        .then(userResponse => {
+                            details.push(userResponse.userinfo)
+                            this.setState({
+                                users: [...details]
+                            });
 
-                })
+                        })
                 })
             })
     }
@@ -46,10 +46,10 @@ class Search extends Component {
                     />
 
                     <div>
-                        {   
-                            this.state.users.splice(0,4).map(user => {
+                        {
+                            this.state.users.splice(0, 4).map(user => {
                                 return (
-                                    <div > 
+                                    <div >
                                         <div className={classes.searchResult}>
                                             <p className={classes.overflow_handle} key={user}><a href={"/profile/" + user.userName}>{user.firstName} {user.lastName}({user.userName})</a></p>
                                         </div>
