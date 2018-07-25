@@ -1,55 +1,67 @@
 import React, { Component } from 'react';
 import classes from './../EducationComponent/EducationComponent.css';
 import commonClasses from '../common/common.css'
-import {addIntershipDetails} from '../Utils/ApiUtils'
+import {addInternshipDetails , getInternshipDetails} from '../Utils/ApiUtils'
+import  {reverseString} from "../common/common"
 class InternshipComponent extends Component {
     state = {
-        dateStarted:{
-            value:0
-        },
-        dateEnd:{
-            value:0
-        },
-        profile:{
-            value:''
-        },
-        organization:{
-            value:''
-        },
-        description:{
-            value:''
-        },
-        location:{
-            value:''
-        }
 
     }
-
 
     handleShowInternForm = (event) => {
         this.setState(prevState => ({
-            showInternForm: !prevState.showInternForm
+            showInternForm: !prevState.showInternForm,
+            dateStarted:{
+                value:''
+            },
+            dateEnd:{
+                value:''
+            },
+            profile:{
+                value:''
+            },
+            organization:{
+                value:''
+            },
+            description:{
+                value:''
+            },
+            location:{
+                value:''
+            }
         }))
-        
+    }
 
+    getUsersInternDetails = (username) =>{
+        getInternshipDetails(username)
+        .then(response =>{
+            this.setState({
+                internDetails:[...response],
 
+            })
+            
+        })
     }
 
     handleInternSubmit=(event)=>{
-        event.preventDefault()
-        const internDetails={
+        event.preventDefault();
+        const internDetails = {
             dateStarted:this.state.dateStarted.value,
             dateEnd: this.state.dateEnd.value,
             description: this.state.description.value,
             location: this.state.location.value,
             profile: this.state.profile.value,
-            organization: this.state.organization.value
-        }
-        console.log(internDetails)
-        addIntershipDetails(internDetails)
-            .then(response=>{
-                this.handleShowInternForm()
-            })
+            organization: this.state.organization.value  
+        } 
+        console.log(typeof(internDetails.dateStarted), reverseString(internDetails.dateStarted))
+        addInternshipDetails(internDetails)
+            .then(response => {
+                console.log(response)
+                
+            }).catch(error=>{
+                console.log(error)
+            });
+            
     }
 
     handleChange=(event)=>{
@@ -62,10 +74,9 @@ class InternshipComponent extends Component {
         })
     }
     render() {
-
+       
         return (
-            <div>
-                {console.log(this.state)}
+            <div>               
                 <div className={classes.education} >
                     <div className={classes.eduHeading}>
                         <div className={classes.heading}>
@@ -74,6 +85,11 @@ class InternshipComponent extends Component {
                         <div className={classes.icon} >
                             <i className="fas fa-plus fa-1x" onClick={this.handleShowInternForm}></i>
                         </div>
+                        {
+                            this.getUsersInternDetails(this.props.username)  &&
+                            <div>{this.state.internDetails.description.value}</div>
+                        }
+                      
                     </div>
                     <hr />
                 </div>
@@ -82,10 +98,10 @@ class InternshipComponent extends Component {
                     <div className={classes.modal}>
 
                         <div className={classes.modal_content} >
-                            {/* <div className={classes.modal_heading}>
+                            <div className={classes.modal_heading}>
                                 Internship Details
                             <hr />
-                            </div> */}
+                            </div>
                             <form className={classes.formBox} onSubmit={this.handleInternSubmit} >
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
@@ -118,7 +134,7 @@ class InternshipComponent extends Component {
                                     <input type="text" name='profile' placeholder='' value={this.state.profile.value} onChange={this.handleChange} required />
                                 </label>
                                 <button className={classes.cancelbtn} onClick={this.handleShowInternForm}> Cancel</button>
-                                <button type="submit" className={classes.buttonSave}  >Save</button>
+                                <button type="submit" className={classes.buttonSave} >Save</button>
                             </form>
                         </div>
                     </div>
