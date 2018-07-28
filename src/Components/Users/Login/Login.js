@@ -24,7 +24,7 @@ class Login extends Component {
         }
     }
     handleChange = (event) => {
-        // console.log(event.target,validation) 
+      
         const target = event.target;
         const inputName = target.name;
         const inputValue = target.value;
@@ -41,13 +41,14 @@ class Login extends Component {
             username: this.state.userName.value,
             password: this.state.password.value
         }
+       
         login(loginRequest)
             .then(response => {
-                // console.log(response)
                 localStorage.setItem(ACCESS_TOKEN, response.token);
                 this.props.action()
                 this.props.history.push('/me')
-            }).catch(error => {
+            })
+            .catch(error => {
                 if (error.status === 401) {
                     this.setState({
                         validate: {

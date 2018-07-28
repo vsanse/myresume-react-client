@@ -346,11 +346,11 @@ class ShowEduDetails extends Component {
         )
     }
     validateBoard = (board) => {
-        const boardREGEX = RegExp('^[a-zA-Z]+[ A-Za-z]*$');
+        const boardREGEX = RegExp('^[a-zA-Z]+[. A-Za-z]*$');
         if (!boardREGEX.test(board)) {
             return {
                 validationStatus: 'error',
-                errorMessage: 'Please enter albhabets only and leading spaces are not allowed',
+                errorMessage: 'Please enter albhabets and fullstop only and leading spaces and fullstop are not allowed',
             }
 
         }
@@ -363,11 +363,11 @@ class ShowEduDetails extends Component {
     }
 
     validateDegree = (degree) => {
-        const degreeREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
+        const degreeREGEX = RegExp('^[a-zA-Z]+[a-zA-Z .]*$');
         if (!degreeREGEX.test(degree)) {
             return {
                 validationStatus: 'error',
-                errorMessage: 'Please enter albhabets only and leading spaces are not allowed',
+                errorMessage:'Please enter albhabets and fullstop only and leading spaces and fullstop are not allowed',
             }
 
         }
@@ -381,11 +381,11 @@ class ShowEduDetails extends Component {
     }
 
     validateInstitute = (institute) => {
-        const instituteREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
+        const instituteREGEX = RegExp('^[a-zA-Z]+[a-zA-Z .]*$');
         if (!instituteREGEX.test(institute)) {
             return {
                 validationStatus: 'error',
-                errorMessage: 'Please enter albhabets only and leading spaces are not allowed',
+                errorMessage: 'Please enter albhabets and fullstop only and leading spaces and fullstop are not allowed',
             }
         }
         else {
@@ -455,11 +455,11 @@ class ShowEduDetails extends Component {
     }
 
     validateStream = (stream) => {
-        const streamREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
+        const streamREGEX = RegExp('^[a-zA-Z]+[a-zA-Z .]*$');
         if (!streamREGEX.test(stream)) {
             return {
                 validationStatus: 'error',
-                errorMessage: 'Please enter albhabets only and leading spaces are not allowed',
+                errorMessage: 'Please enter albhabets and fullstop only and leading spaces and fullstop are not allowed',
             }
 
         }
