@@ -169,7 +169,7 @@ class ShowInternshipComponent extends Component {
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Start-Date:
                                     <input type="date" name='dateStarted' id='txtStartDate' placeholder='' value={this.state.dateStarted.value} onChange={(event) => this.handleChangeEdit(event, this.dateCheck)} required />
-                                                   
+                                                <i>{this.state.startDateErrorMessage}</i> 
                                                 </label>
 
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
@@ -242,18 +242,44 @@ class ShowInternshipComponent extends Component {
         }
 
     }
+    
     dateCheck = (date) => {
-        let StartDate = new Date( this.state.dateStarted.value)
-        let EndDate = new Date(this.state.dateEnd.value)
-        if( (EndDate > StartDate) || (StartDate===''|| EndDate==='')){
+        const today = new Date()
+        let dd = today.getDate()
+        let mm = today.getMonth()+1
+        let yyyy = today.getFullYear()
+        if(dd<10){
+            dd='0'+dd
+        }
+        if(mm<10){
+            mm = '0'+mm
+        }
+        const currentDate = yyyy+ '-'+ mm + '-'+ dd
+        const StartDate = document.getElementById('txtStartDate').value
+        const EndDate = document.getElementById('txtEndDate').value
+
+        if(StartDate > currentDate){
+            this.setState({ 
+                dateValidationStatus: 'error',
+                startDateErrorMessage: 'Start Date cannot be in future ',
+            })
+        }
+        else {
+            this.setState({ 
+                dateValidationStatus: 'success',
+                startDateErrorMessage: '',
+            })
+               
+        }
+
+        if( EndDate !=="" && (EndDate > StartDate)){
            this.setState({ 
                 dateValidationStatus: 'success',
                 dateErrorMessage: '',
             })
-               
-          
         }
-        else {
+       
+        else if(StartDate!=="" && EndDate < StartDate) {
             this.setState({ 
                 dateValidationStatus: 'error',
                 dateErrorMessage: 'End Date must be greater then Start Date',
