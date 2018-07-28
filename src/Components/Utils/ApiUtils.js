@@ -201,6 +201,28 @@ export function getInternshipDetails(username){
     })
 }
 
+export function updateInternshipDetails(internDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"internship/update",
+        method:"POST",
+        body: JSON.stringify(internDetails)
+
+    })
+}
+
+export function deleteInternshipDetails(internId){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"internship/delete/"+internId,
+        method:"GET",
+    })
+}
+
 
 // Profile
 export function getProfile(username){
