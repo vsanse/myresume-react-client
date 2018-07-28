@@ -192,20 +192,49 @@ class InternshipComponent extends Component {
 
     }
 
+     
     dateCheck = (date) => {
-        var StartDate = document.getElementById('txtStartDate').value
-        var EndDate = document.getElementById('txtEndDate').value
-        if( (EndDate > StartDate) || (StartDate===''|| EndDate==='')) {
+        const today = new Date()
+        let dd = today.getDate()
+        let mm = today.getMonth()+1
+        let yyyy = today.getFullYear()
+        if(dd<10){
+            dd='0'+dd
+        }
+        if(mm<10){
+            mm = '0'+mm
+        }
+        const currentDate = yyyy+ '-'+ mm + '-'+ dd
+        const StartDate = document.getElementById('txtStartDate').value
+        const EndDate = document.getElementById('txtEndDate').value
+
+        if(StartDate > currentDate){
             this.setState({ 
-                dateValidationStatus: 'success',
-                dateErrorMessage: '',
-            })               
+                dateValidationStatus: 'error',
+                startDateErrorMessage: 'Start Date cannot be in future ',
+            })
         }
         else {
-            this.setState({
-                validationStatus: 'error',
-                errorMessage: 'End date should be greater than Start date',
+            this.setState({ 
+                dateValidationStatus: 'success',
+                startDateErrorMessage: '',
             })
+               
+        }
+
+        if( EndDate !=="" && (EndDate > StartDate)){
+           this.setState({ 
+                dateValidationStatus: 'success',
+                dateErrorMessage: '',
+            })
+        }
+       
+        else if(StartDate!=="" && EndDate < StartDate) {
+            this.setState({ 
+                dateValidationStatus: 'error',
+                dateErrorMessage: 'End Date must be greater then Start Date',
+            })
+               
         }
 
     }
