@@ -6,8 +6,7 @@ import {
     POST_GRADUATION,
     PHD,
     DIPLOMA,
-
-} from '../Constants/index';
+    } from '../Constants/index';
 import classes from './EducationComponent.css';
 import EducationAdd from './EducationAdd';
 import { getEducationDetails } from '../Utils/ApiUtils';
@@ -21,7 +20,7 @@ class Education extends Component {
         .then(response =>{
             this.setState({
                 educationDetails:response,
-            });console.log(this.state.educationDetails)
+            })
         })
     }
 

@@ -41,12 +41,13 @@ class EducationAdd extends Component {
         const targetValue = event.target.value
         const targetName = event.target.name
         if (!validation)
-            this.setState({
+        {    this.setState({
                 [targetName]: {
                     value: targetValue,
                 }
 
             })
+        }
         else {
             this.setState({
                 [targetName]: {

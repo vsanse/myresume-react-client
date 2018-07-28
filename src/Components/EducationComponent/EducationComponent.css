@@ -66,6 +66,8 @@ p{
     text-align: center;
     margin-top: 20vh;
     margin-bottom: 20vh;
+    /* flex-flow: column; */
+    flex :1 1 auto
 
 }
 
@@ -143,6 +145,7 @@ p{
     flex-flow: row;
     flex-wrap: wrap;
     flex: 1 1 auto;
+    width: 100%;
 } 
 .deleteBox{
     text-align: left;

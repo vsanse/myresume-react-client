@@ -6,7 +6,8 @@ class ShowSkillsDetails extends Component {
     state = {
         skill: {
             value: '',
-            id: ''
+            id: '',
+
         }
     }
 
@@ -15,43 +16,60 @@ class ShowSkillsDetails extends Component {
             showEditSkillForm: !prevState.showEditSkillForm,
             skill: {
                 value: skills.skill,
-                id: skills.skillId
+                id: skills.skillId,
+                validationStatus: 'success'
             }
         }))
 
     }
 
-    handleDeleteForm = (event , skills)=>{
-        this.setState(prevState=>({
+    handleDeleteForm = (event, skills) => {
+        this.setState(prevState => ({
             showDeleteForm: !prevState.showDeleteForm,
             showDeleteId: skills.skillId,
         }))
     }
 
-    handleChange = (event) => {
+    handleEditSave = (event) => {
+        if (this.state.skill.validationStatus === 'success') {
+            return false
+        }
+        return true
+    }
+
+    handleChangeEdit = (event, validation) => {
         const targetValue = event.target.value
         const targetId = event.target.id
+        if (!validation) {
+            this.setState({
+                skill: {
+                    value: targetValue,
+                    id: targetId,
+                }
+            })
+        }
         this.setState({
-            skill:{
-                value:targetValue,
-                id:targetId
+            skill: {
+                value: targetValue,
+                id: targetId,
+                ...validation(targetValue)
             }
         })
     }
 
-    handleSkillUpdate=(event ,skills)=>{
+    handleSkillUpdate = (event, skills) => {
         event.preventDefault();
         const skillDetails = {
-            skill:this.state.skill.value,
+            skill: this.state.skill.value,
             skillId: this.state.skill.id
         }
         updateSkillsDetails(skillDetails)
             .then(response => {
-                this.handleEditForm(event,skills)
+                this.handleEditForm(event, skills)
                 this.props.event();
             })
-       
-       
+
+
     }
 
     deleteSkillDetails = (event, skill) => {
@@ -68,49 +86,54 @@ class ShowSkillsDetails extends Component {
     render() {
         return (
             <div>
-                {this.props.action}
+
                 {this.props.skillsDetail &&
                     this.props.skillsDetail.map((skills) => {
                         return (
-                            <div>
+                            <div key={skills.skillId}>
                                 <div className={classes.eduFlexBody}>
                                     <div className={classes.detailHeading}>
                                         <div className={classes.details}>
-                                            <div key={skills.skillId}>{skills.skill}</div>
+                                            <div >{skills.skill}</div>
                                         </div>
                                     </div>
                                     <div className={classes.editEduDetailsIcons} >
                                         <i className={"fas fa-edit " + classes.editIcon} onClick={(event) => this.handleEditForm(event, skills)} ></i>
-                                        <i className={"far fa-trash-alt"} onClick={(event)=>this.handleDeleteForm(event , skills)} ></i>
+                                        <i className={"far fa-trash-alt"} onClick={(event) => this.handleDeleteForm(event, skills)} ></i>
                                     </div>
                                 </div>
                                 {this.state.showEditSkillForm &&
                                     <div className={classes.modal}>
                                         <div className={classes.modal_content} >
-                                            <form className={classes.formBox} onSubmit={(event)=>this.handleSkillUpdate(event , skills)}>
+                                            <div className={classes.modal_heading}>
+                                                Skill Details
+                                                <hr />
+                                            </div>
+                                            <form className={classes.formBox} onSubmit={(event) => this.handleSkillUpdate(event, skills)}>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Enter A Skill:
-                                                        <input id={this.state.skill.id} type='text' value={this.state.skill.value} onChange={this.handleChange} required/>
+                                                        <input id={this.state.skill.id} type='text' value={this.state.skill.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                    <i>{this.state.skill.errorMessage}</i>
                                                 </label>
-                                                <button className={classes.cancelbtn} onClick={(event)=>this.handleEditForm(event,skills)} > Cancel</button>
-                                                <button type="submit" className={classes.buttonSave} >Save</button>
+                                                <button className={classes.cancelbtn} onClick={(event) => this.handleEditForm(event, skills)} > Cancel</button>
+                                                <button type="submit" className={classes.buttonSave} disabled={this.handleEditSave()}>Save</button>
                                             </form>
                                         </div>
                                     </div>
                                 }
-                                {    skills.skillId === this.state.showDeleteId &&
-                                     this.state.showDeleteForm &&
+                                {skills.skillId === this.state.showDeleteId &&
+                                    this.state.showDeleteForm &&
                                     <div className={classes.modal} >
                                         <div className={classes.modal_content} >
+                                            <p className={classes.deleteMessage}><strong>Do you really want to delete ?</strong></p>
                                             <div className={classes.deleteBox}>
-                                                <p className={classes.deleteMessage}><strong>Do you really want to delete ?</strong></p>
-                                                <button className={classes.cancelbtn}  onClick={(event)=>this.handleEditForm(event,skills)} > Cancel</button>
+                                                <button className={classes.cancelbtn} onClick={(event) => this.handleDeleteForm(event, skills)} > Cancel</button>
                                                 <button type="submit" className={classes.buttonDelete} onClick={event => this.deleteSkillDetails(event, skills.skillId)} >Delete</button>
                                             </div>
                                         </div>
                                     </div>
                                 }
-                                 
+
                             </div>
 
                         );
@@ -119,5 +142,24 @@ class ShowSkillsDetails extends Component {
             </div>
         )
     }
+    validateText = (text) => {
+        const degreeREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
+        if (!degreeREGEX.test(text)) {
+            return {
+                validationStatus: 'error',
+                errorMessage: 'Please enter albhabets only and leading spaces are not allowed',
+            }
+
+        }
+        else {
+            return {
+                validationStatus: 'success',
+                errorMessage: '',
+            }
+        }
+
+    }
+
+
 }
 export default ShowSkillsDetails;
