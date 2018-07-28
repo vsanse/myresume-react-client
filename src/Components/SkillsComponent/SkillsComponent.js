@@ -50,6 +50,10 @@ class SkillsComponent extends Component {
             })
     }
 
+    componentWillReceiveProps(nextProps){
+        this.getUsersSkillsDetails(nextProps.username);
+    }
+
 
     render() {
 
@@ -66,7 +70,7 @@ class SkillsComponent extends Component {
                     </div>
                 </div>
                 <hr />
-                <ShowSkillsDetails skillsDetail={this.state.skillsDetails} action={this.getUsersSkillsDetails(this.props.username)} />
+                <ShowSkillsDetails skillsDetail={this.state.skillsDetails} action={()=>this.getUsersSkillsDetails(this.props.username)} />
 
                 {
                     this.state.showSkillsForm &&

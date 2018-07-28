@@ -50,6 +50,10 @@ class InternshipComponent extends Component {
         })
     }
 
+    componentWillReceiveProps(nextProps){
+        this.getUsersInternDetails(nextProps.username);
+    }
+
     handleInternSubmit=(event)=>{
         event.preventDefault();
         const internDetails = {
@@ -114,7 +118,7 @@ class InternshipComponent extends Component {
                         </div>       
                     </div>
                     <hr />
-                    <ShowInternshipComponent action={this.getUsersInternDetails(this.props.username)} internDetails={this.state.internDetails}/>
+                    <ShowInternshipComponent action={()=>this.getUsersInternDetails(this.props.username)} internDetails={this.state.internDetails}/>
                     
                    
                 </div>
@@ -229,7 +233,7 @@ class InternshipComponent extends Component {
             })
         }
        
-        else if(StartDate!=="" && EndDate < StartDate) {
+        else if(StartDate!=="" && EndDate!=="" && EndDate < StartDate) {
             this.setState({ 
                 dateValidationStatus: 'error',
                 dateErrorMessage: 'End Date must be greater then Start Date',

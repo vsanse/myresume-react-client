@@ -66,7 +66,7 @@ class ShowSkillsDetails extends Component {
         updateSkillsDetails(skillDetails)
             .then(response => {
                 this.handleEditForm(event, skills)
-                this.props.event();
+                this.props.action();
             })
 
 
@@ -77,7 +77,6 @@ class ShowSkillsDetails extends Component {
         const id = skill
         deleteSkillsDetails(id)
             .then(response => {
-
                 this.props.action();
             })
 

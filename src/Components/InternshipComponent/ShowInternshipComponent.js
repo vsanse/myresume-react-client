@@ -26,7 +26,6 @@ class ShowInternshipComponent extends Component {
     }
 
     handleEditForm = (event, internDetails) => {
-        // console.log(internDetails)
         this.setState(prevState => ({
             showEditInternForm: !prevState.showEditInternForm,
             dateValidationStatus:'success',
@@ -90,6 +89,7 @@ class ShowInternshipComponent extends Component {
                 this.setState(prevState => ({
                     showEditInternForm: !prevState.showEditInternForm
                 }));
+                this.props.action();
             })
             .catch(error => {
                 console.log(error)
@@ -128,7 +128,6 @@ class ShowInternshipComponent extends Component {
         const id = internId
         deleteInternshipDetails(id)
             .then(response => {
-
                 this.props.action();
             })
 
@@ -148,7 +147,7 @@ class ShowInternshipComponent extends Component {
                                             <p><strong>{internDetails.profile}</strong></p>
                                             <p>{internDetails.organization}({internDetails.location})</p>
                                             <p>{internDetails.dateStarted} to {internDetails.dateEnd}</p>
-                                            <p>{internDetails.description}</p>
+                                            <p><strong>Description:</strong>{internDetails.description}</p>
                                         </div>
                                     </div>
                                     <div className={classes.editEduDetailsIcons} >
@@ -195,7 +194,7 @@ class ShowInternshipComponent extends Component {
                                                 </label>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Profile:
-                                    <input type="text" name='profile' placeholder='' value={this.state.profile.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                    <input type="text" name='profile' placeholder='' value={this.state.profile.value} onChange={(event) => this.handleChangeEdit(event, this.validateProfile)} required />
                                                     <i>{this.state.profile.errorMessage}</i>
                                                 </label>
                                                 <button className={classes.cancelbtn} onClick={(event) => this.handleEditForm(event, internDetails)} > Cancel</button>
@@ -225,12 +224,29 @@ class ShowInternshipComponent extends Component {
         )
     }
 
-    validateText = (text) => {
+    validateProfile= (text) => {
         const degreeREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
         if (!degreeREGEX.test(text)) {
             return {
                 validationStatus: 'error',
                 errorMessage: 'Please enter albhabets only and leading spaces are not allowed',
+            }
+
+        }
+        else {
+            return {
+                validationStatus: 'success',
+                errorMessage: '',
+            }
+        }
+
+    }
+    validateText = (text) => {
+        const degreeREGEX = RegExp('^[a-zA-Z]+[a-zA-Z .)(,]*$');
+        if (!degreeREGEX.test(text)) {
+            return {
+                validationStatus: 'error',
+                errorMessage: 'Alphabets,spaces and commas,fullstop and brackets are not allowed and leading spaces and commas,fullstop and brackets are not allowed ',
             }
 
         }
@@ -279,7 +295,7 @@ class ShowInternshipComponent extends Component {
             })
         }
        
-        else if(StartDate!=="" && EndDate < StartDate) {
+        else if(StartDate!=="" && EndDate!=="" && EndDate < StartDate)  {
             this.setState({ 
                 dateValidationStatus: 'error',
                 dateErrorMessage: 'End Date must be greater then Start Date',
