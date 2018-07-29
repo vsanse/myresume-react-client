@@ -41,7 +41,7 @@ class Profile extends Component {
             <div className={classes.overflow_handle}>
                 {
                     this.state.userInfo &&
-                    <div className={userinfoClasses.userinfo}>
+                    <div className={userinfoClasses.cardUserinfo}>
                         <div className={userinfoClasses.name}><strong>{this.state.userInfo.firstName}<span> {this.state.userInfo.lastName}</span></strong></div>
                         <div className={userinfoClasses.work}>{this.state.userInfo.designation} at <span> {this.state.userInfo.currentOrganization}</span></div>
                         <div className={userinfoClasses.icon}>
