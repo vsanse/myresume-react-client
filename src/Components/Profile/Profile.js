@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classes from './Profile.css';
-import commonClasses from '../common/common.css';
 import userinfoClasses from '../Users/CurrentUser/CurrentUser.css'
 import educationClasses from '../EducationComponent/EducationComponent.css'
 import { getProfile } from '../Utils/ApiUtils'
@@ -41,7 +40,7 @@ class Profile extends Component {
             <div className={classes.overflow_handle}>
                 {
                     this.state.userInfo &&
-                    <div className={userinfoClasses.userinfo}>
+                    <div className={userinfoClasses.userinfo+" "+classes.userinfo}>
                         <div className={userinfoClasses.name}><strong>{this.state.userInfo.firstName}<span> {this.state.userInfo.lastName}</span></strong></div>
                         <div className={userinfoClasses.work}>{this.state.userInfo.designation} at <span> {this.state.userInfo.currentOrganization}</span></div>
                         <div className={userinfoClasses.icon}>
