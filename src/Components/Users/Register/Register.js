@@ -26,18 +26,18 @@ class Register extends Component {
         phoneNumber: {
             value: ''
         },
-        // currentOrganization:{
-        //     value:''
-        // },
-        // designation:{
-        //     value:''
-        // },
-        // githubLink:{
-        //     value:''
-        // },
-        // linkedinLink:{
-        //     value:''
-        // },
+        currentOrganization:{
+            value:''
+        },
+        designation:{
+            value:''
+        },
+        githubLink:{
+            value:''
+        },
+        linkedinLink:{
+            value:''
+        },
         email: {
             value: ''
         },
@@ -106,10 +106,10 @@ class Register extends Component {
             lastName: this.jsUcfirst(this.state.lastName.value),
             email: this.state.email.value,
             phoneNumber: this.state.phoneNumber.value,
-            // currentOrganization: this.jsUcfirst(this.state.currentOrganization.value),
-            // designation: this.jsUcfirst(this.state.designation.value),
-            // githubLink: this.state.githubLink.value,
-            // linkedinLink: this.state.linkedinLink.value,
+            currentOrganization: this.jsUcfirst(this.state.currentOrganization.value),
+            designation: this.jsUcfirst(this.state.designation.value),
+            githubLink: this.state.githubLink.value,
+            linkedinLink: this.state.linkedinLink.value,
         }
         console.log(registerRequest)
         register(registerRequest)
