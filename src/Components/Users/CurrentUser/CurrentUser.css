@@ -1,17 +1,31 @@
 .userinfo{
     text-align: center;
-    border: 1px solid transparent;
-    box-shadow: 1px 2px 10px black;
-    width: 55%;
-    margin:0 auto;
     display: flex;
     flex-wrap: wrap;
     flex-flow: column;
-    margin-top: 2%;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    width: 95%
 
 }
+
+.cardUserinfo{
+    margin:0 auto;
+    flex-flow: row;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2%;
+    width: 55%;
+    border: 1px solid transparent;
+    box-shadow: 1px 2px 10px black;
+
+}
+
+.editIcon
+{
+    margin-left:1.5%;
+}
+
 .icon{
     display: inline-block;
 }
@@ -44,7 +58,7 @@
     color: #dc4b3e;
 }
 @media(max-width:650px){
-    .userinfo{
+    .cardUserinfo{
         width: 90%
     }
 }
