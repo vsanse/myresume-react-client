@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import eduClass from '../../EducationComponent/EducationComponent.css';
-import { updateUserDetails } from '../../Utils/ApiUtils'
-import commonClasses from '../../common/common.css'
+import { updateUserDetails } from '../../Utils/ApiUtils';
+import commonClasses from '../../common/common.css';
+import { withRouter } from 'react-router-dom';
 class EditUserInfo extends Component {
 
     state = {
@@ -71,6 +72,7 @@ class EditUserInfo extends Component {
             .catch(error => {
                 console.log(error)
             })
+            
     }
 
 
@@ -178,4 +180,4 @@ class EditUserInfo extends Component {
     }
 
 }
-export default EditUserInfo
+export default withRouter(EditUserInfo)

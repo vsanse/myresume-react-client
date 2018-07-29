@@ -83,39 +83,42 @@ class CurrentUser extends Component {
         this.setState(prevState => ({
             showEditUserInfo: !prevState.showEditUserInfo
         }))
-        // this.props.action()
+        // this.props.history.push("/me");
 
     }
 
     render() {
         return (
             <Layout>
-                <div className={classes.cardUserinfo}>
-                    <div className={classes.userinfo}>
-                        <div className={classes.name}><strong>{this.props.firstName}<span> {this.props.lastName}</span></strong></div>
-                        {this.props.currentOrganization &&
-                            <div className={classes.work}>{this.props.designation} at <span> {this.props.currentOrganization}</span></div>
-                        }
-                        <div className={classes.icon}>
-                            {
-                                this.props.linkedinLink &&
-                                <a href={this.props.linkedinLink} className={classes.linkedin}><i className="fab fa-linkedin "></i></a>
+                <div className={classes.userinfo}>
+                    <div className={classes.showInfo}>
+                        <div className={classes.cardUserinfo}>
+                            <div className={classes.name}><strong>{this.props.firstName}<span> {this.props.lastName}</span></strong></div>
+                            {this.props.currentOrganization &&
+                                <div className={classes.work}>{this.props.designation} at <span> {this.props.currentOrganization}</span></div>
                             }
-                            {
-                                this.props.githubLink &&
-                                <a href={this.props.githubLink} className={classes.github}><i className="fab fa-github "></i><br /></a>
-                            }
-                            <a href={"mailto:" + this.props.email} className={classes.email}><i className="fas fa-envelope fa-1x"></i><span>{this.props.email}</span></a>
+                            <div className={classes.icon}>
+                                {
+                                    this.props.linkedinLink &&
+                                    <a href={this.props.linkedinLink} className={classes.linkedin}><i className="fab fa-linkedin "></i></a>
+                                }
+                                {
+                                    this.props.githubLink &&
+                                    <a href={this.props.githubLink} className={classes.github}><i className="fab fa-github "></i></a>
+                                }
+                                <br /><a href={"mailto:" + this.props.email} className={classes.email}><i className="fas fa-envelope fa-1x"></i><span>{this.props.email}</span></a>
+                            </div>
                         </div>
-                    </div>
-                    <div className={classes.editIcon} >
-                        <i className="fas fa-edit fa-1x" onClick={this.handleShowEdit}></i>
+
+                        <div className={classes.editIcon} >
+                            <i className="fas fa-edit fa-1x" onClick={this.handleShowEdit}></i>
+                        </div>
                     </div>
                 </div>
                 {
                     this.state.showEditUserInfo &&
-                    <EditUserInfo userInfo= {this.props} action={this.handleShowEdit}/>
-                 
+                    <EditUserInfo userInfo={this.props} action={this.handleShowEdit} />
+
                 }
                 <EducationComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
                 <SkillsComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
