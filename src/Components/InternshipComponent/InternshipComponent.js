@@ -67,9 +67,10 @@ class InternshipComponent extends Component {
       
         addInternshipDetails(internDetails)
             .then(response => {
+                this.getUsersInternDetails(this.props.username)
                 this.handleShowInternForm()
             }).catch(error=>{
-               
+               console.log("Something wen wrong while adding details")
             });
             
     }

@@ -36,6 +36,7 @@ class SkillsComponent extends Component {
         }
         addSkillsDetails(skillsDetails)
             .then(response => {
+                this.getUsersSkillsDetails(this.props.username)
                 this.handleShowSkillForm()
             })
 
