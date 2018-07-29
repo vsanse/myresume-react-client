@@ -89,19 +89,24 @@ p{
     background: white;
     border: 2px solid black;
     width:30vh;
-    height: 10vh;
+    height: 3.5rem;
     margin: 1% ;
 }
 
 .cancelbtn{
     width:48%;
+    height:3.5rem;
 }
-
+.cancelbtn:hover{
+    background-color: red;
+    border:none;
+    color: white;
+}
 .buttonSave , .buttonDelete{
     background: blue;
     border: 2px solid blue;
     width:48%;
-    height: 10vh;
+    height: 3.5rem;
     margin: 1% ;
     color: white;
     font-weight: bold;
@@ -120,7 +125,7 @@ p{
     background: #0030ff;
     color: white;
     font-weight: bold;
-    border: 2px solid blue;
+    border: none;
 }
 .close {
     color: #aaa;

@@ -43,7 +43,6 @@ export function register(registerRequest){
 }
 
 export function checkUserNameAvailability(username){
-    // console.log(username)
     return request(
         {
             
@@ -80,6 +79,18 @@ export function searchUser(searchString){
     return request({
         url: API_BASE_URL+"user/search?search="+searchString,
         method:'GET'
+    })
+}
+
+export function updateUserDetails(userDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"user/update",
+        method:"POST",
+        body: JSON.stringify(userDetails)
+
     })
 }
 

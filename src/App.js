@@ -80,7 +80,7 @@ class App extends Component {
             exact
             path="/me"
             render={
-              (props) => <CurrentUser isLoggedIn={this.state.isLoggedIn} {...this.state.currentUser} />
+              (props) => <CurrentUser isLoggedIn={this.state.isLoggedIn} action={this.loadCurrentUser} {...this.state.currentUser} />
             } />
           <Route
             exact

@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import classes from './CurrentUser.css';
-import Class from '../../EducationComponent/EducationComponent.css';
+import classes from './CurrentUser.css'
 import Layout from '../../../hoc/Layout';
+import EditUserInfo from './EditUserInfo'
 import EducationComponent from '../../EducationComponent/EducationComponent'
 import SkillsComponent from '../../SkillsComponent/SkillsComponent';
 import InternshipComponent from '../../InternshipComponent/InternshipComponent'
 class CurrentUser extends Component {
-
     state = {
         isLoggedIn: false,
-        userName: {
-            value: '',
-
-        },
         firstName: {
             value: ''
         },
@@ -45,11 +40,21 @@ class CurrentUser extends Component {
             this.setState({
                 isLoggedIn: nextProps.isLoggedIn,
                 username: nextProps.userName,
+                password:
+                {
+                    value: nextProps.password
+                },
+                role: {
+                    value: nextProps.role
+                },
                 firstName: {
                     value: nextProps.firstName,
                 },
                 lastName: {
                     value: nextProps.lastName,
+                },
+                phoneNumber: {
+                    value: nextProps.phoneNumber
                 },
                 designation: {
                     value: nextProps.designation
@@ -74,6 +79,14 @@ class CurrentUser extends Component {
         }
     }
 
+    handleShowEdit = (event) => {
+        this.setState(prevState => ({
+            showEditUserInfo: !prevState.showEditUserInfo
+        }))
+        // this.props.action()
+
+    }
+
     render() {
         return (
             <Layout>
@@ -96,9 +109,14 @@ class CurrentUser extends Component {
                         </div>
                     </div>
                     <div className={classes.editIcon} >
-                    <i className="fas fa-edit fa-1x"></i>
+                        <i className="fas fa-edit fa-1x" onClick={this.handleShowEdit}></i>
                     </div>
                 </div>
+                {
+                    this.state.showEditUserInfo &&
+                    <EditUserInfo userInfo= {this.props} action={this.handleShowEdit}/>
+                 
+                }
                 <EducationComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
                 <SkillsComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
                 <InternshipComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
