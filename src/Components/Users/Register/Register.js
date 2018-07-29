@@ -269,7 +269,7 @@ class Register extends Component {
                     <label className={classes.label}>
                         <i>{this.state.signupStatus.message}</i>
                         <button type="submit" className={classes.btn} disabled={this.isFormInvalid()}>Sign Up</button>
-                        Already registed? <Link to="/login">Login now!</Link>
+                        <p>Already registed? <Link to="/login">Login now!</Link></p>
                     </label>
                 </form>
             </div>

@@ -55,7 +55,7 @@ input:focus{
 .searchResultEmail i{
     margin: 1%
 }
-.searchResultEmail:hover{
+.searchResultEmail a:hover{
     text-decoration: none;
     color: #dc4b3e;
 }
@@ -75,8 +75,13 @@ input:focus{
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
+.searchResultEmail a{
+    text-decoration: none;
+    color:black;
+    text-align: center;
+} 
 
-a, a:hover{
+.viewProfileBtn a, viewProfileBtna:hover{
     text-decoration: none;
     color:white;
     text-align: center;

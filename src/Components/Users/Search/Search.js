@@ -61,7 +61,7 @@ class Search extends Component {
                                             <p className={classes.overflow_handle}>
                                                 {user.firstName} {user.lastName}
                                             </p>
-                                                <p><a href={"mailto:" + user.email} className={classes.searchResultEmail}><i className="fas fa-envelope fa-1x"></i>{user.email}</a>
+                                                <p className={classes.searchResultEmail}><a href={"mailto:" + user.email}><i className="fas fa-envelope fa-1x"></i>{user.email}</a>
                                                 </p>
                                                 <p className={classes.searchResultPhone}><i className="fas fa-mobile-alt fa-1x"></i> {user.phoneNumber}</p>
 

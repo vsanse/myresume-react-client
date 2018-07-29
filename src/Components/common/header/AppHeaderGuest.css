@@ -43,7 +43,10 @@ nav li a{
 nav a:link {
     text-decoration: none;
 }
-
+nav a:hover {
+    text-decoration: none;
+    color:blue;
+}
 nav a:visited {
     text-decoration: none;
 }
