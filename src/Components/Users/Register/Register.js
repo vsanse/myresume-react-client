@@ -1,53 +1,53 @@
 import React, { Component } from 'react';
 import { register, checkUserNameAvailability, checkEmailAvailability } from '../../Utils/ApiUtils'
 import classes from '../../common/common.css';
-import { Link, withRouter} from 'react-router-dom';
-import  {
+import { Link, withRouter } from 'react-router-dom';
+import {
     PASSWORD_MAX_LENGTH,
     PASSWORD_MIN_LENGTH,
     USERNAME_MAX_LENGTH,
     USERNAME_MIN_LENGTH
 } from '../../Constants/index'
-class Register extends Component{
-    state={
-        userName:{
-            value:'',
-            
+class Register extends Component {
+    state = {
+        userName: {
+            value: '',
+
         },
-        password:{
-            value:''
+        password: {
+            value: ''
         },
-        firstName:{
-            value:''
+        firstName: {
+            value: ''
         },
-        lastName:{
-            value:''
+        lastName: {
+            value: ''
         },
-        phoneNumber:{
-            value:''
+        phoneNumber: {
+            value: ''
         },
-        currentOrganization:{
-            value:''
+        // currentOrganization:{
+        //     value:''
+        // },
+        // designation:{
+        //     value:''
+        // },
+        // githubLink:{
+        //     value:''
+        // },
+        // linkedinLink:{
+        //     value:''
+        // },
+        email: {
+            value: ''
         },
-        designation:{
-            value:''
-        },
-        githubLink:{
-            value:''
-        },
-        linkedinLink:{
-            value:''
-        },
-        email:{
-            value:''
-        },
-        signupStatus:{
-            status:'',
-            message:''
+        signupStatus: {
+            status: '',
+            message: ''
         }
     }
-    componentWillReceiveProps(nextProps){
-        if(nextProps.isLoggedIn){
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isLoggedIn) {
             this.props.history.push('/me')
         }
     }
@@ -56,35 +56,34 @@ class Register extends Component{
         const target = event.target;
         const inputName = target.name;
         const inputValue = target.value;
-        if(!validation){
+        if (!validation) {
             this.setState({
-                [inputName]:{
-                    value:inputValue.trim(),
+                [inputName]: {
+                    value: inputValue.trim(),
                 }
             });
         }
-        else if(inputName === 'currentOrganization' || inputName === 'password' || inputName === 'designation'){
+        else if (inputName === 'currentOrganization' || inputName === 'password' || inputName === 'designation') {
             this.setState({
-                [inputName]:{
-                    value:inputValue,
+                [inputName]: {
+                    value: inputValue,
                     ...validation(inputValue)
                 }
             });
         }
-        else{
+        else {
             this.setState({
-                [inputName]:{
-                    value:inputValue.trim(),
+                [inputName]: {
+                    value: inputValue.trim(),
                     ...validation(inputValue.trim())
                 }
             });
         }
     }
     //caps first letter
-    jsUcfirst = (string) => 
-        {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
+    jsUcfirst = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -107,117 +106,119 @@ class Register extends Component{
             lastName: this.jsUcfirst(this.state.lastName.value),
             email: this.state.email.value,
             phoneNumber: this.state.phoneNumber.value,
-            currentOrganization: this.jsUcfirst(this.state.currentOrganization.value),
-            designation: this.jsUcfirst(this.state.designation.value),
-            githubLink: this.state.githubLink.value,
-            linkedinLink: this.state.linkedinLink.value,
+            // currentOrganization: this.jsUcfirst(this.state.currentOrganization.value),
+            // designation: this.jsUcfirst(this.state.designation.value),
+            // githubLink: this.state.githubLink.value,
+            // linkedinLink: this.state.linkedinLink.value,
         }
         console.log(registerRequest)
         register(registerRequest)
-        .then(response => {
-            this.props.history.push("/login")
-        }).catch(error =>{
-            this.setState({
-                signupStatus:{
-                    status:'error',
-                    message:' Something went wrong. Please try again!'
-                }
+            .then(response => {
+                this.props.history.push("/login")
+            }).catch(error => {
+                this.setState({
+                    signupStatus: {
+                        status: 'error',
+                        message: ' Something went wrong. Please try again!'
+                    }
+                })
             })
-        })
     }
 
     isFormInvalid = () => {
-        if(this.state.userName.validateStatus === 'success' &&
-           this.state.password.validateStatus === 'success' &&
-           this.state.email.validateStatus === 'success' ){
-               return false;
-           }
+        if (this.state.userName.validateStatus === 'success' &&
+            this.state.password.validateStatus === 'success' &&
+            this.state.email.validateStatus === 'success') {
+            return false;
+        }
         return true;
     }
 
-    render(){
+    render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                <label className={classes.label}>
-                   <div> Username: </div>
-                    <input 
-                        name="userName" 
-                        type="text" 
-                        value={this.state.userName.value} 
-                        placeholder="john"
-                        onBlur={this.validateUserNameAvailability}
-                        onChange={(event) => this.handleChange(event, this.validateUserName)}
+                    <label className={classes.label}>
+                        <div> Username: </div>
+                        <input
+                            name="userName"
+                            type="text"
+                            value={this.state.userName.value}
+                            placeholder="john"
+                            onBlur={this.validateUserNameAvailability}
+                            onChange={(event) => this.handleChange(event, this.validateUserName)}
                         />
                         <i>{this.state.userName.errorMessage}</i>
                     </label>
-
-                <label className={classes.label}>
-                    First Name: 
-                    <input 
-                        name="firstName" 
-                        type="text" 
-                        placeholder="John"
-                        value={this.state.firstName.value} 
-                        onChange={this.handleChange.bind(this)}
-                        />
-                    <i>{this.state.firstName.errorMessage}</i>
-                </label>
-
-                <label className={classes.label}>
-                    Last Name: 
-                    <input 
-                        name="lastName" 
-                        type="text" 
-                        placeholder="Miller"
-                        value={this.state.lastName.value} 
-                        onChange={this.handleChange.bind(this)}
-                        /> 
-                         <i>{this.state.lastName.errorMessage}</i>
-                    </label>
-
-                <label className={classes.label}>
-                    Email:
-                    <input 
-                        name="email" 
-                        type="text" 
-                        value={this.state.email.value} 
-                        placeholder="johnMiller@myresume.com"
-                        onChange={(event) => this.handleChange(event, this.validateEmail)}
-                        onBlur={this.checkEmailAvailable}
-                        />
-                        <i>{this.state.email.errorMessage}</i>
-                    </label>
-
-                <label className={classes.label}>
-                    Phone No: 
-                    <input 
-                        name="phoneNumber" 
-                        type="tel" 
-                        pattern="^\d{10}$" 
-                        required
-                        placeholder="1234567890"
-                        title="Please enter a number phone number with 10 digits"
-                        value={this.state.phoneNumber.value} 
-                        // onChange={(event) => this.handleChange(event, this.validateUserName)}
-                        onChange={this.handleChange.bind(this)}
-                        />
-                    <i>{this.state.phoneNumber.errorMessage}</i>
-                    </label>
-
-                <label className={classes.label}>
-                    Password: 
-                    <input 
-                        name="password" 
-                        type="password" 
-                        value={this.state.password.value} 
-                        onChange={(event) => this.handleChange(event, this.validatePassword)}
+                    <label className={classes.label}>
+                        Password:
+                    <input
+                            name="password"
+                            type="password"
+                            placeholder="123@password"
+                            value={this.state.password.value}
+                            onChange={(event) => this.handleChange(event, this.validatePassword)}
+                            required
                         />
                         <i>{this.state.password.errorMessage}</i>
 
                     </label>
-                
-                <label className={classes.label}>
+                    <label className={classes.label}>
+                        First Name:
+                    <input
+                            name="firstName"
+                            type="text"
+                            placeholder="John"
+                            value={this.state.firstName.value}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <i>{this.state.firstName.errorMessage}</i>
+                    </label>
+
+                    <label className={classes.label}>
+                        Last Name:
+                    <input
+                            name="lastName"
+                            type="text"
+                            placeholder="Miller"
+                            value={this.state.lastName.value}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <i>{this.state.lastName.errorMessage}</i>
+                    </label>
+
+                    <label className={classes.label}>
+                        Email:
+                    <input
+                            name="email"
+                            type="text"
+                            value={this.state.email.value}
+                            placeholder="johnMiller@myresume.com"
+                            onChange={(event) => this.handleChange(event, this.validateEmail)}
+                            onBlur={this.checkEmailAvailable}
+                        />
+                        <i>{this.state.email.errorMessage}</i>
+                    </label>
+
+                    <label className={classes.label}>
+                        Phone No:
+                    <input
+                            name="phoneNumber"
+                            type="tel"
+                            pattern="^\d{10}$"
+                            required
+                            placeholder="1234567890"
+                            title="Please enter a number phone number with 10 digits"
+                            value={this.state.phoneNumber.value}
+                            // onChange={(event) => this.handleChange(event, this.validateUserName)}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <i>{this.state.phoneNumber.errorMessage}</i>
+                    </label>
+
+
+
+                    {/* <label className={classes.label}>
                     Current Organization:
                     <input 
                         name="currentOrganization" 
@@ -264,11 +265,11 @@ class Register extends Component{
                         onChange={this.handleChange.bind(this)}
                         />
                         <i>{this.state.githubLink.errorMessage}</i>
-                    </label>
+                    </label> */}
                     <label className={classes.label}>
-                    <i>{this.state.signupStatus.message}</i>
-                    <button type="submit" className={classes.btn} disabled={this.isFormInvalid()}>Sign Up</button>
-                    Already registed? <Link to="/login">Login now!</Link>
+                        <i>{this.state.signupStatus.message}</i>
+                        <button type="submit" className={classes.btn} disabled={this.isFormInvalid()}>Sign Up</button>
+                        Already registed? <Link to="/login">Login now!</Link>
                     </label>
                 </form>
             </div>
@@ -279,75 +280,75 @@ class Register extends Component{
     validateUserName = (userName) => {
         // const userName = this.event.target.value;
         const userREGEX = RegExp('^[a-zA-Z]+[0-9]{0,1}$');
-        if(!userREGEX.test(userName)){
+        if (!userREGEX.test(userName)) {
             return {
                 validateStatus: 'error',
                 errorMessage: `Username must contain atleast only alphabet and atmost one number at end.`
             }
         }
-        else if(userName.length < USERNAME_MIN_LENGTH){
+        else if (userName.length < USERNAME_MIN_LENGTH) {
             return {
                 validateStatus: 'error',
                 errorMessage: `Username is too short (Minimum ${USERNAME_MIN_LENGTH} characters needed.)`
             }
-        }else if (userName.length > USERNAME_MAX_LENGTH) {
+        } else if (userName.length > USERNAME_MAX_LENGTH) {
             return {
                 validateStatus: 'error',
-                errorMessage: "Username is too long (Maximum "+USERNAME_MAX_LENGTH+" characters allowed.)"
+                errorMessage: "Username is too long (Maximum " + USERNAME_MAX_LENGTH + " characters allowed.)"
             }
-        }else{
-            return{
-                validateStatus:null,
-                errorMessage:null,
+        } else {
+            return {
+                validateStatus: null,
+                errorMessage: null,
             }
         }
     }
-    validateUserNameAvailability=() => {
+    validateUserNameAvailability = () => {
         const userName = this.state.userName.value;
         const userValidation = this.validateUserName(userName)
-        if(userValidation.validateStatus === 'error')
+        if (userValidation.validateStatus === 'error')
             return;
         checkUserNameAvailability(userName)
-        .then(response => {
-            if(!response){
+            .then(response => {
+                if (!response) {
+                    this.setState({
+                        userName: {
+                            value: userName,
+                            validateStatus: 'error',
+                            errorMessage: 'Username already taken! Try another.'
+                        }
+                    })
+                }
+                else {
+                    this.setState({
+                        userName: {
+                            value: userName,
+                            validateStatus: 'success',
+                            errorMessage: null
+                        }
+                    });
+                }
+            }).catch(_erorr => {
                 this.setState({
-                    userName:{
-                    value:userName,
-                    validateStatus: 'error',
-                    errorMessage: 'Username already taken! Try another.'
+                    userName: {
+                        value: userName,
+                        validateStatus: 'success',
+                        errorMessage: null
                     }
-                })
-            }
-            else{
-                this.setState({
-                userName:{
-                value:userName,
-                validateStatus: 'success',
-                errorMessage: null
-                }
+                });
             });
-        }
-        }).catch(_erorr => {
-            this.setState({
-                userName:{
-                value:userName,
-                validateStatus: 'success',
-                errorMessage: null
-                }
-            });
-        });
-        
+
     }
     validateEmail = (email) => {
-        if(!email) {
+        if (!email) {
             return {
                 validateStatus: 'error',
-                errorMessage: 'Email may not be empty'                
+                errorMessage: 'Email may not be empty'
             }
         }
 
         const EMAIL_REGEX = RegExp('[^@ ]+@[^@ ]+\\.[^@ ]+');
-        if(!EMAIL_REGEX.test(email)) {
+        if (!EMAIL_REGEX.test(email)) {
             return {
                 validateStatus: 'error',
                 errorMessage: 'Email not valid'
@@ -362,71 +363,71 @@ class Register extends Component{
     checkEmailAvailable = () => {
         const email = this.state.email.value;
         const emailValidation = this.validateEmail(email);
-        if(emailValidation.validateStatus === 'error'){
+        if (emailValidation.validateStatus === 'error') {
             this.setState({
-                email:{
-                    value:email,
+                email: {
+                    value: email,
                     ...emailValidation
                 }
             });
             return;
         }
         this.setState({
-            email:{
-                value:email,
-                validateStatus:'validating',
+            email: {
+                value: email,
+                validateStatus: 'validating',
                 errorMessage: null
             }
         });
         checkEmailAvailability(email)
-        .then(response =>{
-            if(response){
-                this.setState({
-                    email:{
-                        value:email,
-                        validateStatus:'error',
-                        errorMessage:  'This Email is already registered'
-                    }
-                });
-            }
-            else{
-                this.setState({
-                    email:{
-                        value:email,
-                        validateStatus:'success',
-                        errorMessage:  null
-                    }
-                });
-            }
-        }).catch(error => {
-            // Marking validateStatus as success, Form will be recchecked at server
-            this.setState({
-                email: {
-                    value: email,
-                    validateStatus: 'success',
-                    errorMsg: null
+            .then(response => {
+                if (response) {
+                    this.setState({
+                        email: {
+                            value: email,
+                            validateStatus: 'error',
+                            errorMessage: 'This Email is already registered'
+                        }
+                    });
                 }
+                else {
+                    this.setState({
+                        email: {
+                            value: email,
+                            validateStatus: 'success',
+                            errorMessage: null
+                        }
+                    });
+                }
+            }).catch(error => {
+                // Marking validateStatus as success, Form will be recchecked at server
+                this.setState({
+                    email: {
+                        value: email,
+                        validateStatus: 'success',
+                        errorMsg: null
+                    }
+                });
             });
-        });
     }
 
     validatePassword = (password) => {
-        if(password.length < PASSWORD_MIN_LENGTH){
+        if (password.length < PASSWORD_MIN_LENGTH) {
             return {
-                validateStatus:'error',
+                validateStatus: 'error',
                 errorMessage: `Password is too short (Minimum ${PASSWORD_MIN_LENGTH} characters needed.)`
             }
         }
-        else if(password.length > PASSWORD_MAX_LENGTH){
+        else if (password.length > PASSWORD_MAX_LENGTH) {
             return {
-                validateStatus:'error',
+                validateStatus: 'error',
                 errorMessage: `Password is too long (Minimum ${PASSWORD_MAX_LENGTH} characters allowed.)`
             }
         }
-        else{
-            return{
-                validateStatus:'success',
-                errorMessage:null
+        else {
+            return {
+                validateStatus: 'success',
+                errorMessage: null
             }
         }
     }
