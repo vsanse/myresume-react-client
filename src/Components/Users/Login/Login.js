@@ -88,7 +88,7 @@ class Login extends Component {
                     </label>
                     <label className={classes.label}>
                         <button type="submit" className={classes.btn} >Sign In</button>
-                        Don't have an account? <Link to="/register">Register now!</Link>
+                        <p>Don't have an account? <span><Link to="/register">Register now!</Link></span></p>
                     </label>
                 </form>
             </div>
