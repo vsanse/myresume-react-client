@@ -56,14 +56,11 @@ class App extends Component {
       <Layout>
         <AppHeaderGuest isLoggedIn={this.state.isLoggedIn} logout={this.handleLogout} />
         <Switch>
-          {
-            !this.state.isLoggedIn &&
             <Route
               exact
               path="/"
               component={Search}
-            />
-          } 
+            /> 
           <Route
             exact
             path="/register"
