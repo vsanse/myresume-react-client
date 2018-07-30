@@ -3,7 +3,7 @@ import classes from './../EducationComponent/EducationComponent.css';
 import commonClasses from '../common/common.css'
 import {addTrainingDetails , getTrainingDetails} from '../Utils/ApiUtils'
 import  {reverseString} from "../common/common"
-import ShowTrainingComponent from './ShowTranningComponent'
+import ShowTrainingComponent from "./ShowTrainingComponent"
 class TrainingComponent extends Component {
     state = {
 
@@ -174,7 +174,7 @@ class TrainingComponent extends Component {
                                     <i>{this.state.program.errorMessage}</i>
                                 </label>
                                 <button type='cancel'className={classes.cancelbtn} onClick={this.handleShowTrainingForm}> Cancel</button>
-                                <button tabIndex="-1" type="submit" className={classes.buttonSave} disabled={this.handleSubmitDisable()} >Save</button>
+                                <button  type="submit" className={classes.buttonSave} disabled={this.handleSubmitDisable()} >Save</button>
                             </form>
                         </div>
                     </div>
