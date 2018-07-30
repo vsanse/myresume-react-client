@@ -66,10 +66,15 @@ input:focus{
 .searchResultPhone i{
     margin: 1%
 }
-.searchResultPhone:hover{
+.searchResultPhone a{
+    text-decoration: none;
+    color: black
+}
+.searchResultPhone:hover, .searchResultPhone a:hover{
     text-decoration: none;
     color: green;
 }
+
 
 .overflow_handle{
     overflow-wrap: break-word;
