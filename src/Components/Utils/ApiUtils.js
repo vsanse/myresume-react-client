@@ -235,6 +235,54 @@ export function deleteInternshipDetails(internId){
     })
 }
 
+// Training
+
+export function addTrainingDetails(trainingDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"training/add",
+        method:"POST",
+        body: JSON.stringify(trainingDetails)
+
+    })
+}
+
+export function getTrainingDetails(username){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"training/get?username="+username,
+        method:'GET'
+
+    })
+}
+
+export function updateTrainingDetails(trainingDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"training/update",
+        method:"POST",
+        body: JSON.stringify(trainingDetails)
+
+    })
+}
+
+export function deleteTrainingDetails(trainingId){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"training/delete/"+trainingId,
+        method:"GET",
+    })
+}
+
+
 
 // Profile
 export function getProfile(username){
