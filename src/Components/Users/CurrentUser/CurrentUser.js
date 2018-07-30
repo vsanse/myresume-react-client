@@ -6,6 +6,7 @@ import EditUserInfo from './EditUserInfo'
 import EducationComponent from '../../EducationComponent/EducationComponent'
 import SkillsComponent from '../../SkillsComponent/SkillsComponent';
 import InternshipComponent from '../../InternshipComponent/InternshipComponent'
+import TrainingComponent from '../../TrainingComponent/TrainingComponent'
 class CurrentUser extends Component {
     state = {
         isLoggedIn: false,
@@ -123,7 +124,7 @@ class CurrentUser extends Component {
                 <EducationComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
                 <SkillsComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
                 <InternshipComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
-
+                <TrainingComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
             </Layout>
         )
     }

@@ -19,11 +19,22 @@ class SkillsComponent extends Component {
 
 
     }
-    handleChange = (event) => {
+    handleChange = (event , validation) => {
         const targetValue = event.target.value
+    
+        if (!validation) {
+            this.setState({
+                skill: {
+                    value: targetValue,
+                   
+                }
+            })
+        }
         this.setState({
             skill: {
                 value: targetValue,
+              
+                ...validation(targetValue)
             }
         })
 
@@ -84,7 +95,7 @@ class SkillsComponent extends Component {
                             <form className={classes.formBox} onSubmit={this.handleSubmitSkills}>
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Enter A Skill:
-                                    <input type='text' value={this.state.skill.value} onChange={this.handleChange} required />
+                                    <input type='text' value={this.state.skill.value} onChange={(event)=>this.handleChange(event , this.validateText)} required />
                                 </label>
                                 <button className={classes.cancelbtn} onClick={this.handleShowSkillForm}> Cancel</button>
                                 <button type="submit" className={classes.buttonSave}  >Save</button>
@@ -93,7 +104,26 @@ class SkillsComponent extends Component {
                     </div>
                 }
             </div>
+
         )
+    }
+
+    validateText = (text) => {
+        const degreeREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
+        if (!degreeREGEX.test(text)) {
+            return {
+                validationStatus: 'error',
+                errorMessage: 'Please enter albhabets only and leading spaces are not allowed',
+            }
+
+        }
+        else {
+            return {
+                validationStatus: 'success',
+                errorMessage: '',
+            }
+        }
+
     }
 
 }
