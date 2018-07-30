@@ -63,7 +63,7 @@ class Search extends Component {
                                             </p>
                                                 <p className={classes.searchResultEmail}><a href={"mailto:" + user.email}><i className="fas fa-envelope fa-1x"></i>{user.email}</a>
                                                 </p>
-                                                <p className={classes.searchResultPhone}><i className="fas fa-mobile-alt fa-1x"></i> {user.phoneNumber}</p>
+                                                <p className={classes.searchResultPhone}><a href={"tel:" + user.phoneNumber}><i className="fas fa-mobile-alt fa-1x"></i> {user.phoneNumber}</a></p>
 
                                         </div>
                                         <div className={classes.viewProfile}>
