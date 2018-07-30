@@ -49,7 +49,7 @@ class Search extends Component {
                     onChange={this.handleChange} className={classes.searchBox}
                     placeholder="Username/Name/Email" autoComplete="off"
                 />
-                <p><i>Psst! Search is more accurate with username or email </i></p>
+                <p><i>Psst! Search is more accurate with username or email <i class="far fa-smile-wink"></i></i></p>
 
                 <div>
                     {
