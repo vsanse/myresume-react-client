@@ -1,74 +1,70 @@
 import React, { Component } from 'react';
 import classes from './../EducationComponent/EducationComponent.css';
 import commonClasses from '../common/common.css'
-import {addInternshipDetails , getInternshipDetails} from '../Utils/ApiUtils'
+import {addProjectDetails , getProjectDetails} from '../Utils/ApiUtils'
 import  {reverseString} from "../common/common"
-import ShowInternshipComponent from './ShowInternshipComponent'
-class InternshipComponent extends Component {
+import ShowProjectComponent from './ShowProjectDetails'
+class ProjectComponent extends Component {
     state = {
 
     }
 
-    handleShowInternForm = (event) => {
+    handleShowProjectForm = (event) => {
         this.setState(prevState => ({
-            showInternForm: !prevState.showInternForm,
+            showProjectForm: !prevState.showProjectForm,
             dateValidationStatus:'success',
-            dateStarted:{
+            startDate:{
                 value:'',
               
             },
-            dateEnd:{
+            endDate:{
                 value:'',
                
             },
-            profile:{
+            projectLink:{
                 value:'',
                 validationStatus:'success'
             },
-            organization:{
+            title:{
                 value:'',
                 validationStatus:'success'
             },
             description:{
                 value:'',
                 validationStatus:'success'
-            },
-            location:{
-                value:'',
-                validationStatus:'success'
             }
+           
         }))
     }
 
-    getUsersInternDetails = (username) =>{
-        getInternshipDetails(username)
+    getUsersProjectDetails = (username) =>{
+        getProjectDetails(username)
         .then(response =>{
             this.setState({
-                internDetails:[...response],
+                projectDetails:[...response],
             })
           
         })
     }
 
     componentWillReceiveProps(nextProps){
-        this.getUsersInternDetails(nextProps.username);
+        this.getUsersProjectDetails(nextProps.username);
     }
 
-    handleInternSubmit=(event)=>{
+    handleProjectSubmit=(event)=>{
         event.preventDefault();
-        const internDetails = {
-            dateStarted:reverseString(this.state.dateStarted.value),
-            dateEnd: reverseString(this.state.dateEnd.value),
+        const projectDetails = {
+            startDate:reverseString(this.state.startDate.value),
+            endDate: reverseString(this.state.endDate.value),
             description: this.state.description.value,
-            location: this.state.location.value,
-            profile: this.state.profile.value,
-            organization: this.state.organization.value  
+            projectLink: this.state.projectLink.value,
+            title: this.state.title.value  
         } 
       
-        addInternshipDetails(internDetails)
+        addProjectDetails(projectDetails)
             .then(response => {
-                this.getUsersInternDetails(this.props.username)
-                this.handleShowInternForm()
+                this.getUsersProjectDetails(this.props.username)
+                this.handleShowProjectForm()
             }).catch(error=>{
                console.log("Something wen wrong while adding details")
             });
@@ -77,11 +73,11 @@ class InternshipComponent extends Component {
 
 
     handleSubmitDisable= (event) => {
-        if (this.state.profile.validationStatus === 'success' &&
+        if (this.state.projectLink.validationStatus === 'success' &&
             this.state.dateValidationStatus === 'success' &&
             this.state.description.validationStatus === 'success' &&
-            this.state.location.validationStatus === 'success' &&
-            this.state.organization.validationStatus === 'success'
+            this.state.title.validationStatus === 'success' 
+            
         ) {
             return false
         }
@@ -106,43 +102,47 @@ class InternshipComponent extends Component {
         })
     }
     render() {
-       
+      
         return (
             <div>               
                 <div className={classes.education} >
                     <div className={classes.eduHeading}>
                         <div className={classes.heading}>
-                            <strong>INTERNSHIPS:</strong>
+                            <strong>Project:</strong>
                         </div>
                         <div className={classes.icon} >
-                            <i className="fas fa-plus fa-1x" onClick={this.handleShowInternForm}></i>
+                            <i className="fas fa-plus fa-1x" onClick={this.handleShowProjectForm}></i>
                         </div>       
                     </div>
                     <hr />
-                    <ShowInternshipComponent action={()=>this.getUsersInternDetails(this.props.username)} internDetails={this.state.internDetails}/>
+                    <ShowProjectComponent action={()=>this.getUsersProjectDetails(this.props.username)} projectDetails={this.state.projectDetails}/>
                     
                    
                 </div>
                 {
-                    this.state.showInternForm &&
+                    this.state.showProjectForm &&
                     <div className={classes.modal}>
 
                         <div className={classes.modal_content} >
                             <div className={classes.modal_heading}>
-                                Internship Details
+                                Project Details
                             <hr />
                             </div>
-                            <form className={classes.formBox} onSubmit={this.handleInternSubmit} >
-
+                            <form className={classes.formBox} onSubmit={this.handleProjectSubmit} >
+                                <label className={commonClasses.label + " " + classes.modal_label}>
+                                    Title:
+                                    <input type="text" name='title' placeholder='' value={this.state.title.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
+                                    <i>{this.state.title.errorMessage}</i>
+                                </label>
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Start-Date:
-                                    <input type="date" name='dateStarted' id = 'txtStartDate' placeholder='' value={this.state.dateStarted.value} onChange={(event) => this.handleChange(event, this.dateCheck)} required/>       
+                                    <input type="date" name='startDate' id = 'txtStartDate' placeholder='' value={this.state.startDate.value} onChange={(event) => this.handleChange(event, this.dateCheck)} required/>       
                                     <i>{this.state.startDateErrorMessage}</i>
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     End-Date:
-                                    <input type="date" name='dateEnd' id = 'txtEndDate'  placeholder='' value={this.state.dateEnd.value}  onChange={(event) => this.handleChange(event, this.dateCheck)}required/>
+                                    <input type="date" name='endDate' id = 'txtEndDate'  placeholder='' value={this.state.endDate.value}  onChange={(event) => this.handleChange(event, this.dateCheck)}required/>
                                     <i>{this.state.dateErrorMessage}</i>
                                 </label>
 
@@ -153,23 +153,15 @@ class InternshipComponent extends Component {
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
-                                    Location:
-                                    <input type="text" name='location' placeholder='' value={this.state.location.value}  onChange={(event) => this.handleChange(event, this.validateText)}required/>
-                                    <i>{this.state.location.errorMessage}</i>
+                                    Link to Project:
+                                    <input type="text" name='projectLink' placeholder='' value={this.state.projectLink.value}  onChange={(event) => this.handleChange(event, this.validateText)}required/>
+                                    <i>{this.state.projectLink.errorMessage}</i>
                                 </label>
 
-                                <label className={commonClasses.label + " " + classes.modal_label}>
-                                    Organization:
-                                    <input type="text" name='organization' placeholder='' value={this.state.organization.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
-                                    <i>{this.state.organization.errorMessage}</i>
-                                </label>
+                                
 
-                                <label className={commonClasses.label + " " + classes.modal_label}>
-                                    Profile:
-                                    <input type="text" name='profile' placeholder='' value={this.state.profile.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
-                                    <i>{this.state.profile.errorMessage}</i>
-                                </label>
-                                <button className={classes.cancelbtn} onClick={this.handleShowInternForm}> Cancel</button>
+                               
+                                <button className={classes.cancelbtn} onClick={this.handleShowProjectForm}> Cancel</button>
                                 <button type="submit" className={classes.buttonSave} disabled={this.handleSubmitDisable()} >Save</button>
                             </form>
                         </div>
@@ -246,4 +238,4 @@ class InternshipComponent extends Component {
     }
 
 }
-export default InternshipComponent
+export default ProjectComponent
