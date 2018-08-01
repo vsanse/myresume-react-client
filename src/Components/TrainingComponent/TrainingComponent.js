@@ -10,7 +10,7 @@ class TrainingComponent extends Component {
     }
 
     handleShowTrainingForm = (event) => {
-        event.preventDefault()
+       
         this.setState(prevState => ({
             showTrainingForm: !prevState.showTrainingForm,
            

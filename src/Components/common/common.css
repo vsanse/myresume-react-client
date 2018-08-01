@@ -63,3 +63,7 @@
  .ScaleHeading{
       display: inline ;
  }
+
+ textarea{
+     height: 60vh;
+ }

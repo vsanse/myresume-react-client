@@ -282,6 +282,52 @@ export function deleteTrainingDetails(trainingId){
     })
 }
 
+//Additional Information
+
+export function addAdditionalInfoDetails(additionalDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"additional/add",
+        method:"POST",
+        body: JSON.stringify(additionalDetails)
+
+    })
+}
+
+export function getAdditionalInfoDetails(username){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"additional/get?username="+username,
+        method:'GET'
+
+    })
+}
+
+export function updateAdditionalInfoDetails(addtionalInfoDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"additional/update",
+        method:"POST",
+        body: JSON.stringify(addtionalInfoDetails)
+
+    })
+}
+
+export function deleteAdditionalInfoDetails(addId){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"additional/delete/"+addId,
+        method:"GET",
+    })
+}
 
 
 // Profile
