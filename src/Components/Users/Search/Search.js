@@ -67,7 +67,7 @@ class Search extends Component {
 
                                         </div>
                                         <div className={classes.viewProfile}>
-                                            <button className={commonClasses.btn + " " + classes.viewProfileBtn} ><Link to={"/profile/"+user.userName}>Profile</Link></button>
+                                            <button className={commonClasses.btn + " " + classes.viewProfileBtn} ><Link to ={"/profile/"+user.userName}>Profile</Link></button>
                                         </div>
                                     </div>
                                 </div>

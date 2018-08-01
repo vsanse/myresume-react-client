@@ -4,7 +4,8 @@ import userinfoClasses from '../Users/CurrentUser/CurrentUser.css'
 import educationClasses from '../EducationComponent/EducationComponent.css'
 import { getProfile } from '../Utils/ApiUtils'
 import ShowProfileEducationDetails from '../EducationComponent/ShowProfileEducationDetails';
-
+import ShowProfileInternshipComponent from '../InternshipComponent/ShowProfileInternshipDetails';
+import ShowProfileSkillComponent from '../SkillsComponent/ShowProfileSkillDetails'
 class Profile extends Component {
 
     state = {
@@ -14,9 +15,12 @@ class Profile extends Component {
     getUserProfile = (username) => {
         getProfile(username)
             .then(profile => {
+                console.log(profile)
                 this.setState({
                     userInfo: profile.userinfo,
                     educationDetails: profile.educationDetails,
+                    internshipDetails:profile.internshipDetails,
+                    skillsDetails:profile.skillDetails
                 })
             }).catch(error => {
                 if (error.errorCode === 'ERx004') {
@@ -35,8 +39,9 @@ class Profile extends Component {
     }
 
     render() {
-
+            console.log(this.profile)
         return (
+    
             <div className={classes.overflow_handle}>
                 {
                     this.state.userInfo &&
@@ -57,8 +62,10 @@ class Profile extends Component {
                         </div>
                         <hr className={educationClasses.hr2px} />
                         <ShowProfileEducationDetails eduDetail={this.state.educationDetails} />
+                       
                     </div>
                 }
+                
                 {
                     this.state.userInfo &&
                     <div className={educationClasses.education} >
@@ -85,7 +92,31 @@ class Profile extends Component {
                         </div>
                     </div>
 
+                }
+                  {
+                    this.state.skillDetails &&
+                    this.state.skillDetails.length > 0 &&
+                    <div className={educationClasses.education} >
+                        <div className={educationClasses.heading}>
+                            <strong>INTERNSHIPS:</strong>
+                        </div>
+                        <hr className={educationClasses.hr2px} />
+                       
+                        <ShowProfileSkillComponent internDetails={this.state.skillDetails}/>
+                    </div>
+                }
 
+                 {
+                    this.state.internshipDetails &&
+                    this.state.internshipDetails.length > 0 &&
+                    <div className={educationClasses.education} >
+                        <div className={educationClasses.heading}>
+                            <strong>INTERNSHIPS:</strong>
+                        </div>
+                        <hr className={educationClasses.hr2px} />
+                       
+                        <ShowProfileInternshipComponent internDetails={this.state.internshipDetails}/>
+                    </div>
                 }
 
 
