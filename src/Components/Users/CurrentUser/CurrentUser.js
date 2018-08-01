@@ -8,6 +8,7 @@ import SkillsComponent from '../../SkillsComponent/SkillsComponent';
 import InternshipComponent from '../../InternshipComponent/InternshipComponent'
 import TrainingComponent from '../../TrainingComponent/TrainingComponent'
 import AdditinalInfoComponent from '../../AdditionalInformation/AdditionalInformation'
+import ProjectComponent from '../../ProjectComponenet/ProjectComponent'
 class CurrentUser extends Component {
     state = {
         isLoggedIn: false,
@@ -126,6 +127,7 @@ class CurrentUser extends Component {
                 <SkillsComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
                 <InternshipComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
                 <TrainingComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
+                <ProjectComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
                 <AdditinalInfoComponent isLoggedIn={this.props.isLoggedIn} username={this.state.username} />
             </Layout>
         )

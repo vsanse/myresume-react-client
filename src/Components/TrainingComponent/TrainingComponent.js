@@ -142,6 +142,7 @@ class TrainingComponent extends Component {
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Start-Date:
                                     <input type="date" name='dateStarted' id = 'txtStartDate' placeholder='' value={this.state.dateStarted.value} onChange={(event) => this.handleChange(event, this.dateCheck)} required/>       
+                                    <i>{this.state.startDateErrorMessage}</i>
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>

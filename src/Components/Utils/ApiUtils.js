@@ -329,6 +329,53 @@ export function deleteAdditionalInfoDetails(addId){
     })
 }
 
+//Project
+
+export function addProjectDetails(projectDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"project/add",
+        method:"POST",
+        body: JSON.stringify(projectDetails)
+
+    })
+}
+
+export function getProjectDetails(username){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"project/get?username="+username,
+        method:'GET'
+
+    })
+}
+
+export function updateProjectDetails(projectDetails){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"project/update",
+        method:"POST",
+        body: JSON.stringify(projectDetails)
+
+    })
+}
+
+export function deleteProjectDetails(pid){
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url:API_BASE_URL+"project/delete/"+pid,
+        method:"GET",
+    })
+}
+
 
 // Profile
 export function getProfile(username){
