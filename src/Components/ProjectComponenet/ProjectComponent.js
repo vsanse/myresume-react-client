@@ -73,7 +73,7 @@ class ProjectComponent extends Component {
 
 
     handleSubmitDisable= (event) => {
-        if (this.state.projectLink.validationStatus === 'success' &&
+        if (
             this.state.dateValidationStatus === 'success' &&
             this.state.description.validationStatus === 'success' &&
             this.state.title.validationStatus === 'success' 
@@ -154,8 +154,8 @@ class ProjectComponent extends Component {
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Link to Project:
-                                    <input type="text" name='projectLink' placeholder='' value={this.state.projectLink.value}  onChange={(event) => this.handleChange(event, this.validateText)}required/>
-                                    <i>{this.state.projectLink.errorMessage}</i>
+                                    <input type="url" name='projectLink' placeholder='' value={this.state.projectLink.value}  onChange={(event) => this.handleChange(event)}required/>
+                                    
                                 </label>
 
                                 
