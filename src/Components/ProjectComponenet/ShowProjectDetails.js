@@ -48,7 +48,7 @@ class ShowProjectComponent extends Component {
                 validationStatus: 'success'
             },
             title: {
-                value: projectDetails.location,
+                value: projectDetails.title,
                 validationStatus: 'success'
             }
 
@@ -163,7 +163,7 @@ class ShowProjectComponent extends Component {
                                             <form className={classes.formBox} onSubmit={(event) => this.handleUpdateProject(event, projectDetails)}>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     title:
-                                                     <input type="text" name='location' placeholder='' value={this.state.title.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                     <input type="text" name='title' placeholder='Project Hub' value={this.state.title.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
                                                     <i>{this.state.title.errorMessage}</i>
                                                 </label>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
