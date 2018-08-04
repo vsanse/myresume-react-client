@@ -39,7 +39,7 @@ class ShowProjectComponent extends Component {
             },
             projectLink: {
                 value: projectDetails.projectLink,
-
+               
 
             },
 
@@ -72,7 +72,7 @@ class ShowProjectComponent extends Component {
         const projectDetails = {
             pid: this.state.pid.value,
             startDate: reverseString(this.state.startDate.value),
-            endDate: reverseString(this.state.endDate.value),
+           endDate: reverseString(this.state.endDate.value),
             description: this.state.description.value,
             projectLink: this.state.projectLink.value,
             title: this.state.title.value,
@@ -102,14 +102,12 @@ class ShowProjectComponent extends Component {
                 }
             })
         }
-        else {
-            this.setState({
-                [targetName]: {
-                    value: targetValue,
-                    ...validation(targetValue)
-                }
-            })
-        }
+        this.setState({
+            [targetName]: {
+                value: targetValue,
+                ...validation(targetValue)
+            }
+        })
     }
 
     handleDeleteForm = (event, pid) => {
@@ -121,12 +119,12 @@ class ShowProjectComponent extends Component {
 
     deleteProjectDetails = (event, pid) => {
         event.preventDefault();
-
+       
         deleteProjectDetails(pid)
             .then(response => {
                 this.props.action();
             })
-            .catch(error => {
+            .catch(error=>{
                 console.log(this.props.action())
                 console.log(error)
             })
@@ -147,7 +145,6 @@ class ShowProjectComponent extends Component {
                                             <p><strong>{projectDetails.title}</strong></p>
                                             <p>{projectDetails.startDate} to {projectDetails.endDate}</p>
                                             <p><strong>Description:</strong>{projectDetails.description}</p>
-                                            <p>{projectDetails.projectLink}</p>
                                         </div>
                                     </div>
                                     <div className={classes.editEduDetailsIcons} >
@@ -189,12 +186,12 @@ class ShowProjectComponent extends Component {
                                                 </label>
 
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
-                                                    Link To Project:
-                                                    <input type="text" name='projectLink' placeholder='' value={this.state.projectLink.value} onChange={this.handleChangeEdit} required />
-
+                                                   Link To Project:
+                                                    <input type="text" name='projectLink' placeholder='' value={this.state.projectLink.value} onChange={(event) => this.handleChangeEdit(event)} required />
+                                                   
                                                 </label>
-
-
+                                                
+                                                    
                                                 <button className={classes.cancelbtn} onClick={(event) => this.handleEditForm(event, projectDetails)} > Cancel</button>
                                                 <button type="submit" className={classes.buttonSave} disabled={this.handleEditSave()} >Save</button>
                                             </form>
