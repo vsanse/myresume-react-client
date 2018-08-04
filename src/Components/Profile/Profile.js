@@ -114,7 +114,7 @@ class Profile extends Component {
                     this.state.trainingDetails.length > 0 &&
                     <div className={educationClasses.education} >
                         <div className={educationClasses.heading}>
-                            <strong>PROJECT:</strong>
+                            <strong>TRAINING:</strong>
                         </div>
                         <hr className={educationClasses.hr2px} />
                        
