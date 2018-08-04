@@ -1,7 +1,7 @@
 import React ,{Component} from 'react'
 import classes from '../EducationComponent/EducationComponent.css'
 import commonClasses from '../common/common.css'
-class ShowProfileInternshipDetails extends Component{
+class ShowProfileInternshipComponent extends Component{
     render(){
         return(
             <div>
@@ -27,4 +27,4 @@ class ShowProfileInternshipDetails extends Component{
         )
     }
 }
-export default ShowProfileInternshipDetails 
+export default ShowProfileInternshipComponent 

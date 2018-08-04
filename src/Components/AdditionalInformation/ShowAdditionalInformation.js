@@ -110,7 +110,7 @@ class ShowAddtionalInfoComponent extends Component {
                                     <div className={classes.detailHeading}>
 
                                         <div className={classes.details}>
-                                           <li> {additionalInfoDetails.description}</li>
+                                            <p><strong>Description:</strong>{additionalInfoDetails.description}</p>
                                         </div>
                                     </div>
                                     <div className={classes.editEduDetailsIcons} >
@@ -123,7 +123,7 @@ class ShowAddtionalInfoComponent extends Component {
                                     <div className={classes.modal}>
                                         <div className={classes.modal_content} >
                                             <div className={classes.modal_heading}>
-                                               Additional Details
+                                               Other Details
                                                 <hr />
                                             </div>
                                             <form className={classes.formBox} onSubmit={(event) => this.handleUpdateAdditionalInfo(event, additionalInfoDetails)}>
