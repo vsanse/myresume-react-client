@@ -4,10 +4,8 @@ import userinfoClasses from '../Users/CurrentUser/CurrentUser.css'
 import educationClasses from '../EducationComponent/EducationComponent.css'
 import { getProfile } from '../Utils/ApiUtils'
 import ShowProfileEducationDetails from '../EducationComponent/ShowProfileEducationDetails';
-import ShowProfileProjectDetails from '../ProjectComponenet/ShowProfileProjectComponent';
+import ShowProfileInternshipComponent from '../InternshipComponent/ShowProfileInternshipDetails';
 import ShowProfileSkillComponent from '../SkillsComponent/ShowProfileSkillDetails'
-import ShowProfileInternshipDetails from '../InternshipComponent/ShowProfileInternshipDetails';
-import ShowProfileTrainingDetails from '../TrainingComponent/ShowProfileTrainingComponent'
 class Profile extends Component {
 
     state = {
@@ -22,9 +20,7 @@ class Profile extends Component {
                     userInfo: profile.userinfo,
                     educationDetails: profile.educationDetails,
                     internshipDetails:profile.internshipDetails,
-                    skillsDetails:profile.skillDetails,
-                    projectDetails:profile.projectDetails,
-                    trainingDetails:profile.trainingDetails
+                    skillsDetails:profile.skillDetails
                 })
             }).catch(error => {
                 if (error.errorCode === 'ERx004') {
@@ -70,6 +66,7 @@ class Profile extends Component {
                     </div>
                 }
                 
+
                   {
                     this.state.skillDetails &&
                     this.state.skillDetails.length > 0 &&
@@ -121,6 +118,7 @@ class Profile extends Component {
                         <ShowProfileTrainingDetails trainingDetails={this.state.trainingDetails}/>
                     </div>
                 }
+
 
 
                 {

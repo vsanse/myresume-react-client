@@ -94,13 +94,12 @@ class ProjectComponent extends Component {
                 }
             })
         }
-        else{
         this.setState({
             [targetName]: {
                 value: targetValue,
                 ...validation(targetValue)
             }
-        })}
+        })
     }
     render() {
       
@@ -109,7 +108,7 @@ class ProjectComponent extends Component {
                 <div className={classes.education} >
                     <div className={classes.eduHeading}>
                         <div className={classes.heading}>
-                            <strong>PROJECT:</strong>
+                            <strong>Project:</strong>
                         </div>
                         <div className={classes.icon} >
                             <i className="fas fa-plus fa-1x" onClick={this.handleShowProjectForm}></i>
@@ -155,7 +154,7 @@ class ProjectComponent extends Component {
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Link to Project:
-                                    <input type='text' name='projectLink' placeholder='' value={this.state.projectLink.value}  onChange={this.handleChange} required/>
+                                    <input type="url" name='projectLink' placeholder='' value={this.state.projectLink.value}  onChange={(event) => this.handleChange(event)}required/>
                                     
                                 </label>
 
