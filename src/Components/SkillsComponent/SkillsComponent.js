@@ -95,7 +95,7 @@ class SkillsComponent extends Component {
                             <form className={classes.formBox} onSubmit={this.handleSubmitSkills}>
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Enter A Skill:
-                                    <input type='text' value={this.state.skill.value} onChange={(event)=>this.handleChange(event , this.validateText)} required />
+                                    <input type='text' value={this.state.skill.value} placeholder='React' onChange={(event)=>this.handleChange(event , this.validateText)} required />
                                 </label>
                                 <button className={classes.cancelbtn} onClick={this.handleShowSkillForm}> Cancel</button>
                                 <button type="submit" className={classes.buttonSave}  >Save</button>

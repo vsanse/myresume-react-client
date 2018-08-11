@@ -179,22 +179,22 @@ class ShowTrainingComponent extends Component {
 
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Description:
-                                    <input type="text" name='description' placeholder='' value={this.state.description.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                    <textarea type="text" name='description' placeholder='Short description about Training (Max 250 chars)' maxLength="250" value={this.state.description.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required ></textarea>
                                                     <i>{this.state.description.errorMessage}</i>
                                                 </label>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Location:
-                                    <input type="text" name='location' placeholder='' value={this.state.location.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                    <input type="text" name='location' placeholder='Noida' value={this.state.location.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
                                                     <i>{this.state.location.errorMessage}</i>
                                                 </label>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Organization:
-                                    <input type="text" name='organization' placeholder='' value={this.state.organization.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                    <input type="text" name='organization' placeholder='IBM Trainings' value={this.state.organization.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
                                                     <i>{this.state.organization.errorMessage}</i>
                                                 </label>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Program:
-                                    <input type="text" name='program' placeholder='' value={this.state.program.value} onChange={(event) => this.handleChangeEdit(event, this.validateProgram)} required />
+                                                    <input type="text" name='program' placeholder='Analytics' value={this.state.program.value} onChange={(event) => this.handleChangeEdit(event, this.validateProgram)} required />
                                                     <i>{this.state.program.errorMessage}</i>
                                                 </label>
                                                 <button className={classes.cancelbtn} onClick={(event) => this.handleEditForm(event, trainingDetails)} > Cancel</button>

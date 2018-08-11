@@ -111,7 +111,7 @@ class ShowSkillsDetails extends Component {
                                             <form className={classes.formBox} onSubmit={(event) => this.handleSkillUpdate(event, skills)}>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Enter A Skill:
-                                                        <input id={this.state.skill.id} type='text' value={this.state.skill.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                        <input id={this.state.skill.id} type='text' placeholder='React' value={this.state.skill.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
                                                     <i>{this.state.skill.errorMessage}</i>
                                                 </label>
                                                 <button className={classes.cancelbtn} onClick={(event) => this.handleEditForm(event, skills)} > Cancel</button>

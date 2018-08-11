@@ -4,8 +4,10 @@ import userinfoClasses from '../Users/CurrentUser/CurrentUser.css'
 import educationClasses from '../EducationComponent/EducationComponent.css'
 import { getProfile } from '../Utils/ApiUtils'
 import ShowProfileEducationDetails from '../EducationComponent/ShowProfileEducationDetails';
-import ShowProfileInternshipComponent from '../InternshipComponent/ShowProfileInternshipDetails';
+import ShowProfileInternshipDetails from '../InternshipComponent/ShowProfileInternshipDetails';
 import ShowProfileSkillComponent from '../SkillsComponent/ShowProfileSkillDetails'
+import ShowProfileProjectDetails from '../ProjectComponenet/ShowProfileProjectDetails'
+import ShowProfileTrainingDetails from '../TrainingComponent/ShowProfileTrainingDetails'
 class Profile extends Component {
 
     state = {
@@ -20,7 +22,9 @@ class Profile extends Component {
                     userInfo: profile.userinfo,
                     educationDetails: profile.educationDetails,
                     internshipDetails:profile.internshipDetails,
-                    skillsDetails:profile.skillDetails
+                    skillsDetails:profile.skillDetails,
+                    projectDetails:profile.projectDetails,
+                    trainingDetails:profile.trainingDetails
                 })
             }).catch(error => {
                 if (error.errorCode === 'ERx004') {

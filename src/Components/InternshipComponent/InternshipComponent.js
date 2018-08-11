@@ -133,7 +133,11 @@ class InternshipComponent extends Component {
                             <hr />
                             </div>
                             <form className={classes.formBox} onSubmit={this.handleInternSubmit} >
-
+                                <label className={commonClasses.label + " " + classes.modal_label}>
+                                    Profile:
+                                    <input type="text" name='profile' placeholder='Sales and  Marketing' value={this.state.profile.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
+                                    <i>{this.state.profile.errorMessage}</i>
+                                </label>
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Start-Date:
                                     <input type="date" name='dateStarted' id = 'txtStartDate' placeholder='' value={this.state.dateStarted.value} onChange={(event) => this.handleChange(event, this.dateCheck)} required/>       
@@ -148,27 +152,23 @@ class InternshipComponent extends Component {
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Description:
-                                    <input type="text" name='description' placeholder='' value={this.state.description.value}  onChange={(event) => this.handleChange(event, this.validateText)}required/>
+                                    <textarea type="text" name='description' placeholder='Short description about internship (Max 250 chars)' maxLength='250' value={this.state.description.value}  onChange={(event) => this.handleChange(event, this.validateText)}required></textarea>
                                     <i>{this.state.description.errorMessage}</i>
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Location:
-                                    <input type="text" name='location' placeholder='' value={this.state.location.value}  onChange={(event) => this.handleChange(event, this.validateText)}required/>
+                                    <input type="text" name='location' placeholder='Noida' value={this.state.location.value}  onChange={(event) => this.handleChange(event, this.validateText)}required/>
                                     <i>{this.state.location.errorMessage}</i>
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Organization:
-                                    <input type="text" name='organization' placeholder='' value={this.state.organization.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
+                                    <input type="text" name='organization' placeholder='HCL Technology' value={this.state.organization.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
                                     <i>{this.state.organization.errorMessage}</i>
                                 </label>
 
-                                <label className={commonClasses.label + " " + classes.modal_label}>
-                                    Profile:
-                                    <input type="text" name='profile' placeholder='' value={this.state.profile.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
-                                    <i>{this.state.profile.errorMessage}</i>
-                                </label>
+                                
                                 <button className={classes.cancelbtn} onClick={this.handleShowInternForm}> Cancel</button>
                                 <button type="submit" className={classes.buttonSave} disabled={this.handleSubmitDisable()} >Save</button>
                             </form>
