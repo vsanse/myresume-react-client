@@ -108,7 +108,7 @@ class ProjectComponent extends Component {
                 <div className={classes.education} >
                     <div className={classes.eduHeading}>
                         <div className={classes.heading}>
-                            <strong>Project:</strong>
+                            <strong>PROJECT:</strong>
                         </div>
                         <div className={classes.icon} >
                             <i className="fas fa-plus fa-1x" onClick={this.handleShowProjectForm}></i>
@@ -131,7 +131,7 @@ class ProjectComponent extends Component {
                             <form className={classes.formBox} onSubmit={this.handleProjectSubmit} >
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Title:
-                                    <input type="text" name='title' placeholder='' value={this.state.title.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
+                                    <input type="text" name='title' placeholder='Face-Detection' value={this.state.title.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
                                     <i>{this.state.title.errorMessage}</i>
                                 </label>
                                 <label className={commonClasses.label + " " + classes.modal_label}>
@@ -148,13 +148,13 @@ class ProjectComponent extends Component {
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Description:
-                                    <input type="text" name='description' placeholder='' value={this.state.description.value}  onChange={(event) => this.handleChange(event, this.validateText)}required/>
+                                    <textarea type="text" name='description' placeholder='Short description about project (Max 250 chars)' maxLength='250' value={this.state.description.value}  onChange={(event) => this.handleChange(event, this.validateText)}required></textarea>
                                     <i>{this.state.description.errorMessage}</i>
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Link to Project:
-                                    <input type="url" name='projectLink' placeholder='' value={this.state.projectLink.value}  onChange={(event) => this.handleChange(event)}required/>
+                                    <input type="url" name='projectLink' placeholder='https://myproject.in' value={this.state.projectLink.value}  onChange={(event) => this.handleChange(event)}required/>
                                     
                                 </label>
 

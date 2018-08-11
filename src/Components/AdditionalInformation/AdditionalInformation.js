@@ -88,7 +88,7 @@ class AdditionalInfoComponent extends Component {
                 <div className={classes.education} >
                     <div className={classes.eduHeading}>
                         <div className={classes.heading}>
-                            <strong>Others:</strong>
+                            <strong>ADDITIONAL DETAILS:</strong>
                         </div>
                         <div className={classes.icon} >
                             <i className="fas fa-plus fa-1x" onClick={this.handleShowAdditionalInfoForm}></i>
@@ -105,13 +105,13 @@ class AdditionalInfoComponent extends Component {
 
                         <div className={classes.modal_content} >
                             <div className={classes.modal_heading}>
-                                Other Details
+                                Addtional Details
                             <hr />
                             </div>
                             <form className={classes.formBox} onSubmit={this.handleAdditionalInfoSubmit} >
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Description:
-                                    <input name='description' placeholder='' value={this.state.description.value} onChange={(event) => this.handleChange(event, this.validateText)}required/>
+                                    <textarea name='description' placeholder='Add details here (Max 250 chars)' maxLength='250' value={this.state.description.value} onChange={(event) => this.handleChange(event, this.validateText)}required></textarea>
                                     <i>{this.state.description.errorMessage}</i>
                                 </label>
                                 <button type='cancel'className={classes.cancelbtn} onClick={this.handleShowAdditionalInfoForm}> Cancel</button>

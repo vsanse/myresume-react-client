@@ -163,7 +163,7 @@ class ShowProjectComponent extends Component {
                                             <form className={classes.formBox} onSubmit={(event) => this.handleUpdateProject(event, projectDetails)}>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     title:
-                                                     <input type="text" name='title' placeholder='Project Hub' value={this.state.title.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                     <input type="text" name='title' placeholder='Face-Detection' value={this.state.title.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
                                                     <i>{this.state.title.errorMessage}</i>
                                                 </label>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
@@ -181,13 +181,13 @@ class ShowProjectComponent extends Component {
 
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Description:
-                                                    <input type="text" name='description' placeholder='' value={this.state.description.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                    <textarea type="text" name='description' placeholder='Short description about project (Max 250 chars)' maxLength='250' value={this.state.description.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required ></textarea>
                                                     <i>{this.state.description.errorMessage}</i>
                                                 </label>
 
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                    Link To Project:
-                                                    <input type="text" name='projectLink' placeholder='' value={this.state.projectLink.value} onChange={(event) => this.handleChangeEdit(event)} required />
+                                                    <input type="text" name='projectLink' placeholder='https://myproject.in' value={this.state.projectLink.value} onChange={(event) => this.handleChangeEdit(event)} required />
                                                    
                                                 </label>
                                                 

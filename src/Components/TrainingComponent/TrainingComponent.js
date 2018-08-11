@@ -117,7 +117,7 @@ class TrainingComponent extends Component {
                 <div className={classes.education} >
                     <div className={classes.eduHeading}>
                         <div className={classes.heading}>
-                            <strong>Training:</strong>
+                            <strong>TRAINING:</strong>
                         </div>
                         <div className={classes.icon} >
                             <i className="fas fa-plus fa-1x" onClick={this.handleShowTrainingForm}></i>
@@ -141,37 +141,37 @@ class TrainingComponent extends Component {
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Start-Date:
-                                    <input type="date" name='dateStarted' id = 'txtStartDate' placeholder='' value={this.state.dateStarted.value} onChange={(event) => this.handleChange(event, this.dateCheck)} required/>       
+                                    <input type="date" name='dateStarted' id = 'txtStartDate' placeholder='Choose Date' value={this.state.dateStarted.value} onChange={(event) => this.handleChange(event, this.dateCheck)} required/>       
                                     <i>{this.state.startDateErrorMessage}</i>
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     End-Date:
-                                    <input type="date" name='dateEnd' id = 'txtEndDate'  placeholder='' value={this.state.dateEnd.value}  onChange={(event) => this.handleChange(event, this.dateCheck)}required/>
+                                    <input type="date" name='dateEnd' id = 'txtEndDate'  placeholder='Choose date' value={this.state.dateEnd.value}  onChange={(event) => this.handleChange(event, this.dateCheck)}required/>
                                     <i>{this.state.dateErrorMessage}</i>
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Description:
-                                    <input type="text" name='description' placeholder='' value={this.state.description.value}  onChange={(event) => this.handleChange(event, this.validateText)}required/>
+                                    <textarea type="text" name='description' placeholder='Short description about Details (Max 250 chars)' value={this.state.description.value}  maxLength='250'  onChange={(event) => this.handleChange(event, this.validateText)}required></textarea>
                                     <i>{this.state.description.errorMessage}</i>
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Location:
-                                    <input type="text" name='location' placeholder='' value={this.state.location.value}  onChange={(event) => this.handleChange(event, this.validateText)}required/>
+                                    <input type="text" name='location' placeholder='Noida' value={this.state.location.value}  onChange={(event) => this.handleChange(event, this.validateText)}required/> 
                                     <i>{this.state.location.errorMessage}</i>
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Organization:
-                                    <input type="text" name='organization' placeholder='' value={this.state.organization.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
+                                    <input type="text" name='organization' placeholder='IBM trainings' value={this.state.organization.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
                                     <i>{this.state.organization.errorMessage}</i>
                                 </label>
 
                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                     Program:
-                                    <input type="text" name='program' placeholder='' value={this.state.program.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
+                                    <input type="text" name='program' placeholder=' Analytics' value={this.state.program.value}  onChange={(event) => this.handleChange(event, this.validateText)} required />
                                     <i>{this.state.program.errorMessage}</i>
                                 </label>
                                 <button type='cancel'className={classes.cancelbtn} onClick={this.handleShowTrainingForm}> Cancel</button>

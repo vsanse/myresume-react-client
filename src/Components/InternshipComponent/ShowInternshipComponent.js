@@ -164,39 +164,39 @@ class ShowInternshipComponent extends Component {
                                                 <hr />
                                             </div>
                                             <form className={classes.formBox} onSubmit={(event) => this.handleUpdateInternship(event, internDetails)}>
-
+                                            <label className={commonClasses.label + " " + classes.modal_label}>
+                                                    Profile:
+                                                    <input type="text" name='profile' placeholder='Sales and Marketing' value={this.state.profile.value} onChange={(event) => this.handleChangeEdit(event, this.validateProfile)} required />
+                                                    <i>{this.state.profile.errorMessage}</i>
+                                                </label>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Start-Date:
-                                    <input type="date" name='dateStarted' id='txtStartDate' placeholder='' value={this.state.dateStarted.value} onChange={(event) => this.handleChangeEdit(event, this.dateCheck)} required />
-                                                <i>{this.state.startDateErrorMessage}</i> 
+                                                    <input type="date" name='dateStarted' id='txtStartDate' placeholder='' value={this.state.dateStarted.value} onChange={(event) => this.handleChangeEdit(event, this.dateCheck)} required />
+                                                    <i>{this.state.startDateErrorMessage}</i> 
                                                 </label>
 
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     End-Date:
-                                    <input type="date" name='dateEnd' id='txtEndDate' placeholder='' value={this.state.dateEnd.value} onChange={(event) => this.handleChangeEdit(event, this.dateCheck)} required />
+                                                    <input type="date" name='dateEnd' id='txtEndDate' placeholder='' value={this.state.dateEnd.value} onChange={(event) => this.handleChangeEdit(event, this.dateCheck)} required />
                                                     <i>{this.state.dateErrorMessage}</i>
                                                 </label>
 
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Description:
-                                    <input type="text" name='description' placeholder='' value={this.state.description.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                    <textarea type="text" name='description' placeholder='Short description about internship (max 250 chars) ' maxLength='250' value={this.state.description.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required></textarea>
                                                     <i>{this.state.description.errorMessage}</i>
                                                 </label>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Location:
-                                    <input type="text" name='location' placeholder='' value={this.state.location.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                    <input type="text" name='location' placeholder='Noida' value={this.state.location.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
                                                     <i>{this.state.location.errorMessage}</i>
                                                 </label>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Organization:
-                                    <input type="text" name='organization' placeholder='' value={this.state.organization.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                    <input type="text" name='organization' placeholder='HCL Technology' value={this.state.organization.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
                                                     <i>{this.state.organization.errorMessage}</i>
                                                 </label>
-                                                <label className={commonClasses.label + " " + classes.modal_label}>
-                                                    Profile:
-                                    <input type="text" name='profile' placeholder='' value={this.state.profile.value} onChange={(event) => this.handleChangeEdit(event, this.validateProfile)} required />
-                                                    <i>{this.state.profile.errorMessage}</i>
-                                                </label>
+                                                
                                                 <button className={classes.cancelbtn} onClick={(event) => this.handleEditForm(event, internDetails)} > Cancel</button>
                                                 <button type="submit" className={classes.buttonSave} disabled={this.handleEditSave()} >Save</button>
                                             </form>

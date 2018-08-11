@@ -123,13 +123,13 @@ class ShowAddtionalInfoComponent extends Component {
                                     <div className={classes.modal}>
                                         <div className={classes.modal_content} >
                                             <div className={classes.modal_heading}>
-                                               Other Details
+                                               Additional Details
                                                 <hr />
                                             </div>
                                             <form className={classes.formBox} onSubmit={(event) => this.handleUpdateAdditionalInfo(event, additionalInfoDetails)}>
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Description:
-                                    <input type="text" name='description' placeholder='' value={this.state.description.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
+                                                    <textarea type="text" name='description' placeholder='Add details here (Max 250 chars)' maxLength='250' value={this.state.description.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required ></textarea>
                                                     <i>{this.state.description.errorMessage}</i>
                                                 </label>
                                               

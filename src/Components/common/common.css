@@ -6,13 +6,17 @@
     width: 45%;
 
  }
- .label>input, .TotalContent, select  {
+ .label>input, .label>textarea, .TotalContent, select  {
     min-height:50px;
     border: 1px solid dimgray;
     box-shadow: 0px 3px 4px dimgray;  
     margin-bottom: 3%;
     text-indent: 1rem;
     width: 100%;
+ }
+
+ .label>textarea{
+     max-height: 200px
  }
  .label>input[disabled]{
     background: dimgray;
