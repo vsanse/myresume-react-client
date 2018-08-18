@@ -108,7 +108,7 @@ class ProjectComponent extends Component {
                 <div className={classes.education} >
                     <div className={classes.eduHeading}>
                         <div className={classes.heading}>
-                            <strong>PROJECT:</strong>
+                            <strong>PROJECTS:</strong>
                         </div>
                         <div className={classes.icon} >
                             <i className="fas fa-plus fa-1x" onClick={this.handleShowProjectForm}></i>

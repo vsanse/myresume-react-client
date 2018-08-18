@@ -12,9 +12,11 @@ class ShowProfileProjectDetails extends Component{
                                     <div className={classes.detailHeading}>
 
                                         <div className={classes.details}>
+                                        <li>
                                             <p><strong>{projectDetails.title}</strong></p>
                                             <p>{projectDetails.startDate} to {projectDetails.endDate}</p>
                                             <p><strong>Description:</strong>{projectDetails.description}</p>
+                                        </li>
                                         </div>
                                     </div>
                                 </div>

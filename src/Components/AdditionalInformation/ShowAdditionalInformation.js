@@ -110,7 +110,7 @@ class ShowAddtionalInfoComponent extends Component {
                                     <div className={classes.detailHeading}>
 
                                         <div className={classes.details}>
-                                            <p><strong>Description:</strong>{additionalInfoDetails.description}</p>
+                                            <li>{additionalInfoDetails.description}</li>
                                         </div>
                                     </div>
                                     <div className={classes.editEduDetailsIcons} >
