@@ -8,6 +8,7 @@ import ShowProfileInternshipDetails from '../InternshipComponent/ShowProfileInte
 import ShowProfileSkillComponent from '../SkillsComponent/ShowProfileSkillDetails'
 import ShowProfileProjectDetails from '../ProjectComponenet/ShowProfileProjectDetails'
 import ShowProfileTrainingDetails from '../TrainingComponent/ShowProfileTrainingDetails'
+import ShowProfileAdditionalInformationDetails from "../AdditionalInformation/ShowProfileAdditionalInformation"
 class Profile extends Component {
 
     state = {
@@ -24,7 +25,8 @@ class Profile extends Component {
                     internshipDetails:profile.internshipDetails,
                     skillsDetails:profile.skillDetails,
                     projectDetails:profile.projectDetails,
-                    trainingDetails:profile.trainingDetails
+                    trainingDetails:profile.trainingDetails,
+                    additionalInfoDetails:profile.additionalInfoDetails
                 })
             }).catch(error => {
                 if (error.errorCode === 'ERx004') {
@@ -43,7 +45,7 @@ class Profile extends Component {
     }
 
     render() {
-            console.log(this.profile)
+          
         return (
     
             <div className={classes.overflow_handle}>
@@ -102,7 +104,7 @@ class Profile extends Component {
                     this.state.projectDetails.length > 0 &&
                     <div className={educationClasses.education} >
                         <div className={educationClasses.heading}>
-                            <strong>PROJECT:</strong>
+                            <strong>PROJECTS:</strong>
                         </div>
                         <hr className={educationClasses.hr2px} />
                        
@@ -115,11 +117,24 @@ class Profile extends Component {
                     this.state.trainingDetails.length > 0 &&
                     <div className={educationClasses.education} >
                         <div className={educationClasses.heading}>
-                            <strong>TRAINING:</strong>
+                            <strong>TRAININGS:</strong>
                         </div>
                         <hr className={educationClasses.hr2px} />
                        
                         <ShowProfileTrainingDetails trainingDetails={this.state.trainingDetails}/>
+                    </div>
+                }
+
+                {
+                    this.state.additionalInfoDetails &&
+                    this.state.additionalInfoDetails.length > 0 &&
+                    <div className={educationClasses.education} >
+                        <div className={educationClasses.heading}>
+                            <strong>ADDITIONAL INFORMATION:</strong>
+                        </div>
+                        <hr className={educationClasses.hr2px} />
+                        <ShowProfileAdditionalInformationDetails additionalInfoDetails={this.state.additionalInfoDetails} />
+                       
                     </div>
                 }
 

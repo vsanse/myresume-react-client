@@ -215,27 +215,30 @@ class ShowEduDetails extends Component {
                     this.props.eduDetail.map((details) => {
                         return (
                             <div className={classes.eduFlexBody} key={details.id} id="editForm">
-                                <div className={classes.detailHeading}>
-                                    {(details.educationType === GRADUATION || details.educationType === POST_GRADUATION) &&
-                                        <p><strong>{details.degree} {details.stream}</strong></p>
-                                    }
-                                    {(details.educationType !== GRADUATION && details.educationType !== POST_GRADUATION) &&
-                                        <p><strong>{details.educationType} {details.stream}</strong></p>
-                                    } 
-                                    <div className={classes.details}>
-                                        <p>{details.board}<span> ( {details.institution} )</span></p>
-                                        <p>Year Of Completion:{details.yearOfCompletion}</p>
-                                        {details.performanceScale === CGPA10 &&
-                                            <p>CGPA : {details.performance}/10</p>
-                                        }
-                                        {details.performanceScale === CGPA5 &&
-                                            <p>CGPA : {details.performance}/5</p>
-                                        }
-                                        {details.performanceScale === PERCENT &&
-                                            <p>Percentage : {details.performance}%</p>
-                                        }
 
-                                    </div>
+                                <div className={classes.detailHeading}>
+                                    <li>
+                                        {(details.educationType === GRADUATION || details.educationType === POST_GRADUATION) &&
+                                            <p><strong>{details.degree} {details.stream}</strong></p>
+                                        }
+                                        {(details.educationType !== GRADUATION && details.educationType !== POST_GRADUATION) &&
+                                            <p><strong>{details.educationType} {details.stream}</strong></p>
+                                        }
+                                        <div className={classes.details}>
+                                            <p>{details.board}<span> ( {details.institution} )</span></p>
+                                            <p>Year Of Completion:{details.yearOfCompletion}</p>
+                                            {details.performanceScale === CGPA10 &&
+                                                <p>CGPA : {details.performance}/10</p>
+                                            }
+                                            {details.performanceScale === CGPA5 &&
+                                                <p>CGPA : {details.performance}/5</p>
+                                            }
+                                            {details.performanceScale === PERCENT &&
+                                                <p>Percentage : {details.performance}%</p>
+                                            }
+
+                                        </div>
+                                    </li>
                                 </div>
                                 <div className={classes.editEduDetailsIcons} >
                                     <i className={"fas fa-edit " + classes.editIcon} onClick={(event) => this.handleEditDetails(event, details)}></i>
@@ -367,7 +370,7 @@ class ShowEduDetails extends Component {
         if (!degreeREGEX.test(degree)) {
             return {
                 validationStatus: 'error',
-                errorMessage:'Please enter albhabets and fullstop only and leading spaces and fullstop are not allowed',
+                errorMessage: 'Please enter albhabets and fullstop only and leading spaces and fullstop are not allowed',
             }
 
         }

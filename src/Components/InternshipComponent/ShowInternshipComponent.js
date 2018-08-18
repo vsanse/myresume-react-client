@@ -28,13 +28,13 @@ class ShowInternshipComponent extends Component {
     handleEditForm = (event, internDetails) => {
         this.setState(prevState => ({
             showEditInternForm: !prevState.showEditInternForm,
-            dateValidationStatus:'success',
+            dateValidationStatus: 'success',
             internId: {
                 value: internDetails.internId,
 
             },
             dateStarted: {
-                value: reverseString(internDetails.dateStarted),    
+                value: reverseString(internDetails.dateStarted),
             },
             dateEnd: {
                 value: reverseString(internDetails.dateEnd),
@@ -144,10 +144,12 @@ class ShowInternshipComponent extends Component {
                                     <div className={classes.detailHeading}>
 
                                         <div className={classes.details}>
-                                            <p><strong>{internDetails.profile}</strong></p>
-                                            <p>{internDetails.organization}({internDetails.location})</p>
-                                            <p>{internDetails.dateStarted} to {internDetails.dateEnd}</p>
-                                            <p><strong>Description:</strong>{internDetails.description}</p>
+                                            <li>
+                                                <p><strong>{internDetails.profile}</strong></p>
+                                                <p>{internDetails.organization}({internDetails.location})</p>
+                                                <p>{internDetails.dateStarted} to {internDetails.dateEnd}</p>
+                                                <p><strong>Description:</strong>{internDetails.description}</p>
+                                            </li>
                                         </div>
                                     </div>
                                     <div className={classes.editEduDetailsIcons} >
@@ -164,7 +166,7 @@ class ShowInternshipComponent extends Component {
                                                 <hr />
                                             </div>
                                             <form className={classes.formBox} onSubmit={(event) => this.handleUpdateInternship(event, internDetails)}>
-                                            <label className={commonClasses.label + " " + classes.modal_label}>
+                                                <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Profile:
                                                     <input type="text" name='profile' placeholder='Sales and Marketing' value={this.state.profile.value} onChange={(event) => this.handleChangeEdit(event, this.validateProfile)} required />
                                                     <i>{this.state.profile.errorMessage}</i>
@@ -172,7 +174,7 @@ class ShowInternshipComponent extends Component {
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Start-Date:
                                                     <input type="date" name='dateStarted' id='txtStartDate' placeholder='' value={this.state.dateStarted.value} onChange={(event) => this.handleChangeEdit(event, this.dateCheck)} required />
-                                                    <i>{this.state.startDateErrorMessage}</i> 
+                                                    <i>{this.state.startDateErrorMessage}</i>
                                                 </label>
 
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
@@ -196,7 +198,7 @@ class ShowInternshipComponent extends Component {
                                                     <input type="text" name='organization' placeholder='HCL Technology' value={this.state.organization.value} onChange={(event) => this.handleChangeEdit(event, this.validateText)} required />
                                                     <i>{this.state.organization.errorMessage}</i>
                                                 </label>
-                                                
+
                                                 <button className={classes.cancelbtn} onClick={(event) => this.handleEditForm(event, internDetails)} > Cancel</button>
                                                 <button type="submit" className={classes.buttonSave} disabled={this.handleEditSave()} >Save</button>
                                             </form>
@@ -224,7 +226,7 @@ class ShowInternshipComponent extends Component {
         )
     }
 
-    validateProfile= (text) => {
+    validateProfile = (text) => {
         const degreeREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
         if (!degreeREGEX.test(text)) {
             return {
@@ -258,49 +260,49 @@ class ShowInternshipComponent extends Component {
         }
 
     }
-    
+
     dateCheck = (date) => {
         const today = new Date()
         let dd = today.getDate()
-        let mm = today.getMonth()+1
+        let mm = today.getMonth() + 1
         let yyyy = today.getFullYear()
-        if(dd<10){
-            dd='0'+dd
+        if (dd < 10) {
+            dd = '0' + dd
         }
-        if(mm<10){
-            mm = '0'+mm
+        if (mm < 10) {
+            mm = '0' + mm
         }
-        const currentDate = yyyy+ '-'+ mm + '-'+ dd
+        const currentDate = yyyy + '-' + mm + '-' + dd
         const StartDate = document.getElementById('txtStartDate').value
         const EndDate = document.getElementById('txtEndDate').value
 
-        if(StartDate > currentDate){
-            this.setState({ 
+        if (StartDate > currentDate) {
+            this.setState({
                 dateValidationStatus: 'error',
                 startDateErrorMessage: 'Start Date cannot be in future ',
             })
         }
         else {
-            this.setState({ 
+            this.setState({
                 dateValidationStatus: 'success',
                 startDateErrorMessage: '',
             })
-               
+
         }
 
-        if( EndDate !=="" && (EndDate > StartDate)){
-           this.setState({ 
+        if (EndDate !== "" && (EndDate > StartDate)) {
+            this.setState({
                 dateValidationStatus: 'success',
                 dateErrorMessage: '',
             })
         }
-       
-        else if(StartDate!=="" && EndDate!=="" && EndDate < StartDate)  {
-            this.setState({ 
+
+        else if (StartDate !== "" && EndDate !== "" && EndDate < StartDate) {
+            this.setState({
                 dateValidationStatus: 'error',
                 dateErrorMessage: 'End Date must be greater then Start Date',
             })
-               
+
         }
 
     }

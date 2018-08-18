@@ -28,13 +28,13 @@ class ShowTrainingComponent extends Component {
     handleEditForm = (event, trainingDetails) => {
         this.setState(prevState => ({
             showEditTrainingForm: !prevState.showEditTrainingForm,
-            dateValidationStatus:'success',
+            dateValidationStatus: 'success',
             trainingId: {
                 value: trainingDetails.trainingId,
 
             },
             dateStarted: {
-                value: reverseString(trainingDetails.dateStarted),    
+                value: reverseString(trainingDetails.dateStarted),
             },
             dateEnd: {
                 value: reverseString(trainingDetails.dateEnd),
@@ -45,7 +45,7 @@ class ShowTrainingComponent extends Component {
 
             },
             organization: {
-                value:trainingDetails.organization,
+                value: trainingDetails.organization,
                 validationStatus: 'success'
             },
             description: {
@@ -53,7 +53,7 @@ class ShowTrainingComponent extends Component {
                 validationStatus: 'success'
             },
             location: {
-                value:trainingDetails.location,
+                value: trainingDetails.location,
                 validationStatus: 'success'
             }
 
@@ -73,7 +73,7 @@ class ShowTrainingComponent extends Component {
         return true
     }
 
-    handleUpdateTraining= (event) => {
+    handleUpdateTraining = (event) => {
         event.preventDefault();
         const trainingDetails = {
             trainingId: this.state.trainingId.value,
@@ -144,10 +144,12 @@ class ShowTrainingComponent extends Component {
                                     <div className={classes.detailHeading}>
 
                                         <div className={classes.details}>
-                                            <p><strong>{trainingDetails.program}</strong></p>
-                                            <p>{trainingDetails.organization}({trainingDetails.location})</p>
-                                            <p>{trainingDetails.dateStarted} to {trainingDetails.dateEnd}</p>
-                                            <p><strong>Description:</strong>{trainingDetails.description}</p>
+                                            <li>
+                                                <p><strong>{trainingDetails.program}</strong></p>
+                                                <p>{trainingDetails.organization}({trainingDetails.location})</p>
+                                                <p>{trainingDetails.dateStarted} to {trainingDetails.dateEnd}</p>
+                                                <p><strong>Description:</strong>{trainingDetails.description}</p>
+                                            </li>
                                         </div>
                                     </div>
                                     <div className={classes.editEduDetailsIcons} >
@@ -168,7 +170,7 @@ class ShowTrainingComponent extends Component {
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
                                                     Start-Date:
                                     <input type="date" name='dateStarted' id='txtStartDate' placeholder='' value={this.state.dateStarted.value} onChange={(event) => this.handleChangeEdit(event, this.dateCheck)} required />
-                                                <i>{this.state.startDateErrorMessage}</i> 
+                                                    <i>{this.state.startDateErrorMessage}</i>
                                                 </label>
 
                                                 <label className={commonClasses.label + " " + classes.modal_label}>
@@ -224,7 +226,7 @@ class ShowTrainingComponent extends Component {
         )
     }
 
-    validateProgram= (text) => {
+    validateProgram = (text) => {
         const degreeREGEX = RegExp('^[a-zA-Z]+[a-zA-Z ]*$');
         if (!degreeREGEX.test(text)) {
             return {
@@ -258,49 +260,49 @@ class ShowTrainingComponent extends Component {
         }
 
     }
-    
+
     dateCheck = (date) => {
         const today = new Date()
         let dd = today.getDate()
-        let mm = today.getMonth()+1
+        let mm = today.getMonth() + 1
         let yyyy = today.getFullYear()
-        if(dd<10){
-            dd='0'+dd
+        if (dd < 10) {
+            dd = '0' + dd
         }
-        if(mm<10){
-            mm = '0'+mm
+        if (mm < 10) {
+            mm = '0' + mm
         }
-        const currentDate = yyyy+ '-'+ mm + '-'+ dd
+        const currentDate = yyyy + '-' + mm + '-' + dd
         const StartDate = document.getElementById('txtStartDate').value
         const EndDate = document.getElementById('txtEndDate').value
 
-        if(StartDate > currentDate){
-            this.setState({ 
+        if (StartDate > currentDate) {
+            this.setState({
                 dateValidationStatus: 'error',
                 startDateErrorMessage: 'Start Date cannot be in future ',
             })
         }
         else {
-            this.setState({ 
+            this.setState({
                 dateValidationStatus: 'success',
                 startDateErrorMessage: '',
             })
-               
+
         }
 
-        if( EndDate !=="" && (EndDate > StartDate)){
-           this.setState({ 
+        if (EndDate !== "" && (EndDate > StartDate)) {
+            this.setState({
                 dateValidationStatus: 'success',
                 dateErrorMessage: '',
             })
         }
-       
-        else if(StartDate!=="" && EndDate!=="" && EndDate < StartDate)  {
-            this.setState({ 
+
+        else if (StartDate !== "" && EndDate !== "" && EndDate < StartDate) {
+            this.setState({
                 dateValidationStatus: 'error',
                 dateErrorMessage: 'End Date must be greater then Start Date',
             })
-               
+
         }
 
     }

@@ -93,7 +93,7 @@ class ShowSkillsDetails extends Component {
                                 <div className={classes.eduFlexBody}>
                                     <div className={classes.detailHeading}>
                                         <div className={classes.details}>
-                                            <div >{skills.skill}</div>
+                                            <li>{skills.skill}</li>
                                         </div>
                                     </div>
                                     <div className={classes.editEduDetailsIcons} >
@@ -126,7 +126,7 @@ class ShowSkillsDetails extends Component {
                                         <div className={classes.modal_content} >
                                             <p className={classes.deleteMessage}><strong>Do you really want to delete ?</strong></p>
                                             <div className={classes.deleteBox}>
-                                                <button className={classes.cancelbtn} onClick={(event) => this.handleDeleteForm(event, skills)} > Cancel</button>
+                                                <button className={classes.buttonCancel} onClick={(event) => this.handleDeleteForm(event, skills)} > Cancel</button>
                                                 <button type="submit" className={classes.buttonDelete} onClick={event => this.deleteSkillDetails(event, skills.skillId)} >Delete</button>
                                             </div>
                                         </div>
